@@ -1,5 +1,6 @@
 package com.example.athletexperience
 
+import android.app.Activity
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.util.Log
 import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.athletexperience.databinding.ActivitySingInBinding
 import com.example.athletexperience.databinding.ActivitySingUpBinding
@@ -23,8 +25,12 @@ class SingInActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var textView: TextView
     private lateinit var client: GoogleSignInClient
+
+    private lateinit var imageUri: String
+
     companion object {
         private const val RC_SIGN_IN = 1001
+        private const val PICK_IMAGE_REQUEST = 1002
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,7 +73,29 @@ class SingInActivity : AppCompatActivity() {
 
             }
         }
+        binding.floatingActionButton.setOnClickListener {
+            openGallery()
+        }
     }
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+    }
+
+    private val galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data = result.data
+            data?.data?.let { uri ->
+                imageUri = uri.toString()
+                binding.imageView.setImageURI(uri)
+            }
+        } else {
+            Log.e("SingInActivity", "Error al seleccionar imagen de la galería")
+            Toast.makeText(this, "Error al seleccionar imagen de la galería", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         firebaseAuth.signInWithCredential(credential)
@@ -94,8 +122,19 @@ class SingInActivity : AppCompatActivity() {
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
                 // Error en el inicio de sesión con Google
-                Log.w(TAG, "Google sign in failed", e)
+                Log.w("SingInActivity", "Google sign in failed", e)
                 Toast.makeText(this, "Google sign in failed", Toast.LENGTH_SHORT).show()
+            }
+        } else if (requestCode == PICK_IMAGE_REQUEST) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                val uri = data.data
+                uri?.let {
+                    imageUri = it.toString()
+                    binding.imageView.setImageURI(uri)
+                }
+            } else {
+                Log.e("SingInActivity", "Error al seleccionar imagen de la galería")
+                Toast.makeText(this, "Error al seleccionar imagen de la galería", Toast.LENGTH_SHORT).show()
             }
         }
     }
