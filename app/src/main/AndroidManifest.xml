@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" >
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>\
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -12,16 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.AthleteXperience"
         tools:targetApi="31" >
-        <activity
-            android:name=".MainActivity2PersonalInfoActivity"
-            android:exported="false"
-            android:theme="@style/Base.Theme.AthleteXperience" />
-        <!--
-        <activity
-            android:name=".AuthActivity"
-            android:exported="true" >
-        </activity>
-        -->
+        <!-- <activity
+          android:name=".MainActivity2PersonalInfoActivity"
+          android:exported="false"
+          android:theme="@style/Base.Theme.AthleteXperience" />
+  
+      <activity
+          android:name=".AuthActivity"
+          android:exported="true" >
+      </activity>
+      -->
         <activity
             android:name=".SingInActivity"
             android:exported="true" >

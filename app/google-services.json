@@ -12,7 +12,20 @@
           "package_name": "com.example.athletexperience"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "780115247992-minojoc3gs62mia3o1mjvrs0o8gf30dk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.athletexperience",
+            "certificate_hash": "3a3f08cbe602d0de24f01af86301c0cb6be20dc8"
+          }
+        },
+        {
+          "client_id": "780115247992-me0fulp2uo7ita89889lnclnhk6f0277.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyA0UDbmPr97JJBJEjqwImdUS7Kx7awCX3s"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "780115247992-me0fulp2uo7ita89889lnclnhk6f0277.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
