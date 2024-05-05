@@ -13,5 +13,5 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_auth) // Aquí se establece el layout XML
-        }
     }
+}

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group"
+        android:layout_width="378dp"
+        android:layout_height="65dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.28">
+
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="58dp"
+            android:src="@drawable/icon_sexo"
+            tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_hombre"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="Hombre"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:chipBackgroundColor="@color/orange" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_mujer"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="Mujer"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:chipBackgroundColor="@color/orange" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="58dp"
+        android:src="@drawable/icon_calendario"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <EditText
+        android:id="@+id/editTextDateFechaNacimiento"
+        android:layout_width="317dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="54dp"
+        android:backgroundTint="#FF9800"
+        android:ems="10"
+        android:hint="Fecha de nacimiento"
+        android:inputType="date"
+        app:layout_constraintTop_toBottomOf="@+id/chip_group"
+        tools:layout_editor_absoluteX="78dp"
+        tools:ignore="MissingConstraints" />
+
+    <SeekBar
+        android:id="@+id/seekBarWeight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:max="150"
+        android:progress="70"
+        android:progressBackgroundTint="@color/white"
+        android:progressTint="@color/orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chip_group" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
