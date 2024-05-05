@@ -18,6 +18,15 @@ class mainActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
+        // Verificar si hay un usuario autenticado
+        val currentUser = firebaseAuth.currentUser
+        if (currentUser == null) {
+            // No hay usuario autenticado, redirigir a la pantalla de inicio de sesión
+            val intent = Intent(this, SingInActivity::class.java)
+            startActivity(intent)
+            finish() // Finalizar la actividad actual para evitar que el usuario regrese utilizando el botón Atrás
+        }
+
         // Configurar el botón de cerrar sesión
         binding.logoutButton.setOnClickListener {
             // Cerrar sesión

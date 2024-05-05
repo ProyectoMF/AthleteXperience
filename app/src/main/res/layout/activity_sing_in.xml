@@ -56,21 +56,15 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/googleSignInTextView"
-        android:layout_width="wrap_content"
+   <com.google.android.gms.common.SignInButton
+        android:id="@+id/ButtonGoogle"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rectangle"
-        android:text="Iniciar sesión con Google"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textStyle="bold"
+        android:layout_width="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/passwordLayout"
         app:layout_constraintStart_toStartOf="@+id/passwordLayout"
         app:layout_constraintTop_toBottomOf="@id/passwordLayout"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"/>
 
     <TextView
         android:id="@+id/facebookSignInTextView"
@@ -86,7 +80,7 @@
         app:layout_constraintEnd_toEndOf="@+id/passwordLayout"
         app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toStartOf="@+id/passwordLayout"
-        app:layout_constraintTop_toBottomOf="@id/googleSignInTextView"
+        app:layout_constraintTop_toBottomOf="@id/ButtonGoogle"
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatButton
