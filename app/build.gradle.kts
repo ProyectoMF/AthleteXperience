@@ -46,6 +46,8 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.android.gms:play-services-auth:21.0.0")
     implementation("com.google.firebase:firebase-auth-ktx:23.0.0")
+    //FACEBOOK
+    implementation ("com.facebook.android:facebook-login:latest.release")
 
 
 
