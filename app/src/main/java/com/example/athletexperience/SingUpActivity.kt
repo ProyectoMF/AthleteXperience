@@ -24,6 +24,7 @@ class SignUpActivity : AppCompatActivity() {
             val intent = Intent(this, SingInActivity::class.java)
             startActivity(intent)
         }
+
         binding.button.setOnClickListener {
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
@@ -31,22 +32,22 @@ class SignUpActivity : AppCompatActivity() {
 
             if (email.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()) {
                 if (pass == confirmPass) {
-
                     firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                         if (it.isSuccessful) {
-                            val intent = Intent(this, SingInActivity::class.java)
+                            Toast.makeText(this, "Usuario creado exitosamente", Toast.LENGTH_SHORT).show()
+                            // Iniciar una nueva instancia de SignUpActivity para permitir al usuario ingresar nuevamente sus credenciales
+                            val intent = Intent(this, SignUpActivity::class.java)
                             startActivity(intent)
+                            finish() // Finalizar la actividad actual para evitar que el usuario regrese utilizando el botón Atrás
                         } else {
                             Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-
                         }
                     }
                 } else {
-                    Toast.makeText(this, "La contrasena no coincide", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "La contraseña no coincide", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "No se permiten campos vacios", Toast.LENGTH_SHORT).show()
-
+                Toast.makeText(this, "No se permiten campos vacíos", Toast.LENGTH_SHORT).show()
             }
         }
     }
