@@ -49,6 +49,11 @@ dependencies {
     //FACEBOOK
     implementation ("com.facebook.android:facebook-login:latest.release")
 
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+    implementation("androidx.drawerlayout:drawerlayout:1.2.0")
+    implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
+
+
 
 
 
