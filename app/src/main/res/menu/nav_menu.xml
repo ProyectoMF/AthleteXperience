@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/baseline_home_24"
+            android:title="Home">
+
+
+        </item>
+        <item
+            android:id="@+id/nav_message"
+            android:title="Message"
+            android:icon="@drawable/baseline_message_24">
+
+        </item>
+        <item
+            android:id="@+id/nav_sync"
+            android:title="Sync"
+            android:icon="@drawable/icono_google">
+
+        </item>
+        <item
+            android:id="@+id/nav_trash"
+            android:title="Trash"
+            android:icon="@drawable/baseline_delete_24">
+
+        </item>
+        <item
+            android:id="@+id/nav_settings"
+            android:title="Settings"
+            android:icon="@drawable/baseline_settings_24">
+
+        </item>
+        <item android:title="Porfile">
+
+                <menu>
+                        <item
+                            android:id="@+id/nav_login"
+                            android:icon="@drawable/baseline_login_24"
+                            android:title="Login">
+
+                        </item>
+                </menu>
+
+        </item>
+        <item android:title="Comunicate">
+              <menu>
+                      <item android:id="@+id/nav_share"
+                          android:icon="@drawable/baseline_share_24"
+                          android:title="Share">
+
+                      </item>
+                      <item  android:id="@+id/nav_rate_us"
+                          android:icon="@drawable/baseline_rate_review_24"
+                          android:title="Rate Us">
+
+                      </item>
+              </menu>
+        </item>
+</menu>

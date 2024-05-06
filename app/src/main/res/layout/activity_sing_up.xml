@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondologgin"
-    tools:context=".SignUpActivity">
+    tools:context=".loggin.SignUpActivity">
 
 
     <com.google.android.material.textfield.TextInputLayout
