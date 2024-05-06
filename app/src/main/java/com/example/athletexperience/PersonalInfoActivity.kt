@@ -1,6 +1,7 @@
 package com.example.athletexperience
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.athletexperience.loggin.SingInActivity
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.internal.ViewUtils.hideKeyboard
 import java.util.Calendar
@@ -133,7 +135,10 @@ class PersonalInfoActivity : AppCompatActivity() {
             findViewById<LinearLayout>(R.id.numberPickerPesoLayout).visibility = View.GONE
         }
     }
-
+    fun addCredentials() {
+        val intent = Intent(this, mainActivity::class.java)
+        startActivity(intent)
+    }
     private fun hideKeyboard() {
         val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         currentFocus?.let {

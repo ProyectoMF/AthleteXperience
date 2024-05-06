@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.athletexperience.PersonalInfoActivity
 import com.example.athletexperience.databinding.ActivitySingUpBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -22,7 +23,7 @@ class SignUpActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.textView.setOnClickListener {
-            val intent = Intent(this, SingInActivity::class.java)
+            val intent = Intent(this, PersonalInfoActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -38,7 +39,7 @@ class SignUpActivity : AppCompatActivity() {
                         if (it.isSuccessful) {
                             Toast.makeText(this, "Usuario creado exitosamente", Toast.LENGTH_SHORT).show()
                             // Iniciar una nueva instancia de SignUpActivity para permitir al usuario ingresar nuevamente sus credenciales
-                            val intent = Intent(this, SignUpActivity::class.java)
+                            val intent = Intent(this, PersonalInfoActivity::class.java)
                             startActivity(intent)
                             finish() // Finalizar la actividad actual para evitar que el usuario regrese utilizando el botón Atrás
                         } else {
