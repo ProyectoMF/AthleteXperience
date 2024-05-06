@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/black">
 
 
@@ -17,14 +18,19 @@
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28">
+        app:layout_constraintVertical_bias="0.277"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="25dp"
+        >
 
 
         <ImageView
             android:layout_width="48dp"
             android:layout_height="58dp"
             android:src="@drawable/icon_sexo"
-            tools:ignore="MissingConstraints" />
+            android:paddingEnd="10dp"
+            />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_hombre"
@@ -48,39 +54,46 @@
 
     </com.google.android.material.chip.ChipGroup>
 
-    <ImageView
-        android:layout_width="48dp"
-        android:layout_height="58dp"
-        android:src="@drawable/icon_calendario"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="300dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="102dp"
+        android:layout_marginLeft="25dp"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/editTextDateFechaNacimiento"
-        android:layout_width="317dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="54dp"
-        android:backgroundTint="#FF9800"
-        android:ems="10"
-        android:hint="Fecha de nacimiento"
-        android:inputType="date"
-        app:layout_constraintTop_toBottomOf="@+id/chip_group"
-        tools:layout_editor_absoluteX="78dp"
-        tools:ignore="MissingConstraints" />
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="58dp"
+            android:paddingEnd="10dp"
+            android:src="@drawable/icon_calendario" />
 
-    <SeekBar
-        android:id="@+id/seekBarWeight"
-        android:layout_width="0dp"
+        <EditText
+            android:id="@+id/editTextDateFechaNacimiento"
+            android:layout_width="317dp"
+            android:layout_height="52dp"
+            android:backgroundTint="#FF9800"
+            android:hint="Fecha de nacimiento"
+            android:inputType="date"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"/>
+    </LinearLayout>
+
+    <NumberPicker
+        android:id="@+id/heightPicker"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:max="150"
-        android:progress="70"
-        android:progressBackgroundTint="@color/white"
-        android:progressTint="@color/orange"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chip_group" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="550dp"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        />
+
+    <NumberPicker
+        android:id="@+id/weightPicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="550dp"
+        android:textColor="@color/white"
+        android:format="%.1f"
+        />
+</LinearLayout>
+
