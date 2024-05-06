@@ -152,7 +152,7 @@
                 android:id="@+id/numberPickerDia"
                 android:layout_width="115dp"
                 android:layout_height="wrap_content"
-                android:textColor="@style/NumberPickerTextAppearance" />
+                 />
 
 
             <!-- NumberPicker para el mes -->
@@ -160,14 +160,14 @@
                 android:id="@+id/numberPickerMes"
                 android:layout_width="115dp"
                 android:layout_height="wrap_content"
-                android:textColor="@style/NumberPickerTextAppearance" />
+                 />
 
             <!-- NumberPicker para el año -->
             <NumberPicker
                 android:id="@+id/numberPickerAnio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@style/NumberPickerTextAppearance" />
+                 />
         </LinearLayout>
 
 
@@ -210,7 +210,7 @@
             android:id="@+id/numberPickerAltura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@style/NumberPickerTextAppearance" />
+            />
 
         <!-- Botones Aceptar y Cancelar para la altura -->
         <LinearLayout
@@ -250,7 +250,7 @@
             android:id="@+id/numberPickerPeso"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@style/NumberPickerTextAppearance" />
+            />
 
         <!-- Botones Aceptar y Cancelar para el peso -->
         <LinearLayout
