@@ -16,7 +16,18 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    
+    <string name="perdergrasa">Perder Grasa</string>
+    <string name="perdergrasadescripcion">Máximiza la pérdida de grasa y conserva tu masa muscular</string>
+    <string name="mantenerpeso">Mantener Peso</string>
+    <string name="mantenerpesodescripcion">Conserva tu estado físico y mantente saludable</string>
+    <string name="ganarmusculo">Ganar Músculo</string>
+    <string name="ganarmusculodescripcion">Incrementa tu masa muscular y vuélvete más fuerte</string>
+
+
+
+
+
 
     <string name="default_web_client_id" translatable="false">780115247992-me0fulp2uo7ita89889lnclnhk6f0277.apps.googleusercontent.com</string>
+    <string name="objetivo">¿Cuál es tu objetivo?</string>
 </resources>

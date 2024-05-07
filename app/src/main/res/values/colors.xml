@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorAccent">#F57C00</color>
     <color name="orange">#FFA500</color>
+    <color name="orangeDark">#AC9778</color>
+    <color name="orangeLight">#FFBD5B</color>
 </resources>
