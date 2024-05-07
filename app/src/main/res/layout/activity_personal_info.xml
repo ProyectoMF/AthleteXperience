@@ -131,7 +131,7 @@
 
 
     <LinearLayout
-        android:id="@+id/editTextDateFechaNacimiento"
+        android:id="@+id/ly_fechaNacimiento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -145,19 +145,21 @@
             android:src="@drawable/icon_calendario" />
 
         <EditText
+            android:id="@+id/et_fechaNacimiento"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="#000000"
             android:hint="Fecha de nacimiento"
-            android:inputType="date"
+            android:inputType="text"
             android:paddingStart="15dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/editTextNumberSignedAltura"
+        android:id="@+id/ly_altura"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -168,54 +170,60 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginEnd="20dp"
-            android:src="@drawable/icon_altur" />
+            android:src="@drawable/icon_altura" />
 
         <EditText
+            android:id="@+id/et_altura"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="#000000"
             android:hint="Altura"
-            android:inputType="numberSigned"
+            android:inputType="text"
             android:paddingStart="15dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            />
 
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/editTextNumberDecimalPeso"
+        android:id="@+id/ly_peso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="50dp">
 
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginEnd="20dp"
-            android:src="@drawable/icon_pes" />
+            android:src="@drawable/icon_peso" />
 
         <EditText
+            android:id="@+id/et_peso"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="#000000"
             android:clickable="false"
             android:hint="Peso"
-            android:inputType="numberDecimal"
+            android:inputType="text"
             android:paddingStart="15dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/numberPickerLayout"
+        android:id="@+id/LayoutNumberPickerFecha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -226,20 +234,24 @@
             <NumberPicker
                 android:id="@+id/numberPickerDia"
                 android:layout_width="115dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:theme="@style/NumberPickerStyle"
+                />
 
 
             <!-- NumberPicker para el mes -->
             <NumberPicker
                 android:id="@+id/numberPickerMes"
                 android:layout_width="115dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:theme="@style/NumberPickerStyle" />
 
             <!-- NumberPicker para el año -->
             <NumberPicker
                 android:id="@+id/numberPickerAnio"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:theme="@style/NumberPickerStyle" />
         </LinearLayout>
 
 
@@ -269,7 +281,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/numberPickerAlturaLayout"
+        android:id="@+id/LayoutNumberPickerAltura"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -279,7 +291,8 @@
         <NumberPicker
             android:id="@+id/numberPickerAltura"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:theme="@style/NumberPickerStyle" />
 
         <!-- Botones Aceptar y Cancelar para la altura -->
         <LinearLayout
@@ -306,17 +319,39 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/numberPickerPesoLayout"
+        android:id="@+id/LayoutNumberPickerPeso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        >
 
-        <!-- NumberPicker para el peso -->
-        <NumberPicker
-            android:id="@+id/numberPickerPeso"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            >
+
+            <!-- NumberPicker para el peso -->
+            <NumberPicker
+                android:id="@+id/numberPickerPeso"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/numberPickerPesoDecimal"
+                android:theme="@style/NumberPickerStyle" />
+
+            <NumberPicker
+                android:id="@+id/numberPickerPesoDecimal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/numberPickerPeso"
+                android:theme="@style/NumberPickerStyle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
         <!-- Botones Aceptar y Cancelar para el peso -->
         <LinearLayout

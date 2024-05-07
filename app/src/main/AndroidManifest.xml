@@ -39,7 +39,7 @@
             android:exported="false" >
         </activity>
         <activity
-            android:name=".PersonalInfoActivity"
+            android:name=".loggin.SingInActivity"
             android:exported="false" >
         </activity>
         <activity
