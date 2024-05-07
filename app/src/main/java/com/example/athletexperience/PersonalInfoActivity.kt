@@ -135,10 +135,7 @@ class PersonalInfoActivity : AppCompatActivity() {
             findViewById<LinearLayout>(R.id.numberPickerPesoLayout).visibility = View.GONE
         }
     }
-    fun addCredentials() {
-        val intent = Intent(this, mainActivity::class.java)
-        startActivity(intent)
-    }
+
     private fun hideKeyboard() {
         val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         currentFocus?.let {
