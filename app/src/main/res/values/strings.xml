@@ -24,12 +24,15 @@
     <string name="ganarmusculodescripcion">Incrementa tu masa muscular y vuélvete más fuerte</string>
     <string name="hombre">Hombre</string>
     <string name="mujer">Mujer</string>
-
-
-
-
-
-
     <string name="default_web_client_id" translatable="false">780115247992-me0fulp2uo7ita89889lnclnhk6f0277.apps.googleusercontent.com</string>
     <string name="objetivo">¿Cuál es tu objetivo?</string>
+    <string name="fechaNacimiento">Fecha de nacimiento</string>
+    <string name="altura">Altura</string>
+    <string name="pesoAcutal">Peso Actual</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="resumen">RESUMEN</string>
+    <string name="imc">Actual IMC</string>
+    <string name="calorias">Calorias</string>
+    <string name="macronutrientes">Macronutrientes</string>
 </resources>

@@ -25,7 +25,7 @@
       </activity>
       -->
         <activity
-            android:name=".PersonalInfoActivity"
+            android:name=".PersonalObjetivoActivity"
             android:launchMode="singleTask"
             android:exported="true">
             <intent-filter>
@@ -40,6 +40,10 @@
         </activity>
         <activity
             android:name=".loggin.SingInActivity"
+            android:exported="false" >
+        </activity>
+        <activity
+            android:name=".PersonalInfoActivity"
             android:exported="false" >
         </activity>
         <activity

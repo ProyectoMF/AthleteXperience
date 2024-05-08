@@ -15,49 +15,49 @@
         android:src="@drawable/ic_arrowback"
         />
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_gravity="center"
-    android:layout_marginTop="20dp"
-    android:layout_marginBottom="55dp">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="55dp">
 
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="50dp"
-        android:layout_height="5dp"
-        android:layout_marginEnd="5dp"
-        app:cardBackgroundColor="@color/orange" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="50dp"
+            android:layout_height="5dp"
+            android:layout_marginEnd="5dp"
+            app:cardBackgroundColor="@color/orangeDark" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="50dp"
-        android:layout_height="5dp"
-        android:layout_marginEnd="5dp"
-        app:cardBackgroundColor="@color/orangeDark"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="50dp"
+            android:layout_height="5dp"
+            android:layout_marginEnd="5dp"
+            app:cardBackgroundColor="@color/orangeDark"/>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="50dp"
-        android:layout_height="5dp"
-        app:cardBackgroundColor="@color/orangeDark" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="50dp"
+            android:layout_height="5dp"
+            app:cardBackgroundColor="@color/orange" />
 
-</LinearLayout>
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/objetivo"
+        android:text="@string/resumen"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="27sp"
         android:layout_marginBottom="20dp"
-        android:layout_gravity="center"/>
+        />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_perdergrasa"
+        android:id="@+id/cv_imc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/orange"
+        app:cardBackgroundColor="@color/black"
         app:cardCornerRadius="10dp"
         android:layout_marginBottom="20dp">
 
@@ -70,54 +70,7 @@
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:src="@drawable/icon_perdergrasa" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="20dp"
-                >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/perdergrasa"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:textSize="23sp"
-                        android:paddingBottom="5dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/perdergrasadescripcion"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"/>
-
-            </LinearLayout>
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_mantenerpeso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/orange"
-        app:cardCornerRadius="10dp"
-        android:layout_marginBottom="20dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="20dp">
-
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:src="@drawable/icon_mantenerpeso" />
+                android:src="@drawable/icon_imc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -129,7 +82,54 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/mantenerpeso"
+                    android:text="@string/imc"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="23sp"
+                    android:paddingBottom="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/perdergrasadescripcion"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_mantenerpeso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="10dp"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/icon_fuego" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="20dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/calorias"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="23sp"
@@ -151,7 +151,7 @@
         android:id="@+id/cv_ganarmusculo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/orange"
+        app:cardBackgroundColor="@color/black"
         app:cardCornerRadius="10dp">
 
         <LinearLayout
@@ -163,7 +163,7 @@
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:src="@drawable/icon_ganarmusculo" />
+                android:src="@drawable/icon_macronutrientes" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -175,7 +175,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/ganarmusculo"
+                    android:text="@string/macronutrientes"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="23sp"
@@ -192,4 +192,12 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/buttonCancelarFechaNacimiento"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/orange"
+        android:textColor="@color/white"
+        android:text="@string/cancelar" />
 </LinearLayout>

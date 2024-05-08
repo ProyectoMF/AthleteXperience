@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondologgin"
+    android:background="@color/black"
     android:orientation="vertical"
     android:padding="20dp">
 
@@ -18,7 +19,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:backgroundTint="@color/orangeLight"
+            android:backgroundTint="@color/orange"
             android:src="@drawable/ic_arrowback" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -27,7 +28,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:backgroundTint="@color/orangeLight"
+            android:backgroundTint="@color/orange"
             android:src="@drawable/ic_arrownext" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -37,20 +38,28 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="55dp"
+        android:layout_marginBottom="60dp"
         android:orientation="horizontal">
 
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_primero"
             android:layout_width="50dp"
             android:layout_height="5dp"
             android:layout_marginEnd="5dp"
             app:cardBackgroundColor="@color/orangeDark" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_segundo"
             android:layout_width="50dp"
             android:layout_height="5dp"
+            android:layout_marginEnd="5dp"
             app:cardBackgroundColor="@color/orange" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="50dp"
+            android:layout_height="5dp"
+            app:cardBackgroundColor="@color/orangeDark" />
 
     </LinearLayout>
 
@@ -148,13 +157,12 @@
             android:id="@+id/et_fechaNacimiento"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="#000000"
-            android:hint="Fecha de nacimiento"
             android:inputType="text"
             android:paddingStart="15dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textStyle="bold"
+            android:hint="@string/fechaNacimiento"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:backgroundTint="@color/orange"
             />
     </LinearLayout>
 
@@ -176,13 +184,12 @@
             android:id="@+id/et_altura"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="#000000"
-            android:hint="Altura"
             android:inputType="text"
             android:paddingStart="15dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textStyle="bold"
+            android:hint="@string/altura"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:backgroundTint="@color/orange"
             />
 
 
@@ -194,7 +201,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:orientation="horizontal"
-        android:layout_marginBottom="50dp">
+        android:layout_marginBottom="65dp">
 
         <ImageView
             android:layout_width="60dp"
@@ -206,14 +213,12 @@
             android:id="@+id/et_peso"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="#000000"
-            android:clickable="false"
-            android:hint="Peso"
             android:inputType="text"
             android:paddingStart="15dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textStyle="bold"
+            android:hint="@string/pesoAcutal"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:backgroundTint="@color/orange"
             />
     </LinearLayout>
 
@@ -222,12 +227,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_gravity="bottom"
         android:visibility="gone"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="145dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <!-- NumberPicker para el día -->
@@ -267,15 +273,17 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:backgroundTint="#FFC107"
-                android:text="Aceptar" />
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/white"
+                android:text="@string/aceptar" />
 
             <Button
                 android:id="@+id/buttonCancelarFechaNacimiento"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FFC107"
-                android:text="Cancelar" />
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/white"
+                android:text="@string/cancelar" />
         </LinearLayout>
 
     </LinearLayout>
@@ -285,7 +293,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:layout_gravity="bottom"
+        android:visibility="gone"
+        >
 
         <!-- NumberPicker para la altura -->
         <NumberPicker
@@ -301,20 +311,23 @@
             android:gravity="center"
             android:orientation="horizontal">
 
+
             <Button
                 android:id="@+id/buttonAceptarAltura"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:backgroundTint="#FFC107"
-                android:text="Aceptar" />
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/white"
+                android:text="@string/aceptar" />
 
             <Button
                 android:id="@+id/buttonCancelarAltura"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FFC107"
-                android:text="Cancelar" />
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/white"
+                android:text="@string/cancelar" />
         </LinearLayout>
     </LinearLayout>
 
@@ -355,25 +368,31 @@
 
         <!-- Botones Aceptar y Cancelar para el peso -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            >
 
             <Button
                 android:id="@+id/buttonAceptarPeso"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:backgroundTint="#FFC107"
-                android:text="Aceptar" />
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/white"
+                android:text="@string/aceptar"
+                />
 
             <Button
                 android:id="@+id/buttonCancelarPeso"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FFC107"
-                android:text="Cancelar" />
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/white"
+                android:text="@string/cancelar"
+                />
+
         </LinearLayout>
 
     </LinearLayout>
