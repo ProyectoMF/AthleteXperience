@@ -25,7 +25,8 @@
       </activity>
       -->
         <activity
-            android:name=".PersonalObjetivoActivity"
+            android:name=".loggin.SingInActivity"
+            android:theme="@style/Theme.App.SplashScreen"
             android:launchMode="singleTask"
             android:exported="true">
             <intent-filter>
@@ -39,11 +40,15 @@
             android:exported="false" >
         </activity>
         <activity
-            android:name=".loggin.SingInActivity"
+            android:name=".PersonalObjetivoActivity"
             android:exported="false" >
         </activity>
         <activity
             android:name=".PersonalInfoActivity"
+            android:exported="false" >
+        </activity>
+        <activity
+            android:name=".PersonalResumenActivity"
             android:exported="false" >
         </activity>
         <activity

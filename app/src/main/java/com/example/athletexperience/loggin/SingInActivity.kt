@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.athletexperience.R
 import com.example.athletexperience.databinding.ActivitySingInBinding
 import com.example.athletexperience.mainActivity
@@ -36,6 +37,10 @@ class SingInActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Thread.sleep(3000)
+        installSplashScreen()
+
         binding = ActivitySingInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

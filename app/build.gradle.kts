@@ -53,7 +53,8 @@ dependencies {
     implementation("androidx.drawerlayout:drawerlayout:1.2.0")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
 
-
+    //SPLASH
+    implementation ("androidx.core:core-splashscreen:1.0.0")
 
 
 
