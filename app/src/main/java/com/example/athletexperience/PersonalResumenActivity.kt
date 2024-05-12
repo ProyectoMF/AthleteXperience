@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.athletexperience.R
-import com.example.athletexperience.loggin.SingInActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.SimpleDateFormat
 import java.util.Calendar
