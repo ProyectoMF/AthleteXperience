@@ -2,11 +2,11 @@ package com.example.athletexperience
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.example.athletexperience.loggin.SingInActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 
 class PersonalObjetivoActivity : AppCompatActivity(){
 
@@ -21,7 +21,6 @@ class PersonalObjetivoActivity : AppCompatActivity(){
 
         initComponent()
         initListeners()
-        initUI()
 
     }
 
@@ -64,9 +63,5 @@ class PersonalObjetivoActivity : AppCompatActivity(){
             val intent = Intent(this, PersonalInfoActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    private fun initUI() {
-
     }
 }

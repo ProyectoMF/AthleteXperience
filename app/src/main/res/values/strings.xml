@@ -35,4 +35,5 @@
     <string name="imc">Actual IMC</string>
     <string name="calorias">Calorias</string>
     <string name="macronutrientes">Macronutrientes</string>
+    <string name="crearPlan">Crear Plan</string>
 </resources>

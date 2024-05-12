@@ -91,12 +91,12 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/bt_hombre"
+                    android:id="@+id/cv_hombre"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     app:cardBackgroundColor="@color/orange"
                     app:cardCornerRadius="10dp"
-                    app:layout_constraintEnd_toStartOf="@+id/bt_mujer"
+                    app:layout_constraintEnd_toStartOf="@+id/cv_mujer"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -112,13 +112,13 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/bt_mujer"
+                    android:id="@+id/cv_mujer"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     app:cardBackgroundColor="@color/orangeDark"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/bt_hombre"
+                    app:layout_constraintStart_toEndOf="@+id/cv_hombre"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
@@ -336,7 +336,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-
+        android:visibility="gone"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout

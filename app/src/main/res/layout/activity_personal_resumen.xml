@@ -89,6 +89,7 @@
                     android:paddingBottom="5dp"/>
 
                 <TextView
+                    android:id="@+id/tv_imc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/perdergrasadescripcion"
@@ -136,6 +137,7 @@
                     android:paddingBottom="5dp"/>
 
                 <TextView
+                    android:id="@+id/tv_calorias"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mantenerpesodescripcion"
@@ -182,6 +184,7 @@
                     android:paddingBottom="5dp"/>
 
                 <TextView
+                    android:id="@+id/tv_macronutrientes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ganarmusculodescripcion"
@@ -193,11 +196,19 @@
 
     </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/buttonCancelarFechaNacimiento"
-        android:layout_width="140dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/orange"
-        android:textColor="@color/white"
-        android:text="@string/cancelar" />
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp">
+
+        <Button
+            android:id="@+id/bt_crearplan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/orange"
+            android:textColor="@color/white"
+            android:text="@string/crearPlan" />
+    </LinearLayout>
+
 </LinearLayout>
