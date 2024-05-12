@@ -38,9 +38,9 @@
 
                 <menu>
                         <item
-                            android:id="@+id/nav_login"
+                            android:id="@+id/nav_logout"
                             android:icon="@drawable/baseline_login_24"
-                            android:title="Login">
+                            android:title="Logout">
 
                         </item>
                 </menu>

@@ -25,7 +25,7 @@
       </activity>
       -->
         <activity
-            android:name=".PersonalObjetivoActivity"
+            android:name=".loggin.SingInActivity"
             android:theme="@style/SplashTheme"
             android:launchMode="singleTask"
             android:exported="true">
@@ -40,11 +40,7 @@
             android:exported="false" >
         </activity>
         <activity
-            android:name=".loggin.SingInActivity"
-            android:exported="false" >
-        </activity>
-        <activity
-            android:name=".PersonalInfoActivity"
+            android:name=".PersonalObjetivoActivity"
             android:exported="false" >
         </activity>
         <activity
@@ -53,7 +49,7 @@
         </activity>
         <activity
             android:name=".mainActivity"
-            android:exported="true" >
+            android:exported="false" >
         </activity>
     </application>
 
