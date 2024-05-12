@@ -8,7 +8,7 @@
     android:padding="20dp">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/bt_back_objetive"
+        android:id="@+id/bt_back_actividad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/orange"
@@ -33,7 +33,7 @@
             android:layout_width="50dp"
             android:layout_height="5dp"
             android:layout_marginEnd="5dp"
-            app:cardBackgroundColor="@color/orangeDark" />
+            app:cardBackgroundColor="@color/orange" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="50dp"
@@ -44,25 +44,25 @@
         <androidx.cardview.widget.CardView
             android:layout_width="50dp"
             android:layout_height="5dp"
-            app:cardBackgroundColor="@color/orange" />
+            app:cardBackgroundColor="@color/orangeDark" />
 
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/resumen"
+        android:text="@string/selecioneTuActividad"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:textSize="27sp"
+        android:textSize="23sp"
         android:layout_marginBottom="20dp"
-        />
+        android:layout_gravity="center"/>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_imc"
+        android:id="@+id/cv_sedentario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/black"
+        app:cardBackgroundColor="@color/orange"
         app:cardCornerRadius="10dp"
         android:layout_marginBottom="20dp">
 
@@ -70,35 +70,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="20dp">
-
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:src="@drawable/icon_imc" />
+            android:padding="5dp"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginStart="20dp"
                 >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/imc"
+                    android:text="@string/sedentario"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="23sp"
-                    android:paddingBottom="5dp"/>
+                    android:paddingBottom="5dp"
+                    android:layout_gravity="center"
+                    />
 
                 <TextView
-                    android:id="@+id/tv_imc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/perdergrasadescripcion"
+                    android:text="@string/sedentarioText"
                     android:textColor="@color/white"
+                    android:layout_gravity="center"
                     android:textSize="16sp"/>
 
             </LinearLayout>
@@ -107,10 +104,10 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_mantenerpeso"
+        android:id="@+id/cv_ligera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/black"
+        app:cardBackgroundColor="@color/orange"
         app:cardCornerRadius="10dp"
         android:layout_marginBottom="20dp">
 
@@ -118,36 +115,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="20dp">
-
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:src="@drawable/icon_fuego" />
-
+            android:padding="5dp"
+            >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginStart="20dp"
                 >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/calorias"
+                    android:text="@string/ligera"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="23sp"
-                    android:paddingBottom="5dp"/>
+                    android:paddingBottom="5dp"
+                    android:layout_gravity="center"/>
 
                 <TextView
-                    android:id="@+id/tv_calorias"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/mantenerpesodescripcion"
+                    android:text="@string/ligeraText"
                     android:textColor="@color/white"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
         </LinearLayout>
@@ -155,65 +147,133 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_ganarmusculo"
+        android:id="@+id/cv_moderado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/black"
+        app:cardBackgroundColor="@color/orange"
+        android:layout_marginBottom="20dp"
         app:cardCornerRadius="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="20dp">
-
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:src="@drawable/icon_macronutrientes" />
+            android:padding="5dp"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginStart="20dp"
                 >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/macronutrientes"
+                    android:text="@string/moderado"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="23sp"
-                    android:paddingBottom="5dp"/>
+                    android:paddingBottom="5dp"
+                    android:layout_gravity="center"/>
 
                 <TextView
-                    android:id="@+id/tv_macronutrientes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/ganarmusculodescripcion"
+                    android:text="@string/moderadoText"
                     android:textColor="@color/white"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_alta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp">
+        app:cardBackgroundColor="@color/orange"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="10dp">
 
-        <Button
-            android:id="@+id/bt_crearplan"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/orange"
-            android:textColor="@color/white"
-            android:text="@string/crearPlan" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alta"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="23sp"
+                    android:paddingBottom="5dp"
+                    android:layout_gravity="center"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/altaText"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_atletaProfesional"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/orange"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/atletaProfesional"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="23sp"
+                    android:paddingBottom="5dp"
+                    android:layout_gravity="center"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/atletaProfesionalText"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

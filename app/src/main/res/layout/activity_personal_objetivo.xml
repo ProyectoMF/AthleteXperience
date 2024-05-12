@@ -41,6 +41,12 @@
         android:layout_height="5dp"
         app:cardBackgroundColor="@color/orangeDark" />
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="50dp"
+        android:layout_height="5dp"
+        android:layout_marginEnd="5dp"
+        app:cardBackgroundColor="@color/orangeDark"/>
+
 </LinearLayout>
 
     <TextView

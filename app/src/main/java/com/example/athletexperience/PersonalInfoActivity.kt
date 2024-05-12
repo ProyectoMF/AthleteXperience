@@ -37,7 +37,7 @@ class PersonalInfoActivity : AppCompatActivity() {
     private lateinit var buttonAceptarPeso : Button
     private lateinit var buttonCancelarPeso : Button
 
-
+    private var sexo: String = "" // Variable para almacenar el sexo seleccionado
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,27 +101,32 @@ class PersonalInfoActivity : AppCompatActivity() {
         //Recojer el tipo de objetivo
         val objetivo = intent.getStringExtra("OBJETIVO")
 
+        //Recojer el tipo de actividad
+        val actividad = intent.getStringExtra("ACTIVIDAD")
+
         // Agregar OnClickListener al boton de siguiente
         bt_next_personal_info.setOnClickListener {
 
             val fechaNacimiento = et_fechaNacimiento.text.toString()
-            val altura = et_altura.text.toString()
-            val peso = et_peso.text.toString()
+            val altura = et_altura.text.toString().removeSuffix(" cm")
+            val peso = et_peso.text.toString().removeSuffix(" Kg")
 
             // Crear un intent para pasar a la siguiente actividad
             val intent = Intent(this, PersonalResumenActivity::class.java)
 
             // Pasar los datos como extras en el intent
+            intent.putExtra("SEXO", sexo)
             intent.putExtra("FECHA_NACIMIENTO", fechaNacimiento)
             intent.putExtra("ALTURA", altura)
             intent.putExtra("PESO", peso)
             intent.putExtra("OBJETIVO", objetivo) // Pasa el tipo de objetivo
+            intent.putExtra("ACTIVIDAD", actividad) // Pasa el tipo de actividad
             startActivity(intent)
         }
 
         // Agregar el listener de clic para la card de hombre
         cv_hombre.setOnClickListener {
-
+            sexo = "hombre" // Asignar el valor "hombre" al sexo seleccionado
             // Cambiar el color de fondo de la card de hombre a naranja
             cv_hombre.setCardBackgroundColor(ContextCompat.getColor(this, R.color.orange))
 
@@ -131,7 +136,7 @@ class PersonalInfoActivity : AppCompatActivity() {
 
         // Agregar el listener de clic para la card de mujer
         cv_mujer.setOnClickListener {
-
+            sexo = "mujer" // Asignar el valor "mujer" al sexo seleccionado
             // Cambiar el color de fondo de la card de mujer a naranja
             cv_mujer.setCardBackgroundColor(ContextCompat.getColor(this, R.color.orange))
 

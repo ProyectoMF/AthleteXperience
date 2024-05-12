@@ -39,5 +39,16 @@
     <string name="imc_result">Tu IMC es: %.2f</string>
     <string name="calorias_result">Calorías requeridas: %d</string>
     <string name="macronutrientes_result">Macronutrientes necesarios: %s</string>
-
+    <string name="actividad">Actividad Física</string>
+    <string name="selecioneTuActividad">¿Cuál es tu nivel de actividad física?</string>
+    <string name="sedentario">Sedentario</string>
+    <string name="sedentarioText">Nada o poco ejercicio</string>
+    <string name="ligera">Ligera</string>
+    <string name="ligeraText">Ejercicio 2-3 días por semana</string>
+    <string name="moderado">Moderado</string>
+    <string name="moderadoText">Ejercicio 4-5 días por semana</string>
+    <string name="alta">Alta</string>
+    <string name="altaText">Ejercicio 6-7 días por semana</string>
+    <string name="atletaProfesional">Atleta profesional</string>
+    <string name="atletaProfesionalText">Ejercicio intenso 6-7 días por semana</string>
 </resources>

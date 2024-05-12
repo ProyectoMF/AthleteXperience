@@ -52,14 +52,18 @@
         app:layout_constraintTop_toBottomOf="@+id/cl_floatingactionbutton">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cv_primero"
+            android:layout_width="50dp"
+            android:layout_height="5dp"
+            android:layout_marginEnd="5dp"
+            app:cardBackgroundColor="@color/orangeDark"/>
+
+        <androidx.cardview.widget.CardView
             android:layout_width="50dp"
             android:layout_height="5dp"
             android:layout_marginEnd="5dp"
             app:cardBackgroundColor="@color/orangeDark" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cv_segundo"
             android:layout_width="50dp"
             android:layout_height="5dp"
             android:layout_marginEnd="5dp"
@@ -222,6 +226,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
+            android:paddingBottom="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ly_altura">
@@ -243,6 +248,8 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
         </LinearLayout>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -339,7 +346,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_datos">
 
         <LinearLayout
             android:id="@+id/LayoutNumberPickerAltura"
@@ -397,7 +405,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_datos">
 
         <LinearLayout
             android:id="@+id/LayoutNumberPickerPeso"
@@ -465,5 +474,63 @@
             </LinearLayout>
 
         </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_datos">
+
+        <LinearLayout
+            android:id="@+id/LayoutNumberPickerActividad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- NumberPicker para la altura -->
+            <NumberPicker
+                android:id="@+id/numberPickerActividad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/NumberPickerStyle" />
+
+
+            <!-- Botones Aceptar y Cancelar para la altura -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+
+                <Button
+                    android:id="@+id/buttonAceptarActividad"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:backgroundTint="@color/orange"
+                    android:text="@string/aceptar"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/buttonCancelarActividad"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/orange"
+                    android:text="@string/cancelar"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
