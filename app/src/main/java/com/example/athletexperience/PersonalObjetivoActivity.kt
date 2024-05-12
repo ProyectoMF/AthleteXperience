@@ -33,6 +33,7 @@ class PersonalObjetivoActivity : AppCompatActivity(){
         cv_perdergrasa = findViewById(R.id.cv_perdergrasa)
         cv_mantenerpeso = findViewById(R.id.cv_mantenerpeso)
         cv_ganarmusculo = findViewById(R.id.cv_ganarmusculo)
+
     }
 
     private fun initListeners(){
@@ -44,10 +45,12 @@ class PersonalObjetivoActivity : AppCompatActivity(){
             startActivity(intent)
         }
 
+
         // Agregar OnClickListener a cv_perdergrasa
         cv_perdergrasa.setOnClickListener {startActivity(intent)
             // Iniciar la siguiente actividad
             val intent = Intent(this, PersonalInfoActivity::class.java)
+            intent.putExtra("OBJETIVO", "perder_grasa")
             startActivity(intent)
         }
 
@@ -55,6 +58,7 @@ class PersonalObjetivoActivity : AppCompatActivity(){
         cv_mantenerpeso.setOnClickListener {
             // Iniciar la siguiente actividad
             val intent = Intent(this, PersonalInfoActivity::class.java)
+            intent.putExtra("OBJETIVO", "mantener_peso")
             startActivity(intent)
         }
 
@@ -62,7 +66,10 @@ class PersonalObjetivoActivity : AppCompatActivity(){
         cv_ganarmusculo.setOnClickListener {
             // Iniciar la siguiente actividad
             val intent = Intent(this, PersonalInfoActivity::class.java)
+            intent.putExtra("OBJETIVO", "ganar_musculo")
             startActivity(intent)
         }
     }
+
+
 }

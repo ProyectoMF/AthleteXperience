@@ -36,4 +36,8 @@
     <string name="calorias">Calorias</string>
     <string name="macronutrientes">Macronutrientes</string>
     <string name="crearPlan">Crear Plan</string>
+    <string name="imc_result">Tu IMC es: %.2f</string>
+    <string name="calorias_result">Calorías requeridas: %d</string>
+    <string name="macronutrientes_result">Macronutrientes necesarios: %s</string>
+
 </resources>

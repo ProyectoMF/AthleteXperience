@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
@@ -9,38 +10,46 @@
     android:padding="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_floatingactionbutton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/bt_back_personal_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:backgroundTint="@color/orange"
-            android:src="@drawable/ic_arrowback" />
+            android:src="@drawable/ic_arrowback"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/bt_next_personal_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:backgroundTint="@color/orange"
-            android:src="@drawable/ic_arrownext" />
+            android:src="@drawable/ic_arrownext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
+        android:id="@+id/ly_cardviewPagina"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="60dp"
-        android:orientation="horizontal">
-
+        android:orientation="horizontal"
+        android:paddingBottom="55dp"
+        app:layout_constraintBottom_toTopOf="@+id/cl_datos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_floatingactionbutton">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_primero"
@@ -63,306 +72,368 @@
 
     </LinearLayout>
 
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_datos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ly_cardviewPagina">
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/icon_sexo" />
 
-        <androidx.cardview.widget.CardView
+        <LinearLayout
+            android:id="@+id/ly_cardviewSexo"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:cardBackgroundColor="@color/orangeDark"
-            app:cardCornerRadius="10dp">
+            android:layout_marginHorizontal="10dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/icon_sexo" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="@color/orangeDark"
+                app:cardCornerRadius="10dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_hombre"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/orange"
+                        app:cardCornerRadius="10dp"
+                        app:layout_constraintEnd_toStartOf="@+id/cv_mujer"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/hombre"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_mujer"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/orangeDark"
+                        app:cardCornerRadius="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/cv_hombre"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/mujer"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ly_fechaNacimiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ly_cardviewSexo">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/icon_calendario" />
+
+            <EditText
+                android:id="@+id/et_fechaNacimiento"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/orange"
+                android:hint="@string/fechaNacimiento"
+                android:inputType="text"
+                android:paddingStart="15dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ly_altura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ly_fechaNacimiento">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/icon_altura" />
+
+            <EditText
+                android:id="@+id/et_altura"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/orange"
+                android:hint="@string/altura"
+                android:inputType="text"
+                android:paddingStart="15dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ly_peso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ly_altura">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/icon_peso" />
+
+            <EditText
+                android:id="@+id/et_peso"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/orange"
+                android:hint="@string/pesoAcutal"
+                android:inputType="text"
+                android:paddingStart="15dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <LinearLayout
+            android:id="@+id/LayoutNumberPickerFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_hombre"
+                <!-- NumberPicker para el día -->
+                <NumberPicker
+                    android:id="@+id/numberPickerDia"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    app:cardBackgroundColor="@color/orange"
-                    app:cardCornerRadius="10dp"
-                    app:layout_constraintEnd_toStartOf="@+id/cv_mujer"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/NumberPickerStyle"
+                    app:layout_constraintEnd_toStartOf="@id/numberPickerMes"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/hombre"
-                        android:textColor="@color/white"
-                        android:textStyle="bold" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_mujer"
+                <!-- NumberPicker para el mes -->
+                <NumberPicker
+                    android:id="@+id/numberPickerMes"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    app:cardBackgroundColor="@color/orangeDark"
-                    app:cardCornerRadius="10dp"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/NumberPickerStyle"
+                    app:layout_constraintEnd_toStartOf="@id/numberPickerAnio"
+                    app:layout_constraintStart_toEndOf="@id/numberPickerDia"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- NumberPicker para el año -->
+                <NumberPicker
+                    android:id="@+id/numberPickerAnio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/NumberPickerStyle"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/cv_hombre"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/mujer"
-                        android:textColor="@color/white"
-                        android:textStyle="bold" />
-
-
-                </androidx.cardview.widget.CardView>
+                    app:layout_constraintStart_toEndOf="@+id/numberPickerMes"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </androidx.cardview.widget.CardView>
+            <!-- Botones Aceptar y Cancelar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-    </LinearLayout>
+                <Button
+                    android:id="@+id/buttonAceptarFechaNacimiento"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:backgroundTint="@color/orange"
+                    android:text="@string/aceptar"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/buttonCancelarFechaNacimiento"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/orange"
+                    android:text="@string/cancelar"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <LinearLayout
-        android:id="@+id/ly_fechaNacimiento"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/icon_calendario" />
-
-        <EditText
-            android:id="@+id/et_fechaNacimiento"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text"
-            android:paddingStart="15dp"
-            android:hint="@string/fechaNacimiento"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:backgroundTint="@color/orange"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ly_altura"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/icon_altura" />
-
-        <EditText
-            android:id="@+id/et_altura"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text"
-            android:paddingStart="15dp"
-            android:hint="@string/altura"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:backgroundTint="@color/orange"
-            />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ly_peso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:orientation="horizontal"
-        android:layout_marginBottom="65dp">
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/icon_peso" />
-
-        <EditText
-            android:id="@+id/et_peso"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text"
-            android:paddingStart="15dp"
-            android:hint="@string/pesoAcutal"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:backgroundTint="@color/orange"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/LayoutNumberPickerFecha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="bottom"
-        android:visibility="gone"
-        >
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
+            android:id="@+id/LayoutNumberPickerAltura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <!-- NumberPicker para el día -->
+            <!-- NumberPicker para la altura -->
             <NumberPicker
-                android:id="@+id/numberPickerDia"
-                android:layout_width="115dp"
-                android:layout_height="wrap_content"
-                android:theme="@style/NumberPickerStyle"
-                />
-
-
-            <!-- NumberPicker para el mes -->
-            <NumberPicker
-                android:id="@+id/numberPickerMes"
-                android:layout_width="115dp"
-                android:layout_height="wrap_content"
-                android:theme="@style/NumberPickerStyle" />
-
-            <!-- NumberPicker para el año -->
-            <NumberPicker
-                android:id="@+id/numberPickerAnio"
+                android:id="@+id/numberPickerAltura"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/NumberPickerStyle" />
-        </LinearLayout>
 
 
-        <!-- Botones Aceptar y Cancelar -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/buttonAceptarFechaNacimiento"
-                android:layout_width="140dp"
+            <!-- Botones Aceptar y Cancelar para la altura -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:backgroundTint="@color/orange"
-                android:textColor="@color/white"
-                android:text="@string/aceptar" />
-
-            <Button
-                android:id="@+id/buttonCancelarFechaNacimiento"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/orange"
-                android:textColor="@color/white"
-                android:text="@string/cancelar" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/LayoutNumberPickerAltura"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="bottom"
-        android:visibility="gone"
-        >
-
-        <!-- NumberPicker para la altura -->
-        <NumberPicker
-            android:id="@+id/numberPickerAltura"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/NumberPickerStyle" />
-
-        <!-- Botones Aceptar y Cancelar para la altura -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-
-            <Button
-                android:id="@+id/buttonAceptarAltura"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:backgroundTint="@color/orange"
-                android:textColor="@color/white"
-                android:text="@string/aceptar" />
-
-            <Button
-                android:id="@+id/buttonCancelarAltura"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/orange"
-                android:textColor="@color/white"
-                android:text="@string/cancelar" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/LayoutNumberPickerPeso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone"
-        >
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            >
-
-            <!-- NumberPicker para el peso -->
-            <NumberPicker
-                android:id="@+id/numberPickerPeso"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/numberPickerPesoDecimal"
-                android:theme="@style/NumberPickerStyle" />
-
-            <NumberPicker
-                android:id="@+id/numberPickerPesoDecimal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
+                android:gravity="center"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/numberPickerPeso"
-                android:theme="@style/NumberPickerStyle" />
+                app:layout_constraintStart_toStartOf="parent">
+
+
+                <Button
+                    android:id="@+id/buttonAceptarAltura"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:backgroundTint="@color/orange"
+                    android:text="@string/aceptar"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/buttonCancelarAltura"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/orange"
+                    android:text="@string/cancelar"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/LayoutNumberPickerPeso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- NumberPicker para el peso-->
+                <NumberPicker
+                    android:id="@+id/numberPickerPeso"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/NumberPickerStyle"
+                    app:layout_constraintEnd_toStartOf="@+id/numberPickerPesoDecimal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <NumberPicker
+                    android:id="@+id/numberPickerPesoDecimal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/NumberPickerStyle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/numberPickerPeso"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <!-- Botones Aceptar y Cancelar para el peso -->
             <LinearLayout
@@ -370,10 +441,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                >
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
                 <Button
                     android:id="@+id/buttonAceptarPeso"
@@ -381,27 +451,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
                     android:backgroundTint="@color/orange"
-                    android:textColor="@color/white"
                     android:text="@string/aceptar"
-                    />
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/buttonCancelarPeso"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/orange"
-                    android:textColor="@color/white"
                     android:text="@string/cancelar"
-                    />
+                    android:textColor="@color/white" />
 
             </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-
-
-    </LinearLayout>
-
-
-</LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

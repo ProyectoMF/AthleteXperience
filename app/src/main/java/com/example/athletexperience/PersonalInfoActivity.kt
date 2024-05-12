@@ -1,9 +1,9 @@
 package com.example.athletexperience
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.telephony.PhoneNumberUtils.formatNumber
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -37,6 +37,8 @@ class PersonalInfoActivity : AppCompatActivity() {
     private lateinit var buttonAceptarPeso : Button
     private lateinit var buttonCancelarPeso : Button
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_info)
@@ -44,6 +46,7 @@ class PersonalInfoActivity : AppCompatActivity() {
         initComponent()
         initListeners()
         initUI()
+
     }
 
     private fun initComponent() {
@@ -82,8 +85,11 @@ class PersonalInfoActivity : AppCompatActivity() {
         // inicialización de botón aceptar y cancelar para el peso
         buttonAceptarPeso = findViewById(R.id.buttonAceptarPeso)
         buttonCancelarPeso = findViewById(R.id.buttonCancelarPeso)
+
+
     }
 
+    @SuppressLint("ResourceType")
     private fun initListeners() {
         // Agregar OnClickListener al boton de volver
         bt_back_personal_info.setOnClickListener {
@@ -92,47 +98,45 @@ class PersonalInfoActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //Recojer el tipo de objetivo
+        val objetivo = intent.getStringExtra("OBJETIVO")
+
         // Agregar OnClickListener al boton de siguiente
         bt_next_personal_info.setOnClickListener {
-            //Obtiene el género,peso altura, fecha seleccionada
-            val selectedCardView = findViewById<CardView>(R.id.cv_hombre).isSelected
-            var genero = findViewById<CardView>(R.id.cv_hombre).tag as String
-            if (!selectedCardView) {
-                genero = findViewById<CardView>(R.id.cv_mujer).tag as String
-            }
+
             val fechaNacimiento = et_fechaNacimiento.text.toString()
-            val peso = et_peso.text.toString()
             val altura = et_altura.text.toString()
+            val peso = et_peso.text.toString()
 
-
-            // Create an intent to start PersonalResumenActivity
+            // Crear un intent para pasar a la siguiente actividad
             val intent = Intent(this, PersonalResumenActivity::class.java)
 
-            // Put the data as extras
+            // Pasar los datos como extras en el intent
             intent.putExtra("FECHA_NACIMIENTO", fechaNacimiento)
-            intent.putExtra("GENERO", genero)
-            intent.putExtra("PESO", peso.toFloat())
-            intent.putExtra("ALTURA", altura.toFloat())
-
+            intent.putExtra("ALTURA", altura)
+            intent.putExtra("PESO", peso)
+            intent.putExtra("OBJETIVO", objetivo) // Pasa el tipo de objetivo
             startActivity(intent)
         }
 
         // Agregar el listener de clic para la card de hombre
         cv_hombre.setOnClickListener {
+
             // Cambiar el color de fondo de la card de hombre a naranja
             cv_hombre.setCardBackgroundColor(ContextCompat.getColor(this, R.color.orange))
 
             // Cambiar el color de fondo de la card de mujer a orangeDark
-            cv_hombre.setCardBackgroundColor(ContextCompat.getColor(this, R.color.orangeDark))
+            cv_mujer.setCardBackgroundColor(ContextCompat.getColor(this, R.color.orangeDark))
         }
 
         // Agregar el listener de clic para la card de mujer
         cv_mujer.setOnClickListener {
+
             // Cambiar el color de fondo de la card de mujer a naranja
             cv_mujer.setCardBackgroundColor(ContextCompat.getColor(this, R.color.orange))
 
             // Cambiar el color de fondo de la card de hombre a orangeDark
-            cv_mujer.setCardBackgroundColor(ContextCompat.getColor(this, R.color.orangeDark))
+            cv_hombre.setCardBackgroundColor(ContextCompat.getColor(this, R.color.orangeDark))
         }
 
         //Evento para que muestre el NumberPicker
