@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "780115247992",
+    "firebase_url": "https://athletexperience-31f0b-default-rtdb.firebaseio.com",
     "project_id": "athletexperience-31f0b",
     "storage_bucket": "athletexperience-31f0b.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "780115247992-bmh8ch1hkuo0qbbgf7ikt4hhh56mstgu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.athletexperience",
+            "certificate_hash": "8484da43487553ce5d16fbcb6f6f660acc5292e4"
+          }
+        },
         {
           "client_id": "780115247992-minojoc3gs62mia3o1mjvrs0o8gf30dk.apps.googleusercontent.com",
           "client_type": 1,

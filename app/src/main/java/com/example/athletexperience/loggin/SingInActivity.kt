@@ -110,7 +110,7 @@ class SingInActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = firebaseAuth.currentUser
                     Toast.makeText(this, "Signed in as ${user?.displayName}", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, mainActivity::class.java))
+                    startActivity(Intent(this, PersonalObjetivoActivity::class.java))
                     finish()
                 } else {
                     Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
