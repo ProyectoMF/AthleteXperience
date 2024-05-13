@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.athletexperience.PersonalObjetivoActivity
 import com.example.athletexperience.R
 import com.example.athletexperience.databinding.ActivitySingInBinding
 import com.example.athletexperience.mainActivity
@@ -41,7 +42,7 @@ class SingInActivity : AppCompatActivity() {
             if (email.isNotEmpty() && pass.isNotEmpty()) {
                 firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        val intent = Intent(this, mainActivity::class.java)
+                        val intent = Intent(this, PersonalObjetivoActivity::class.java)
                         startActivity(intent)
                     } else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()

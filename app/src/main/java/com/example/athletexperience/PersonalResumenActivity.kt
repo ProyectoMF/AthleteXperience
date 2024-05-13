@@ -2,9 +2,11 @@ package com.example.athletexperience
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.checkerframework.common.subtyping.qual.Bottom
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -25,6 +27,8 @@ class PersonalResumenActivity : AppCompatActivity() {
     private lateinit var tv_calorias: TextView
     private lateinit var tv_macronutrientes: TextView
     private lateinit var bt_back_resumen: FloatingActionButton
+    private lateinit var bt_crearplan: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_resumen)
@@ -60,11 +64,13 @@ class PersonalResumenActivity : AppCompatActivity() {
     private fun initComponent() {
         //Boton para volver atras
         bt_back_resumen = findViewById(R.id.bt_back_resumen)
+        bt_crearplan = findViewById(R.id.bt_crearplan)
 
         // Textviews
         tv_imc = findViewById(R.id.tv_imc)
         tv_calorias = findViewById(R.id.tv_calorias)
         tv_macronutrientes = findViewById(R.id.tv_macronutrientes)
+
     }
 
     private fun initListeners() {
@@ -72,6 +78,12 @@ class PersonalResumenActivity : AppCompatActivity() {
         bt_back_resumen.setOnClickListener {
             // Iniciar la anterior actividad
             val intent = Intent(this, PersonalInfoActivity::class.java)
+            startActivity(intent)
+        }
+
+        bt_crearplan.setOnClickListener {
+            // Iniciar la anterior actividad
+            val intent = Intent(this, mainActivity::class.java)
             startActivity(intent)
         }
     }
