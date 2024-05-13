@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import com.example.athletexperience.PersonalObjetivoActivity.Companion.actividad
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class PersonalActividadFisicaActivity : AppCompatActivity() {
@@ -21,7 +22,6 @@ class PersonalActividadFisicaActivity : AppCompatActivity() {
 
         initComponent()
         initListeners()
-        initUI()
     }
 
 
@@ -43,8 +43,6 @@ class PersonalActividadFisicaActivity : AppCompatActivity() {
     private fun initListeners() {
 
 
-
-
         // Agregar OnClickListener para volver atras
         bt_back_actividad.setOnClickListener {
             // Iniciar la anterior actividad
@@ -52,15 +50,11 @@ class PersonalActividadFisicaActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //Recojer el tipo de objetivo
-        val objetivo = intent.getStringExtra("OBJETIVO")
-
         // Agregar OnClickListener a cv_perdergrasa
         cv_sedentario.setOnClickListener {
             // Iniciar la siguiente actividad
             val intent = Intent(this, PersonalInfoActivity::class.java)
-            intent.putExtra("ACTIVIDAD", "sedentario")
-            intent.putExtra("OBJETIVO", objetivo) // Pasa el tipo de objetivo
+            actividad= "sedentario"
             startActivity(intent)
         }
 
@@ -68,8 +62,7 @@ class PersonalActividadFisicaActivity : AppCompatActivity() {
         cv_ligera.setOnClickListener {
             // Iniciar la siguiente actividad
             val intent = Intent(this, PersonalInfoActivity::class.java)
-            intent.putExtra("ACTIVIDAD", "ligera")
-            intent.putExtra("OBJETIVO", objetivo) // Pasa el tipo de objetivo
+            actividad= "ligera"
             startActivity(intent)
         }
 
@@ -77,8 +70,7 @@ class PersonalActividadFisicaActivity : AppCompatActivity() {
         cv_moderado.setOnClickListener {
             // Iniciar la siguiente actividad
             val intent = Intent(this, PersonalInfoActivity::class.java)
-            intent.putExtra("ACTIVIDAD", "moderado")
-            intent.putExtra("OBJETIVO", objetivo) // Pasa el tipo de objetivo
+            actividad= "moderado"
             startActivity(intent)
         }
 
@@ -86,8 +78,7 @@ class PersonalActividadFisicaActivity : AppCompatActivity() {
         cv_alta.setOnClickListener {
             // Iniciar la siguiente actividad
             val intent = Intent(this, PersonalInfoActivity::class.java)
-            intent.putExtra("ACTIVIDAD", "alta")
-            intent.putExtra("OBJETIVO", objetivo) // Pasa el tipo de objetivo
+            actividad= "alta"
             startActivity(intent)
         }
 
@@ -95,14 +86,9 @@ class PersonalActividadFisicaActivity : AppCompatActivity() {
         cv_atletaProfesional.setOnClickListener {
             // Iniciar la siguiente actividad
             val intent = Intent(this, PersonalInfoActivity::class.java)
-            intent.putExtra("ACTIVIDAD", "atletaProfesional")
-            intent.putExtra("OBJETIVO", objetivo) // Pasa el tipo de objetivo
+            actividad= "atletaProfesional"
             startActivity(intent)
         }
-    }
-
-    private fun initUI() {
-
     }
 
 

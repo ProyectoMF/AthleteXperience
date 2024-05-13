@@ -11,6 +11,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class PersonalObjetivoActivity : AppCompatActivity(){
 
+    companion object {
+        var objetivo = ""
+        var actividad = ""
+        var sexo = "hombre"
+        var fecha = ""
+        var altura = 0.0
+        var peso = 0.0
+    }
+
     private lateinit var bt_back_objetive : FloatingActionButton
     private lateinit var cv_perdergrasa : CardView
     private lateinit var cv_mantenerpeso : CardView
@@ -50,7 +59,7 @@ class PersonalObjetivoActivity : AppCompatActivity(){
         cv_perdergrasa.setOnClickListener {
             // Iniciar la siguiente actividad
             val intent = Intent(this, PersonalActividadFisicaActivity::class.java)
-            intent.putExtra("OBJETIVO", "perder_grasa")
+            objetivo= "perder_grasa"
             startActivity(intent)
         }
 
@@ -58,7 +67,7 @@ class PersonalObjetivoActivity : AppCompatActivity(){
         cv_mantenerpeso.setOnClickListener {
             // Iniciar la siguiente actividad
             val intent = Intent(this, PersonalActividadFisicaActivity::class.java)
-            intent.putExtra("OBJETIVO", "mantener_peso")
+            objetivo= "mantener_peso"
             startActivity(intent)
         }
 
@@ -66,7 +75,7 @@ class PersonalObjetivoActivity : AppCompatActivity(){
         cv_ganarmusculo.setOnClickListener {
             // Iniciar la siguiente actividad
             val intent = Intent(this, PersonalActividadFisicaActivity::class.java)
-            intent.putExtra("OBJETIVO", "ganar_musculo")
+            objetivo= "ganar_musculo"
             startActivity(intent)
         }
     }

@@ -12,32 +12,35 @@ import android.widget.NumberPicker
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import com.example.athletexperience.PersonalObjetivoActivity.Companion.altura
+import com.example.athletexperience.PersonalObjetivoActivity.Companion.fecha
+import com.example.athletexperience.PersonalObjetivoActivity.Companion.peso
+import com.example.athletexperience.PersonalObjetivoActivity.Companion.sexo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.Calendar
 
 class PersonalInfoActivity : AppCompatActivity() {
 
-    private lateinit var bt_back_personal_info : FloatingActionButton
-    private lateinit var bt_next_personal_info : FloatingActionButton
-    private lateinit var cv_hombre : CardView
-    private lateinit var cv_mujer : CardView
-    private lateinit var et_fechaNacimiento : EditText
-    private lateinit var numberPickerDia : NumberPicker
-    private lateinit var numberPickerMes : NumberPicker
-    private lateinit var numberPickerAnio : NumberPicker
-    private lateinit var et_altura : EditText
-    private lateinit var numberPickerAltura : NumberPicker
-    private lateinit var et_peso : EditText
-    private lateinit var numberPickerPeso : NumberPicker
-    private lateinit var numberPickerPesoDecimal : NumberPicker
-    private lateinit var buttonAceptarFechaNacimiento : Button
-    private lateinit var buttonCancelarFechaNacimiento : Button
-    private lateinit var buttonAceptarAltura : Button
-    private lateinit var buttonCancelarAltura : Button
-    private lateinit var buttonAceptarPeso : Button
-    private lateinit var buttonCancelarPeso : Button
+    private lateinit var bt_back_personal_info: FloatingActionButton
+    private lateinit var bt_next_personal_info: FloatingActionButton
+    private lateinit var cv_hombre: CardView
+    private lateinit var cv_mujer: CardView
+    private lateinit var et_fechaNacimiento: EditText
+    private lateinit var numberPickerDia: NumberPicker
+    private lateinit var numberPickerMes: NumberPicker
+    private lateinit var numberPickerAnio: NumberPicker
+    private lateinit var et_altura: EditText
+    private lateinit var numberPickerAltura: NumberPicker
+    private lateinit var et_peso: EditText
+    private lateinit var numberPickerPeso: NumberPicker
+    private lateinit var numberPickerPesoDecimal: NumberPicker
+    private lateinit var buttonAceptarFechaNacimiento: Button
+    private lateinit var buttonCancelarFechaNacimiento: Button
+    private lateinit var buttonAceptarAltura: Button
+    private lateinit var buttonCancelarAltura: Button
+    private lateinit var buttonAceptarPeso: Button
+    private lateinit var buttonCancelarPeso: Button
 
-    private var sexo: String = "hombre" // Variable para almacenar el sexo seleccionado
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -119,33 +122,17 @@ class PersonalInfoActivity : AppCompatActivity() {
         }
 
 
-
-        //Recojer el tipo de objetivo
-        val objetivo = intent.getStringExtra("OBJETIVO")
-
-        //Recojer el tipo de actividad
-        val actividad = intent.getStringExtra("ACTIVIDAD")
-
         // Agregar OnClickListener al boton de siguiente
         bt_next_personal_info.setOnClickListener {
 
-            val fechaNacimiento = et_fechaNacimiento.text.toString()
-            val altura = et_altura.text.toString().removeSuffix(" cm")
-            val peso = et_peso.text.toString().removeSuffix(" Kg")
+            // Pasar los datos como extras en el intent
+            fecha = et_fechaNacimiento.text.toString()
 
             // Crear un intent para pasar a la siguiente actividad
             val intent = Intent(this, PersonalResumenActivity::class.java)
-
-            // Pasar los datos como extras en el intent
-            intent.putExtra("OBJETIVO", objetivo) // Pasa el tipo de objetivo
-            intent.putExtra("ACTIVIDAD", actividad) // Pasa el tipo de actividad
-            intent.putExtra("SEXO", sexo)
-            intent.putExtra("FECHA_NACIMIENTO", fechaNacimiento)
-            intent.putExtra("ALTURA", altura)
-            intent.putExtra("PESO", peso)
             startActivity(intent)
-        }
 
+        }
 
 
         //Evento para que muestre el NumberPicker
@@ -193,6 +180,7 @@ class PersonalInfoActivity : AppCompatActivity() {
 
             val alturaSeleccionada = numberPickerAltura.value
 
+            altura = alturaSeleccionada.toDouble()
             // Mostrar la altura seleccionada en el EditText
             et_altura.setText(alturaSeleccionada.toString() + " cm")
 
@@ -220,6 +208,7 @@ class PersonalInfoActivity : AppCompatActivity() {
             val pesoDecimalSeleccionado = numberPickerPesoDecimal.value
 
             val pesoTotalSeleccionado = "$pesoSeleccionado.$pesoDecimalSeleccionado"
+            peso=pesoTotalSeleccionado.toDouble()
 
             // Mostrar el peso seleccionado en el EditText
             et_peso.setText("$pesoTotalSeleccionado Kg")
@@ -283,7 +272,6 @@ class PersonalInfoActivity : AppCompatActivity() {
 
         //Ocultar el teclado para el EditText
         et_altura.isFocusable = false
-
 
 
         // Configurar el mínimo y máximo de NumberPickers del peso
