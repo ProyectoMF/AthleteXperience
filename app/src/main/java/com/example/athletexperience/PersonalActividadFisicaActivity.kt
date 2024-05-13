@@ -102,7 +102,7 @@ class PersonalActividadFisicaActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
-        TODO("Not yet implemented")
+
     }
 
 

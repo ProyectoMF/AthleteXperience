@@ -37,7 +37,7 @@ class PersonalInfoActivity : AppCompatActivity() {
     private lateinit var buttonAceptarPeso : Button
     private lateinit var buttonCancelarPeso : Button
 
-    private var sexo: String = "" // Variable para almacenar el sexo seleccionado
+    private var sexo: String = "hombre" // Variable para almacenar el sexo seleccionado
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -129,7 +129,7 @@ class PersonalInfoActivity : AppCompatActivity() {
         // Agregar OnClickListener al boton de siguiente
         bt_next_personal_info.setOnClickListener {
 
-            //val fechaNacimiento = et_fechaNacimiento.text.toString()
+            val fechaNacimiento = et_fechaNacimiento.text.toString()
             val altura = et_altura.text.toString().removeSuffix(" cm")
             val peso = et_peso.text.toString().removeSuffix(" Kg")
 
@@ -139,8 +139,8 @@ class PersonalInfoActivity : AppCompatActivity() {
             // Pasar los datos como extras en el intent
             intent.putExtra("OBJETIVO", objetivo) // Pasa el tipo de objetivo
             intent.putExtra("ACTIVIDAD", actividad) // Pasa el tipo de actividad
-            //intent.putExtra("SEXO", sexo)
-            //intent.putExtra("FECHA_NACIMIENTO", fechaNacimiento)
+            intent.putExtra("SEXO", sexo)
+            intent.putExtra("FECHA_NACIMIENTO", fechaNacimiento)
             intent.putExtra("ALTURA", altura)
             intent.putExtra("PESO", peso)
             startActivity(intent)

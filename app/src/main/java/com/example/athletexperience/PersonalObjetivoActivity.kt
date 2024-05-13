@@ -65,7 +65,7 @@ class PersonalObjetivoActivity : AppCompatActivity(){
         // Agregar OnClickListener a cv_ganarmusculo
         cv_ganarmusculo.setOnClickListener {
             // Iniciar la siguiente actividad
-            val intent = Intent(this, PersonalInfoActivity::class.java)
+            val intent = Intent(this, PersonalActividadFisicaActivity::class.java)
             intent.putExtra("OBJETIVO", "ganar_musculo")
             startActivity(intent)
         }

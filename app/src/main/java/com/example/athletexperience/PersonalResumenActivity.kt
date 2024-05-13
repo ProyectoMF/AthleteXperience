@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Locale
 import kotlin.properties.Delegates
-
 
 
 /*Mujeres: [65 + (9,6 × peso en kg)] + [(1,8 × altura en cm) - (4,7 × edad)] × Factor actividad. Hombres: [66 + (13,7 × peso en kg)] + [(5 × altura en cm) - (6,8 × edad)] × Factor actividad*/
@@ -20,36 +21,39 @@ import kotlin.properties.Delegates
 
 class PersonalResumenActivity : AppCompatActivity() {
 
-    private lateinit var tv_imc : TextView
-    private lateinit var tv_calorias : TextView
-    private lateinit var tv_macronutrientes : TextView
-    private lateinit var bt_back_resumen : FloatingActionButton
+    private lateinit var tv_imc: TextView
+    private lateinit var tv_calorias: TextView
+    private lateinit var tv_macronutrientes: TextView
+    private lateinit var bt_back_resumen: FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_resumen)
 
         // Recuperar el tipo de objetivo seleccionado desde la actividad anterior
 
-        /*
+
         val objetivo = intent.getStringExtra("OBJETIVO")
         val actividad = intent.getStringExtra("ACTIVIDAD")
-        val sexo= intent.getStringExtra("SEXO")
+        val sexo = intent.getStringExtra("SEXO")
         val fecha = intent.getStringExtra("FECHA_NACIMIENTO")
         val altura = intent.getStringExtra("ALTURA")
-        val peso = intent.getStringExtra("PESO")*/
+        val peso = intent.getStringExtra("PESO")
 
 
         initComponent()
         initListeners()
         initUI()
 
-        // Calcular y mostrar el IMC
-        //calcularIMC(altura, peso)
+        val edad = calcularEdad(fecha)
+        calcularIMC(altura, peso)
+        val sexoLowerCase = sexo?.toLowerCase(Locale.getDefault())
+        val calorias = calcularCalorias(sexoLowerCase, edad, peso, altura, actividad)
 
-        // Mostrar el mensaje personalizado según el objetivo
-        //calcularCalorias(sexo, edad, peso, altura,actividad)
+        // Calcular y mostrar las calorías según el objetivo seleccionado
+        val caloriasObjetivo = calcularCaloriasObjetivo(calorias, objetivo)
+        tv_calorias.text = "Calorías diarias: $caloriasObjetivo"
 
-        //tv_macronutrientes.text=actividad
+        tv_macronutrientes.text=sexoLowerCase
 
     }
 
@@ -72,9 +76,10 @@ class PersonalResumenActivity : AppCompatActivity() {
         }
     }
 
-    private fun initUI(){
+    private fun initUI() {
 
     }
+
     private fun calcularIMC(altura: String?, peso: String?) {
 
         if (altura != null && peso != null) {
@@ -96,7 +101,12 @@ class PersonalResumenActivity : AppCompatActivity() {
                 val mensajeConSaltoDeLinea = "\n" + mensajeIMC
 
                 // Mostrar el IMC y el mensaje con el salto de línea
-                tv_imc.text = String.format(Locale.getDefault(), "IMC actual: %.2f %s", imc, mensajeConSaltoDeLinea).replace(",", ".")
+                tv_imc.text = String.format(
+                    Locale.getDefault(),
+                    "IMC actual: %.2f %s",
+                    imc,
+                    mensajeConSaltoDeLinea
+                ).replace(",", ".")
 
             } else {
                 tv_imc.text = "Altura o peso no válidos"
@@ -107,34 +117,69 @@ class PersonalResumenActivity : AppCompatActivity() {
 
     }
 
-/*
-
-    private fun calcularCalorias(sexo: String?, edad: Int?, peso: Float?, altura: Float?, actividad: String?) {
-        if (sexo != null && edad != null && peso != null && altura != null && actividad != null) {
-            val factorActividad = when (actividad) {
-                "sedentario" -> 1.2
-                "ligera" -> 1.375
-                "moderado" -> 1.55
-                "alta" -> 1.725
-                "atletaProfesional" -> 1.9
-                else -> 1.0 // Valor predeterminado
+    private fun calcularEdad(fechaNacimientoStr: String?): Int {
+        if (fechaNacimientoStr != null) {
+            val formatoFecha = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            try {
+                val fechaNacimiento = formatoFecha.parse(fechaNacimientoStr)
+                if (fechaNacimiento != null) {
+                    val calendarNacimiento = Calendar.getInstance().apply {
+                        time = fechaNacimiento
+                    }
+                    val calendarActual = Calendar.getInstance()
+                    var edad = calendarActual.get(Calendar.YEAR) - calendarNacimiento.get(Calendar.YEAR)
+                    if (calendarActual.get(Calendar.DAY_OF_YEAR) < calendarNacimiento.get(Calendar.DAY_OF_YEAR)) {
+                        edad--
+                    }
+                    return edad
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
-
-            val mb = if (sexo == "hombre") {
-                (66 + (13.7 * peso) + (5 * altura) - (6.8 * edad))
-            } else {
-                (655 + (9.6 * peso) + (1.8 * altura) - (4.7 * edad))
-            }
-
-            val calorias = mb * factorActividad
-
-            // Mostrar el resultado en la interfaz de usuario
-            val mensaje = "Calorías diarias estimadas: ${calorias.toInt()}"
-            tv_calorias.text = mensaje
-        } else {
-            tv_calorias.text = "Faltan datos para el cálculo de calorías"
         }
-    }*/
+        return 0
+    }
+    private fun calcularCalorias(
+        sexo: String?,
+        edad: Int?,
+        peso: String?,
+        altura: String?,
+        actividad: String?
+    ): Double {
+        if (altura != null && peso != null) {
+            val altura = altura.substringBefore(" ").toFloatOrNull()
+            val peso = peso.substringBefore(" ").toFloatOrNull()
+            if (sexo != null && edad != null && peso != null && altura != null && actividad != null) {
+                val factorActividad = when (actividad) {
+                    "sedentario" -> 1.2
+                    "ligera" -> 1.375
+                    "moderado" -> 1.55
+                    "alta" -> 1.725
+                    "atletaProfesional" -> 1.9
+                    else -> 1.0 // Valor predeterminado
+                }
 
+                val mb = if (sexo == "hombre") {
+                    (66 + (13.7 * peso) + (5 * altura) - (6.8 * edad))
+                } else {
+                    (655 + (9.6 * peso) + (1.8 * altura) - (4.7 * edad))
+                }
+
+                return mb * factorActividad
+            }
+        }
+        return 0.0 // Si falta algún dato, retornamos 0.0
+    }
+
+    private fun calcularCaloriasObjetivo(calorias: Double, objetivo: String?): String {
+        // Ajustar las calorías según el objetivo seleccionado
+        val caloriasAjustadas = when (objetivo) {
+            "perder_grasa" -> calorias * 0.8 // Reducir un 20% para perder grasa
+            "mantener_peso" -> calorias // Mantener el mismo valor
+            "ganar_musculo" -> calorias * 1.2 // Aumentar un 20% para ganar músculo
+            else -> calorias // Por defecto, mantener el mismo valor
+        }
+        return String.format("%.2f", caloriasAjustadas).replace(",", ".")
+    }
 
 }
