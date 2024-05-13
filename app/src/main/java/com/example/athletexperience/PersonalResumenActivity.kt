@@ -20,22 +20,23 @@ import kotlin.properties.Delegates
 
 class PersonalResumenActivity : AppCompatActivity() {
 
-    private lateinit var tv_imc: TextView
-    private lateinit var tv_calorias: TextView
-    private lateinit var tv_macronutrientes: TextView
-    private lateinit var bt_back_objetive: FloatingActionButton
+    private lateinit var tv_imc : TextView
+    private lateinit var tv_calorias : TextView
+    private lateinit var tv_macronutrientes : TextView
+    private lateinit var bt_back_resumen : FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_resumen)
 
         // Recuperar el tipo de objetivo seleccionado desde la actividad anterior
-        val intent = intent
+
+        /*
         val objetivo = intent.getStringExtra("OBJETIVO")
         val actividad = intent.getStringExtra("ACTIVIDAD")
         val sexo= intent.getStringExtra("SEXO")
         val fecha = intent.getStringExtra("FECHA_NACIMIENTO")
         val altura = intent.getStringExtra("ALTURA")
-        val peso = intent.getStringExtra("PESO")
+        val peso = intent.getStringExtra("PESO")*/
 
 
         initComponent()
@@ -43,17 +44,18 @@ class PersonalResumenActivity : AppCompatActivity() {
         initUI()
 
         // Calcular y mostrar el IMC
-        calcularIMC(altura, peso)
+        //calcularIMC(altura, peso)
 
         // Mostrar el mensaje personalizado según el objetivo
         //calcularCalorias(sexo, edad, peso, altura,actividad)
 
-        tv_macronutrientes.setText(sexo)
+        //tv_macronutrientes.text=actividad
+
     }
 
     private fun initComponent() {
         //Boton para volver atras
-        bt_back_objetive = findViewById(R.id.bt_back_objetive)
+        bt_back_resumen = findViewById(R.id.bt_back_resumen)
 
         // Textviews
         tv_imc = findViewById(R.id.tv_imc)
@@ -63,7 +65,7 @@ class PersonalResumenActivity : AppCompatActivity() {
 
     private fun initListeners() {
         // Agregar OnClickListener para volver atras
-        bt_back_objetive.setOnClickListener {
+        bt_back_resumen.setOnClickListener {
             // Iniciar la anterior actividad
             val intent = Intent(this, PersonalInfoActivity::class.java)
             startActivity(intent)
@@ -105,7 +107,7 @@ class PersonalResumenActivity : AppCompatActivity() {
 
     }
 
-
+/*
 
     private fun calcularCalorias(sexo: String?, edad: Int?, peso: Float?, altura: Float?, actividad: String?) {
         if (sexo != null && edad != null && peso != null && altura != null && actividad != null) {
@@ -132,7 +134,7 @@ class PersonalResumenActivity : AppCompatActivity() {
         } else {
             tv_calorias.text = "Faltan datos para el cálculo de calorías"
         }
-    }
+    }*/
 
 
 }

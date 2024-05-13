@@ -94,33 +94,7 @@ class PersonalInfoActivity : AppCompatActivity() {
         // Agregar OnClickListener al boton de volver
         bt_back_personal_info.setOnClickListener {
             // Iniciar la anterior actividad
-            val intent = Intent(this, PersonalObjetivoActivity::class.java)
-            startActivity(intent)
-        }
-
-        //Recojer el tipo de objetivo
-        val objetivo = intent.getStringExtra("OBJETIVO")
-
-        //Recojer el tipo de actividad
-        val actividad = intent.getStringExtra("ACTIVIDAD")
-
-        // Agregar OnClickListener al boton de siguiente
-        bt_next_personal_info.setOnClickListener {
-
-            val fechaNacimiento = et_fechaNacimiento.text.toString()
-            val altura = et_altura.text.toString().removeSuffix(" cm")
-            val peso = et_peso.text.toString().removeSuffix(" Kg")
-
-            // Crear un intent para pasar a la siguiente actividad
-            val intent = Intent(this, PersonalResumenActivity::class.java)
-
-            // Pasar los datos como extras en el intent
-            intent.putExtra("SEXO", sexo)
-            intent.putExtra("FECHA_NACIMIENTO", fechaNacimiento)
-            intent.putExtra("ALTURA", altura)
-            intent.putExtra("PESO", peso)
-            intent.putExtra("OBJETIVO", objetivo) // Pasa el tipo de objetivo
-            intent.putExtra("ACTIVIDAD", actividad) // Pasa el tipo de actividad
+            val intent = Intent(this, PersonalActividadFisicaActivity::class.java)
             startActivity(intent)
         }
 
@@ -143,6 +117,36 @@ class PersonalInfoActivity : AppCompatActivity() {
             // Cambiar el color de fondo de la card de hombre a orangeDark
             cv_hombre.setCardBackgroundColor(ContextCompat.getColor(this, R.color.orangeDark))
         }
+
+
+
+        //Recojer el tipo de objetivo
+        val objetivo = intent.getStringExtra("OBJETIVO")
+
+        //Recojer el tipo de actividad
+        val actividad = intent.getStringExtra("ACTIVIDAD")
+
+        // Agregar OnClickListener al boton de siguiente
+        bt_next_personal_info.setOnClickListener {
+
+            //val fechaNacimiento = et_fechaNacimiento.text.toString()
+            val altura = et_altura.text.toString().removeSuffix(" cm")
+            val peso = et_peso.text.toString().removeSuffix(" Kg")
+
+            // Crear un intent para pasar a la siguiente actividad
+            val intent = Intent(this, PersonalResumenActivity::class.java)
+
+            // Pasar los datos como extras en el intent
+            intent.putExtra("OBJETIVO", objetivo) // Pasa el tipo de objetivo
+            intent.putExtra("ACTIVIDAD", actividad) // Pasa el tipo de actividad
+            //intent.putExtra("SEXO", sexo)
+            //intent.putExtra("FECHA_NACIMIENTO", fechaNacimiento)
+            intent.putExtra("ALTURA", altura)
+            intent.putExtra("PESO", peso)
+            startActivity(intent)
+        }
+
+
 
         //Evento para que muestre el NumberPicker
         et_fechaNacimiento.setOnClickListener {

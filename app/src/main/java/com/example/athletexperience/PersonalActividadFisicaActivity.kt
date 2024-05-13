@@ -4,10 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import com.example.athletexperience.loggin.SingInActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class PersonalActividadActivity : AppCompatActivity() {
+class PersonalActividadFisicaActivity : AppCompatActivity() {
 
     private lateinit var bt_back_actividad : FloatingActionButton
     private lateinit var cv_sedentario : CardView
@@ -18,15 +17,11 @@ class PersonalActividadActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_personal_actividad)
-
-
+        setContentView(R.layout.activity_personal_actividad_fisica)
 
         initComponent()
         initListeners()
         initUI()
-
-
     }
 
 
@@ -47,8 +42,7 @@ class PersonalActividadActivity : AppCompatActivity() {
 
     private fun initListeners() {
 
-        //Recojer el tipo de objetivo
-        val objetivo = intent.getStringExtra("OBJETIVO")
+
 
 
         // Agregar OnClickListener para volver atras
@@ -58,8 +52,11 @@ class PersonalActividadActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //Recojer el tipo de objetivo
+        val objetivo = intent.getStringExtra("OBJETIVO")
+
         // Agregar OnClickListener a cv_perdergrasa
-        cv_sedentario.setOnClickListener {startActivity(intent)
+        cv_sedentario.setOnClickListener {
             // Iniciar la siguiente actividad
             val intent = Intent(this, PersonalInfoActivity::class.java)
             intent.putExtra("ACTIVIDAD", "sedentario")
@@ -107,4 +104,6 @@ class PersonalActividadActivity : AppCompatActivity() {
     private fun initUI() {
         TODO("Not yet implemented")
     }
+
+
 }

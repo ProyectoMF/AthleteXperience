@@ -25,7 +25,7 @@
       </activity>
       -->
         <activity
-            android:name=".loggin.SingInActivity"
+            android:name=".PersonalObjetivoActivity"
             android:theme="@style/SplashTheme"
             android:launchMode="singleTask"
             android:exported="true">
@@ -35,21 +35,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".loggin.SingInActivity"
+            android:exported="false" >
+        </activity>
+
         <activity
             android:name=".loggin.SignUpActivity"
             android:exported="false" >
         </activity>
+
         <activity
-            android:name=".PersonalObjetivoActivity"
+            android:name=".PersonalActividadFisicaActivity"
             android:exported="false" >
         </activity>
+
+        <activity
+            android:name=".PersonalInfoActivity"
+            android:exported="false" >
+        </activity>
+
         <activity
             android:name=".PersonalResumenActivity"
             android:exported="false" >
         </activity>
         <activity
             android:name=".mainActivity"
-            android:exported="false" >
+            android:exported="true" >
         </activity>
     </application>
 
