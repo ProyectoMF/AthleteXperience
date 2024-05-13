@@ -120,7 +120,7 @@ class SingInActivity : AppCompatActivity() {
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
                 // Mostrar mensaje de error si el inicio de sesión con Google falla
-                Toast.makeText(this, "Google sign in failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Inicio de sesion con Google fallido: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -131,11 +131,11 @@ class SingInActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = firebaseAuth.currentUser
-                    Toast.makeText(this, "Signed in as ${user?.displayName}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Has iniciado sesion como: ${user?.displayName}", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, PersonalObjetivoActivity::class.java))
                     finish()
                 } else {
-                    Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Autenticacion fallida", Toast.LENGTH_SHORT).show()
                 }
             }
     }
