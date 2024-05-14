@@ -29,7 +29,7 @@ class SignUpActivity : AppCompatActivity() {
 
         // Listener para el TextView que redirige a la actividad de información personal
         binding.textView.setOnClickListener {
-            val intent = Intent(this, PersonalInfoActivity::class.java)
+            val intent = Intent(this, SingInActivity::class.java)
             startActivity(intent)
             finish() // Finalizar la actividad actual para evitar que el usuario regrese utilizando el botón Atrás
         }
@@ -49,7 +49,7 @@ class SignUpActivity : AppCompatActivity() {
                         if (it.isSuccessful) {
                             // Mostrar mensaje en caso de exito y redirigir a la actividad de información personal
                             Toast.makeText(this, "Usuario creado exitosamente", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this, PersonalInfoActivity::class.java)
+                            val intent = Intent(this, SingInActivity::class.java)
                             startActivity(intent)
                             finish() // Finalizar la actividad actual para evitar que el usuario regrese utilizando el botón Atrás
                         } else {
