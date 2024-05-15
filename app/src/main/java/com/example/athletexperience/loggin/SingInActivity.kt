@@ -52,7 +52,7 @@ class SingInActivity : AppCompatActivity() {
                 firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         // Verificar si el usuario es nuevo o ya existente
-                        val isNewUser = task.result?.additionalUserInfo?.isNewUser == true
+                        val isNewUser = getSharedPreferences("MySharedPref", MODE_PRIVATE).getBoolean("isNewUser", true)
 
                         val intent = if (isNewUser) {
                             Intent(this, PersonalObjetivoActivity::class.java)
@@ -144,7 +144,7 @@ class SingInActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this, "Autenticación fallida", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Authentication Failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -156,14 +156,4 @@ class SingInActivity : AppCompatActivity() {
         startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
 
-    override fun onStart() {
-        super.onStart()
-        val currentUser = firebaseAuth.currentUser
-        if (currentUser != null) {
-            // Redirige al usuario a la actividad principal si ya está autenticado
-            val intent = Intent(this, mainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-    }
 }

@@ -80,9 +80,14 @@ class PersonalResumenActivity : AppCompatActivity() {
         }
 
         bt_crearplan.setOnClickListener {
-            // Iniciar la anterior actividad
+            val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putBoolean("isNewUser", false)  // El usuario ya no es nuevo
+            editor.apply()
+
             val intent = Intent(this, mainActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
