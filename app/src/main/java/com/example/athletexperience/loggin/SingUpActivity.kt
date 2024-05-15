@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.athletexperience.PersonalInfoActivity
+import com.example.athletexperience.PersonalObjetivoActivity
 import com.example.athletexperience.databinding.ActivitySingUpBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -47,9 +48,9 @@ class SignUpActivity : AppCompatActivity() {
                     // Crear un nuevo usuario con correo electrónico y contraseña
                     firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                         if (it.isSuccessful) {
-                            // Mostrar mensaje en caso de exito y redirigir a la actividad de información personal
+                            // Mostrar mensaje en caso de éxito y redirigir a la actividad de objetivos personales
                             Toast.makeText(this, "Usuario creado exitosamente", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this, SingInActivity::class.java)
+                            val intent = Intent(this, PersonalObjetivoActivity::class.java)
                             startActivity(intent)
                             finish() // Finalizar la actividad actual para evitar que el usuario regrese utilizando el botón Atrás
                         } else {

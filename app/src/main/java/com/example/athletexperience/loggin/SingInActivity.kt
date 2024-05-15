@@ -36,6 +36,7 @@ class SingInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sing_in)
 
+
         binding = ActivitySingInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -47,22 +48,25 @@ class SingInActivity : AppCompatActivity() {
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
 
-            // Verificar si los campos de correo electrónico y contraseña no están vacíos
             if (email.isNotEmpty() && pass.isNotEmpty()) {
-                // Iniciar sesión con correo electrónico y contraseña
-                firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        // Redirigir a la actividad principal si la autenticación es exitosa
-                        val intent = Intent(this, PersonalObjetivoActivity::class.java)
+                firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        // Verificar si el usuario es nuevo o ya existente
+                        val isNewUser = task.result?.additionalUserInfo?.isNewUser == true
+
+                        val intent = if (isNewUser) {
+                            Intent(this, PersonalObjetivoActivity::class.java)
+                        } else {
+                            Intent(this, mainActivity::class.java)
+                        }
                         startActivity(intent)
+                        finish()
                     } else {
-                        // Mostrar mensaje de error si la autenticación falla
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Correo o contraseña erroneas", Toast.LENGTH_SHORT).show()
                     }
                 }
             } else {
-                // Mostrar mensaje si hay campos vacíos\
-                Toast.makeText(this, "No se admiten campos vacios", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "No se admiten campos vacíos", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -130,14 +134,20 @@ class SingInActivity : AppCompatActivity() {
         firebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val user = firebaseAuth.currentUser
-                    Toast.makeText(this, "Has iniciado sesion como: ${user?.displayName}", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, PersonalObjetivoActivity::class.java))
+                    val newUser = task.result.additionalUserInfo?.isNewUser ?: false
+                    val intent = if (newUser) {
+                        Intent(this, PersonalObjetivoActivity::class.java)
+                    } else {
+                        Intent(this, mainActivity::class.java)
+                    }
+                    Toast.makeText(this, "Has iniciado sesión como: ${task.result.user?.displayName}", Toast.LENGTH_SHORT).show()
+                    startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this, "Autenticacion fallida", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Autenticación fallida", Toast.LENGTH_SHORT).show()
                 }
             }
+
     }
     // Método para abrir la galería de imágenes
     private fun openGallery() {
@@ -148,11 +158,12 @@ class SingInActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        // Verificar si ya hay un usuario autenticado al iniciar la actividad
-        if (firebaseAuth.currentUser != null) {
-            // Redirigir a la actividad principal si hay un usuario autenticado
+        val currentUser = firebaseAuth.currentUser
+        if (currentUser != null) {
+            // Redirige al usuario a la actividad principal si ya está autenticado
             val intent = Intent(this, mainActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }
