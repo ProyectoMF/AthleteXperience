@@ -31,7 +31,7 @@ class PersonalObjetivoActivity : AppCompatActivity(){
 
         initComponent()
         initListeners()
-
+        onBackPressed()
     }
 
     private fun initComponent(){
@@ -47,13 +47,13 @@ class PersonalObjetivoActivity : AppCompatActivity(){
 
     private fun initListeners(){
 
-        // Agregar OnClickListener a cv_perdergrasa
+        // Redirige a SingInActivity al presionar el botón de atrás
         bt_back_objetive.setOnClickListener {
             // Iniciar la anterior actividad
             val intent = Intent(this, SingInActivity::class.java)
             startActivity(intent)
+            finish()
         }
-
 
         // Agregar OnClickListener a cv_perdergrasa
         cv_perdergrasa.setOnClickListener {
@@ -80,11 +80,5 @@ class PersonalObjetivoActivity : AppCompatActivity(){
         }
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        // Redirige a SingInActivity al presionar el botón de atrás
-        val intent = Intent(this, SingInActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
+
 }

@@ -37,27 +37,16 @@ class SignUpActivity : AppCompatActivity() {
 
         // Listener para el botón de registro
         binding.button.setOnClickListener {
-            val email = binding.emailEt.text.toString()
-            val pass = binding.passET.text.toString()
-            val confirmPass = binding.confirmPassET.text.toString()
+            val email = binding.emailEt.text.toString().trim()
+            val pass = binding.passET.text.toString().trim()
+            val confirmPass = binding.confirmPassET.text.toString().trim()
 
             // Verificar si los campos de correo electrónico, contraseña y confirmación de contraseña no están vacíos
             if (email.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()) {
                 // Verificar si la contraseña y la confirmación de contraseña coinciden
                 if (pass == confirmPass) {
                     // Crear un nuevo usuario con correo electrónico y contraseña
-                    firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            // Mostrar mensaje en caso de éxito y redirigir a la actividad de objetivos personales
-                            Toast.makeText(this, "Usuario creado exitosamente", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this, PersonalObjetivoActivity::class.java)
-                            startActivity(intent)
-                            finish() // Finalizar la actividad actual para evitar que el usuario regrese utilizando el botón Atrás
-                        } else {
-                            // Mostrar mensaje de error si la creación de usuario falla
-                            Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-                        }
-                    }
+                    registerUser(email, pass)
                 } else {
                     // Mostrar mensaje si la contraseña y la confirmación de contraseña no coinciden
                     Toast.makeText(this, "La contraseña no coincide", Toast.LENGTH_SHORT).show()
@@ -68,4 +57,25 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun registerUser(email: String, password: String) {
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
+            if (task.isSuccessful) {
+                // Guardando el estado de registro del usuario como no nuevo
+                val sharedPreferences = getSharedPreferences(" g  ", MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putBoolean("isNewUser", false)  // User is no longer new after registration
+                editor.apply()
+
+                // Redirigir al usuario para iniciar el proceso de recopilación de datos
+                val intent = Intent(this, PersonalObjetivoActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                // Manejo de errores
+                Toast.makeText(this, "Registration failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 }
