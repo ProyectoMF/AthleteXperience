@@ -31,7 +31,6 @@ class PersonalObjetivoActivity : AppCompatActivity(){
 
         initComponent()
         initListeners()
-        onBackPressed()
     }
 
     private fun initComponent(){
@@ -52,7 +51,7 @@ class PersonalObjetivoActivity : AppCompatActivity(){
             // Iniciar la anterior actividad
             val intent = Intent(this, SingInActivity::class.java)
             startActivity(intent)
-            finish()
+            //finish()
         }
 
         // Agregar OnClickListener a cv_perdergrasa

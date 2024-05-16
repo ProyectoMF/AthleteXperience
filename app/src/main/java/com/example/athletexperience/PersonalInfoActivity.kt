@@ -92,7 +92,6 @@ class PersonalInfoActivity : AppCompatActivity() {
 
     }
 
-    @SuppressLint("ResourceType")
     private fun initListeners() {
         // Agregar OnClickListener al boton de volver
         bt_back_personal_info.setOnClickListener {

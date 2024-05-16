@@ -35,25 +35,6 @@ class mainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
-        val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
-        val isUserNew = sharedPreferences.getBoolean("isNewUser", true)
-
-        if (isUserNew) {
-            // Si es nuevo, llevar al usuario a PersonalObjetivoActivity para comenzar el proceso de configuración
-            val intent = Intent(this, PersonalObjetivoActivity::class.java)
-            startActivity(intent)
-            finish()
-        } else {
-            // Continuar a la pantalla principal
-            // Cargar la interfaz de usuario de MainActivity como de costumbre
-        }
-
-
-
-
-
-
         // Inicializar FirebaseAuth
         mAuth = FirebaseAuth.getInstance()
 

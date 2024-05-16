@@ -12,20 +12,11 @@ import com.example.athletexperience.PersonalObjetivoActivity.Companion.objetivo
 import com.example.athletexperience.PersonalObjetivoActivity.Companion.peso
 import com.example.athletexperience.PersonalObjetivoActivity.Companion.sexo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import org.checkerframework.common.subtyping.qual.Bottom
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-import kotlin.properties.Delegates
-
-
-/*Mujeres: [65 + (9,6 × peso en kg)] + [(1,8 × altura en cm) - (4,7 × edad)] × Factor actividad. Hombres: [66 + (13,7 × peso en kg)] + [(5 × altura en cm) - (6,8 × edad)] × Factor actividad*/
-/*
-1,2 para personas sedentarias
-1,375 para personas con poca actividad física (ejercicio de 1 a 3 veces por semana).
-1,55 para individuos que realizan actividad moderada (ejercicio de 3 a 5 veces por semana).
-1,725 para personas que hacen actividad intensa (ejercicio de 6 a 7 veces por semana).
-1,9 para atletas profesionales (entrenamientos de más de 4 horas diarias).*/
 
 class PersonalResumenActivity : AppCompatActivity() {
 
@@ -39,9 +30,6 @@ class PersonalResumenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_resumen)
 
-        // Recuperar el tipo de objetivo seleccionado desde la actividad anterior
-
-
         initComponent()
         initListeners()
         initUI()
@@ -49,81 +37,59 @@ class PersonalResumenActivity : AppCompatActivity() {
         val edad = calcularEdad(fecha)
         calcularIMC()
         val sexoLowerCase = sexo?.toLowerCase(Locale.getDefault())
-        val calorias = calcularCalorias(sexoLowerCase, edad,  actividad)
+        val calorias = calcularCalorias(sexoLowerCase, edad, actividad)
 
         // Calcular y mostrar las calorías según el objetivo seleccionado
         val caloriasObjetivo = calcularCaloriasObjetivo(calorias, objetivo)
         tv_calorias.text = "Calorías diarias: $caloriasObjetivo"
 
-        tv_macronutrientes.text=sexoLowerCase
-
+        // Calcular y mostrar los macronutrientes
+        val macronutrientes = calcularMacronutrientes(caloriasObjetivo.toDouble())
+        tv_macronutrientes.text = "Macronutrientes diarios:\nProteínas: ${macronutrientes["proteinas"]} g\nCarbohidratos: ${macronutrientes["carbohidratos"]} g\nGrasas: ${macronutrientes["grasas"]} g"
     }
 
     private fun initComponent() {
-        //Boton para volver atras
         bt_back_resumen = findViewById(R.id.bt_back_resumen)
         bt_crearplan = findViewById(R.id.bt_crearplan)
-
-        // Textviews
         tv_imc = findViewById(R.id.tv_imc)
         tv_calorias = findViewById(R.id.tv_calorias)
         tv_macronutrientes = findViewById(R.id.tv_macronutrientes)
-
     }
 
     private fun initListeners() {
-        // Agregar OnClickListener para volver atras
         bt_back_resumen.setOnClickListener {
-            // Iniciar la anterior actividad
             val intent = Intent(this, PersonalInfoActivity::class.java)
             startActivity(intent)
         }
 
         bt_crearplan.setOnClickListener {
-            val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            editor.putBoolean("isNewUser", false)  // El usuario ya no es nuevo
-            editor.apply()
-
             val intent = Intent(this, mainActivity::class.java)
             startActivity(intent)
             finish()
         }
     }
 
-    private fun initUI() {
-
-    }
+    private fun initUI() {}
 
     private fun calcularIMC() {
-
-
-            if (altura != 0.0 && peso != 0.0) {
-                val imc = peso / ((altura / 100) * (altura / 100))
-
-                // Determinar el mensaje del IMC según el rango
-                val mensajeIMC = when {
-                    imc <= 18.5 -> "Bajo peso"
-                    imc <= 24.9 -> "Normal"
-                    imc <= 29.9 -> "Sobrepeso"
-                    else -> "Obeso"
-                }
-
-                // Agregar un salto de línea al mensajeIMC
-                val mensajeConSaltoDeLinea = "\n" + mensajeIMC
-
-                // Mostrar el IMC y el mensaje con el salto de línea
-                tv_imc.text = String.format(
-                    Locale.getDefault(),
-                    "IMC actual: %.2f %s",
-                    imc,
-                    mensajeConSaltoDeLinea
-                ).replace(",", ".")
-
-            } else {
-                tv_imc.text = "Altura o peso no válidos"
+        if (altura != 0.0 && peso != 0.0) {
+            val imc = peso / ((altura / 100) * (altura / 100))
+            val mensajeIMC = when {
+                imc <= 18.5 -> "Bajo peso"
+                imc <= 24.9 -> "Normal"
+                imc <= 29.9 -> "Sobrepeso"
+                else -> "Obeso"
             }
-
+            val mensajeConSaltoDeLinea = "\n" + mensajeIMC
+            tv_imc.text = String.format(
+                Locale.getDefault(),
+                "IMC actual: %.2f %s",
+                imc,
+                mensajeConSaltoDeLinea
+            ).replace(",", ".")
+        } else {
+            tv_imc.text = "Altura o peso no válidos"
+        }
     }
 
     private fun calcularEdad(fechaNacimientoStr: String?): Int {
@@ -132,9 +98,7 @@ class PersonalResumenActivity : AppCompatActivity() {
             try {
                 val fechaNacimiento = formatoFecha.parse(fechaNacimientoStr)
                 if (fechaNacimiento != null) {
-                    val calendarNacimiento = Calendar.getInstance().apply {
-                        time = fechaNacimiento
-                    }
+                    val calendarNacimiento = Calendar.getInstance().apply { time = fechaNacimiento }
                     val calendarActual = Calendar.getInstance()
                     var edad = calendarActual.get(Calendar.YEAR) - calendarNacimiento.get(Calendar.YEAR)
                     if (calendarActual.get(Calendar.DAY_OF_YEAR) < calendarNacimiento.get(Calendar.DAY_OF_YEAR)) {
@@ -148,11 +112,8 @@ class PersonalResumenActivity : AppCompatActivity() {
         }
         return 0
     }
-    private fun calcularCalorias(
-        sexo: String?,
-        edad: Int?,
-        actividad: String?
-    ): Double {
+
+    private fun calcularCalorias(sexo: String?, edad: Int?, actividad: String?): Double {
         if (altura != null && peso != null) {
             if (sexo != null && edad != null && peso != null && altura != null && actividad != null) {
                 val factorActividad = when (actividad) {
@@ -161,7 +122,7 @@ class PersonalResumenActivity : AppCompatActivity() {
                     "moderado" -> 1.55
                     "alta" -> 1.725
                     "atletaProfesional" -> 1.9
-                    else -> 1.0 // Valor predeterminado
+                    else -> 1.0
                 }
 
                 val mb = if (sexo == "hombre") {
@@ -173,18 +134,36 @@ class PersonalResumenActivity : AppCompatActivity() {
                 return mb * factorActividad
             }
         }
-        return 0.0 // Si falta algún dato, retornamos 0.0
+        return 0.0
     }
 
     private fun calcularCaloriasObjetivo(calorias: Double, objetivo: String?): String {
-        // Ajustar las calorías según el objetivo seleccionado
         val caloriasAjustadas = when (objetivo) {
-            "perder_grasa" -> calorias * 0.8 // Reducir un 20% para perder grasa
-            "mantener_peso" -> calorias // Mantener el mismo valor
-            "ganar_musculo" -> calorias * 1.2 // Aumentar un 20% para ganar músculo
-            else -> calorias // Por defecto, mantener el mismo valor
+            "perder_grasa" -> calorias * 0.8
+            "mantener_peso" -> calorias
+            "ganar_musculo" -> calorias * 1.2
+            else -> calorias
         }
         return String.format("%.2f", caloriasAjustadas).replace(",", ".")
     }
 
+    private fun calcularMacronutrientes(calorias: Double): Map<String, String> {
+        val porcentajeProteinas = 0.20
+        val porcentajeCarbohidratos = 0.50
+        val porcentajeGrasas = 0.30
+
+        val caloriasProteinas = calorias * porcentajeProteinas
+        val caloriasCarbohidratos = calorias * porcentajeCarbohidratos
+        val caloriasGrasas = calorias * porcentajeGrasas
+
+        val gramosProteinas = caloriasProteinas / 4
+        val gramosCarbohidratos = caloriasCarbohidratos / 4
+        val gramosGrasas = caloriasGrasas / 9
+
+        return mapOf(
+            "proteinas" to String.toString().format("%.2f", gramosProteinas).replace(",", "."),
+            "carbohidratos" to String.toString().format("%.2f", gramosCarbohidratos).replace(",", "."),
+            "grasas" to String.toString().format("%.2f", gramosGrasas).replace(",", ".")
+        )
+    }
 }
