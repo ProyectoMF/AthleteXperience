@@ -10,6 +10,7 @@ import com.example.athletexperience.R
 import com.example.athletexperience.databinding.ActivitySingInBinding
 import com.example.athletexperience.mainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
@@ -22,8 +23,8 @@ class SignInActivity : AppCompatActivity() {
     // Instancia de FirebaseAuth para autenticación
     private lateinit var firebaseAuth: FirebaseAuth
 
-    // URI de la imagen seleccionada
-    private lateinit var imageUri: String
+    // Cliente de Google SignIn
+    private lateinit var googleSignInClient: GoogleSignInClient
 
     companion object {
         // Códigos de solicitud
@@ -35,12 +36,18 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sing_in)
 
-
         binding = ActivitySingInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Inicializar FirebaseAuth
         firebaseAuth = FirebaseAuth.getInstance()
+
+        // Configurar opciones de Google Sign-In
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         // Listener para el botón de iniciar sesión con correo electrónico y contraseña
         binding.button.setOnClickListener {
@@ -51,15 +58,17 @@ class SignInActivity : AppCompatActivity() {
                 firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         // Verificar si el usuario es nuevo o ya existente
-                        val isNewUser = getSharedPreferences("MySharedPref", MODE_PRIVATE).getBoolean("isNewUser", true)
-
-                        val intent = if (isNewUser) {
-                            Intent(this, PersonalObjetivoActivity::class.java)
-                        } else {
-                            Intent(this, mainActivity::class.java)
+                        val user = firebaseAuth.currentUser
+                        if (user != null) {
+                            val isNewUser = task.result.additionalUserInfo?.isNewUser ?: false
+                            val intent = if (isNewUser) {
+                                Intent(this, PersonalObjetivoActivity::class.java)
+                            } else {
+                                Intent(this, mainActivity::class.java)
+                            }
+                            startActivity(intent)
+                            finish()
                         }
-                        startActivity(intent)
-                        finish()
                     } else {
                         Toast.makeText(this, "Correo o contraseña erroneas", Toast.LENGTH_SHORT).show()
                     }
@@ -76,7 +85,7 @@ class SignInActivity : AppCompatActivity() {
 
         // Listener para el botón de iniciar sesión con Google
         binding.ButtonGoogle.setOnClickListener {
-            signInWithGoogle()
+            signOutGoogle() // Cerrar sesión de Google primero
         }
 
         // Agrega el OnClickListener al TextView deseado
@@ -86,14 +95,15 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
+    // Método para cerrar sesión de Google y luego iniciar sesión nuevamente
+    private fun signOutGoogle() {
+        googleSignInClient.signOut().addOnCompleteListener {
+            signInWithGoogle() // Iniciar sesión con Google después de cerrar sesión
+        }
+    }
+
     // Método para iniciar sesión con Google
     private fun signInWithGoogle() {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        val googleSignInClient = GoogleSignIn.getClient(this, gso)
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
@@ -106,7 +116,6 @@ class SignInActivity : AppCompatActivity() {
                 // Obtener la URI de la imagen seleccionada y mostrarla
                 val uri = data.data
                 uri?.let {
-                    imageUri = it.toString()
                     binding.imageView.setImageURI(uri)
                 }
             } else {
@@ -127,6 +136,7 @@ class SignInActivity : AppCompatActivity() {
             }
         }
     }
+
     // Método para autenticar con Firebase utilizando el token de ID de Google
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
@@ -146,13 +156,12 @@ class SignInActivity : AppCompatActivity() {
                     Toast.makeText(this, "Authentication Failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
-
     }
+
     // Método para abrir la galería de imágenes
     private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
-
 }
