@@ -1,3 +1,5 @@
+package com.example.athletexperience.loggin
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -6,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.athletexperience.PersonalObjetivoActivity
 import com.example.athletexperience.R
 import com.example.athletexperience.databinding.ActivitySingInBinding
-import com.example.athletexperience.loggin.SignUpActivity
 import com.example.athletexperience.mainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -15,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
 class SignInActivity : AppCompatActivity() {
-
     // Variable de enlace de vistas
     private lateinit var binding: ActivitySingInBinding
 
@@ -35,6 +35,7 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sing_in)
 
+
         binding = ActivitySingInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -46,22 +47,25 @@ class SignInActivity : AppCompatActivity() {
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
 
-            // Verificar si los campos de correo electrónico y contraseña no están vacíos
             if (email.isNotEmpty() && pass.isNotEmpty()) {
-                // Iniciar sesión con correo electrónico y contraseña
-                firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        // Redirigir a la actividad principal si la autenticación es exitosa
-                        val intent = Intent(this, PersonalObjetivoActivity::class.java)
+                firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        // Verificar si el usuario es nuevo o ya existente
+                        val isNewUser = getSharedPreferences("MySharedPref", MODE_PRIVATE).getBoolean("isNewUser", true)
+
+                        val intent = if (isNewUser) {
+                            Intent(this, PersonalObjetivoActivity::class.java)
+                        } else {
+                            Intent(this, mainActivity::class.java)
+                        }
                         startActivity(intent)
+                        finish()
                     } else {
-                        // Mostrar mensaje de error si la autenticación falla
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Correo o contraseña erroneas", Toast.LENGTH_SHORT).show()
                     }
                 }
             } else {
-                // Mostrar mensaje si hay campos vacíos\
-                Toast.makeText(this, "No se admiten campos vacios", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "No se admiten campos vacíos", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -129,14 +133,20 @@ class SignInActivity : AppCompatActivity() {
         firebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val user = firebaseAuth.currentUser
-                    Toast.makeText(this, "Has iniciado sesion como: ${user?.displayName}", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, PersonalObjetivoActivity::class.java))
+                    val newUser = task.result.additionalUserInfo?.isNewUser ?: false
+                    val intent = if (newUser) {
+                        Intent(this, PersonalObjetivoActivity::class.java)
+                    } else {
+                        Intent(this, mainActivity::class.java)
+                    }
+                    Toast.makeText(this, "Has iniciado sesión como: ${task.result.user?.displayName}", Toast.LENGTH_SHORT).show()
+                    startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this, "Autenticacion fallida", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Authentication Failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
+
     }
     // Método para abrir la galería de imágenes
     private fun openGallery() {
@@ -145,13 +155,4 @@ class SignInActivity : AppCompatActivity() {
         startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
 
-    override fun onStart() {
-        super.onStart()
-        // Verificar si ya hay un usuario autenticado al iniciar la actividad
-        if (firebaseAuth.currentUser != null) {
-            // Redirigir a la actividad principal si hay un usuario autenticado
-            val intent = Intent(this, mainActivity::class.java)
-            startActivity(intent)
-        }
-    }
 }

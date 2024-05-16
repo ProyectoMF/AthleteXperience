@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "780115247992-rn9ftch3b5ls62kseaa6atvlfpo78hbr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.athletexperience",
+            "certificate_hash": "71785db7e68cf9f92ed8b1cf6ca2a2916d81e0da"
+          }
+        },
+        {
           "client_id": "780115247992-me0fulp2uo7ita89889lnclnhk6f0277.apps.googleusercontent.com",
           "client_type": 3
         }

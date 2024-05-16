@@ -1,7 +1,7 @@
 package com.example.athletexperience.loggin
 
 
-import SignInActivity
+import com.example.athletexperience.loggin.SignInActivity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
