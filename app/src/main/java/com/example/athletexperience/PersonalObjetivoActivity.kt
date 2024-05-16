@@ -1,11 +1,11 @@
 package com.example.athletexperience
 
 
+import SignInActivity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import com.example.athletexperience.loggin.SingInActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
@@ -49,7 +49,7 @@ class PersonalObjetivoActivity : AppCompatActivity(){
         // Redirige a SingInActivity al presionar el botón de atrás
         bt_back_objetive.setOnClickListener {
             // Iniciar la anterior actividad
-            val intent = Intent(this, SingInActivity::class.java)
+            val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
             //finish()
         }

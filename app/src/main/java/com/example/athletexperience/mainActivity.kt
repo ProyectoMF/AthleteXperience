@@ -1,5 +1,6 @@
 package com.example.athletexperience
 
+import SignInActivity
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -7,7 +8,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.athletexperience.databinding.ActivityMainBinding
-import com.example.athletexperience.loggin.SingInActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -79,7 +79,7 @@ class mainActivity : AppCompatActivity() {
         mAuth.signOut()
 
         mGoogleSignInClient.signOut().addOnCompleteListener(this) {
-            val intent = Intent(this@mainActivity, SingInActivity::class.java)
+            val intent = Intent(this@mainActivity, SignInActivity::class.java)
             startActivity(intent)
             finish()
         }

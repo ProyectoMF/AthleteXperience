@@ -12,8 +12,6 @@ import com.example.athletexperience.PersonalObjetivoActivity.Companion.objetivo
 import com.example.athletexperience.PersonalObjetivoActivity.Companion.peso
 import com.example.athletexperience.PersonalObjetivoActivity.Companion.sexo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -45,7 +43,7 @@ class PersonalResumenActivity : AppCompatActivity() {
 
         // Calcular y mostrar los macronutrientes
         val macronutrientes = calcularMacronutrientes(caloriasObjetivo.toDouble())
-        tv_macronutrientes.text = "Macronutrientes diarios:\nProteínas: ${macronutrientes["proteinas"]} g\nCarbohidratos: ${macronutrientes["carbohidratos"]} g\nGrasas: ${macronutrientes["grasas"]} g"
+        tv_macronutrientes.text = "Proteínas: ${macronutrientes["proteinas"]} g\nCarbohidratos: ${macronutrientes["carbohidratos"]} g\nGrasas: ${macronutrientes["grasas"]} g"
     }
 
     private fun initComponent() {
@@ -82,11 +80,11 @@ class PersonalResumenActivity : AppCompatActivity() {
             }
             val mensajeConSaltoDeLinea = "\n" + mensajeIMC
             tv_imc.text = String.format(
-                Locale.getDefault(),
+                Locale.US,
                 "IMC actual: %.2f %s",
                 imc,
                 mensajeConSaltoDeLinea
-            ).replace(",", ".")
+            )
         } else {
             tv_imc.text = "Altura o peso no válidos"
         }
@@ -144,7 +142,7 @@ class PersonalResumenActivity : AppCompatActivity() {
             "ganar_musculo" -> calorias * 1.2
             else -> calorias
         }
-        return String.format("%.2f", caloriasAjustadas).replace(",", ".")
+        return String.format(Locale.US, "%.2f", caloriasAjustadas)
     }
 
     private fun calcularMacronutrientes(calorias: Double): Map<String, String> {
@@ -161,9 +159,9 @@ class PersonalResumenActivity : AppCompatActivity() {
         val gramosGrasas = caloriasGrasas / 9
 
         return mapOf(
-            "proteinas" to String.toString().format("%.2f", gramosProteinas).replace(",", "."),
-            "carbohidratos" to String.toString().format("%.2f", gramosCarbohidratos).replace(",", "."),
-            "grasas" to String.toString().format("%.2f", gramosGrasas).replace(",", ".")
+            "proteinas" to String.format(Locale.US, "%.2f", gramosProteinas),
+            "carbohidratos" to String.format(Locale.US, "%.2f", gramosCarbohidratos),
+            "grasas" to String.format(Locale.US, "%.2f", gramosGrasas)
         )
     }
 }
