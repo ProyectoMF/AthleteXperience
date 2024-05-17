@@ -39,7 +39,7 @@
                 style="@style/LoginTextInputInnerFieldStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Type your Email"
+                android:hint="Escribe tu correo"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -59,7 +59,7 @@
                 style="@style/LoginTextInputInnerFieldStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Type Your Password"
+                android:hint="Escribe tu contraseña"
                 android:inputType="textPassword"
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/black_round_border"
+        android:backgroundTint="@color/orange"
         android:text="@string/signup"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/ButtonGoogle"

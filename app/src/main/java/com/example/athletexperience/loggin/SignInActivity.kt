@@ -3,8 +3,10 @@ package com.example.athletexperience.loggin
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.athletexperience.PersonalObjetivoActivity
 import com.example.athletexperience.R
 import com.example.athletexperience.databinding.ActivitySingInBinding
@@ -26,6 +28,9 @@ class SignInActivity : AppCompatActivity() {
     // Cliente de Google SignIn
     private lateinit var googleSignInClient: GoogleSignInClient
 
+
+
+
     companion object {
         // Códigos de solicitud
         private const val PICK_IMAGE_REQUEST = 1002
@@ -35,6 +40,7 @@ class SignInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sing_in)
+
 
         binding = ActivitySingInBinding.inflate(layoutInflater)
         setContentView(binding.root)
