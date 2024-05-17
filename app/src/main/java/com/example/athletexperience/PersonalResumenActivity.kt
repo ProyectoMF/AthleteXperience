@@ -30,7 +30,7 @@ class PersonalResumenActivity : AppCompatActivity() {
 
         initComponent()
         initListeners()
-        initUI()
+        //initUI()
 
         val edad = calcularEdad(fecha)
         calcularIMC()
@@ -67,28 +67,28 @@ class PersonalResumenActivity : AppCompatActivity() {
         }
     }
 
-    private fun initUI() {}
+
 
     private fun calcularIMC() {
         if (altura != 0.0 && peso != 0.0) {
             val imc = peso / ((altura / 100) * (altura / 100))
             val mensajeIMC = when {
-                imc <= 18.5 -> "Bajo peso"
+                imc < 18.5 -> "Bajo peso"
                 imc <= 24.9 -> "Normal"
                 imc <= 29.9 -> "Sobrepeso"
                 else -> "Obeso"
             }
-            val mensajeConSaltoDeLinea = "\n" + mensajeIMC
             tv_imc.text = String.format(
                 Locale.US,
                 "IMC actual: %.2f %s",
                 imc,
-                mensajeConSaltoDeLinea
+                mensajeIMC
             )
         } else {
             tv_imc.text = "Altura o peso no válidos"
         }
     }
+
 
     private fun calcularEdad(fechaNacimientoStr: String?): Int {
         if (fechaNacimientoStr != null) {
@@ -111,29 +111,29 @@ class PersonalResumenActivity : AppCompatActivity() {
         return 0
     }
 
+
     private fun calcularCalorias(sexo: String?, edad: Int?, actividad: String?): Double {
-        if (altura != null && peso != null) {
-            if (sexo != null && edad != null && peso != null && altura != null && actividad != null) {
-                val factorActividad = when (actividad) {
-                    "sedentario" -> 1.2
-                    "ligera" -> 1.375
-                    "moderado" -> 1.55
-                    "alta" -> 1.725
-                    "atletaProfesional" -> 1.9
-                    else -> 1.0
-                }
-
-                val mb = if (sexo == "hombre") {
-                    (66 + (13.7 * peso) + (5 * altura) - (6.8 * edad))
-                } else {
-                    (655 + (9.6 * peso) + (1.8 * altura) - (4.7 * edad))
-                }
-
-                return mb * factorActividad
+        if (altura != null && peso != null && sexo != null && edad != null && actividad != null) {
+            val factorActividad = when (actividad) {
+                "sedentario" -> 1.2
+                "ligera" -> 1.375
+                "moderado" -> 1.55
+                "alta" -> 1.725
+                "atletaProfesional" -> 1.9
+                else -> 1.0
             }
+
+            val mb = if (sexo == "hombre") {
+                66.5 + (13.75 * peso) + (5.003 * altura) - (6.75 * edad)
+            } else {
+                655 + (9.563 * peso) + (1.85 * altura) - (4.676 * edad)
+            }
+
+            return mb * factorActividad
         }
         return 0.0
     }
+
 
     private fun calcularCaloriasObjetivo(calorias: Double, objetivo: String?): String {
         val caloriasAjustadas = when (objetivo) {
@@ -146,22 +146,27 @@ class PersonalResumenActivity : AppCompatActivity() {
     }
 
     private fun calcularMacronutrientes(calorias: Double): Map<String, String> {
-        val porcentajeProteinas = 0.20
-        val porcentajeCarbohidratos = 0.50
-        val porcentajeGrasas = 0.30
+        // Establece los porcentajes de macronutrientes
+        val porcentajeProteinas = 0.20  // 20% de las calorías totales provendrán de proteínas
+        val porcentajeCarbohidratos = 0.50  // 50% de las calorías totales provendrán de carbohidratos
+        val porcentajeGrasas = 0.30  // 30% de las calorías totales provendrán de grasas
 
+        // Calcula las calorías asignadas a cada macronutriente
         val caloriasProteinas = calorias * porcentajeProteinas
         val caloriasCarbohidratos = calorias * porcentajeCarbohidratos
         val caloriasGrasas = calorias * porcentajeGrasas
 
-        val gramosProteinas = caloriasProteinas / 4
-        val gramosCarbohidratos = caloriasCarbohidratos / 4
-        val gramosGrasas = caloriasGrasas / 9
+        // Convierte las calorías de cada macronutriente en gramos
+        val gramosProteinas = caloriasProteinas / 4  // Cada gramo de proteínas proporciona 4 calorías
+        val gramosCarbohidratos = caloriasCarbohidratos / 4  // Cada gramo de carbohidratos proporciona 4 calorías
+        val gramosGrasas = caloriasGrasas / 9  // Cada gramo de grasas proporciona 9 calorías
 
+        // Crea un mapa para devolver los valores calculados, formateados a dos decimales
         return mapOf(
             "proteinas" to String.format(Locale.US, "%.2f", gramosProteinas),
             "carbohidratos" to String.format(Locale.US, "%.2f", gramosCarbohidratos),
             "grasas" to String.format(Locale.US, "%.2f", gramosGrasas)
         )
     }
+
 }
