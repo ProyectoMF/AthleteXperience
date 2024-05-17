@@ -42,6 +42,16 @@ class SignInActivity : AppCompatActivity() {
         // Inicializar FirebaseAuth
         firebaseAuth = FirebaseAuth.getInstance()
 
+        // Verificar si el usuario ya está autenticado
+        val currentUser = firebaseAuth.currentUser
+        if (currentUser != null) {
+            // Usuario ya autenticado, redirigir a mainActivity
+            val intent = Intent(this, mainActivity::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
+
         // Configurar opciones de Google Sign-In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -50,7 +60,7 @@ class SignInActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         // Listener para el botón de iniciar sesión con correo electrónico y contraseña
-        binding.button.setOnClickListener {
+        binding.buttonSignIn.setOnClickListener {
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
 
@@ -78,10 +88,7 @@ class SignInActivity : AppCompatActivity() {
             }
         }
 
-        // Listener para el botón de abrir galería
-        binding.floatingActionButton.setOnClickListener {
-            openGallery()
-        }
+
 
         // Listener para el botón de iniciar sesión con Google
         binding.ButtonGoogle.setOnClickListener {
@@ -89,7 +96,7 @@ class SignInActivity : AppCompatActivity() {
         }
 
         // Agrega el OnClickListener al TextView deseado
-        binding.textView.setOnClickListener {
+        binding.buttonSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
@@ -110,20 +117,8 @@ class SignInActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        // Manejar los resultados de las actividades
-        if (requestCode == PICK_IMAGE_REQUEST) {
-            if (resultCode == RESULT_OK && data != null) {
-                // Obtener la URI de la imagen seleccionada y mostrarla
-                val uri = data.data
-                uri?.let {
-                    binding.imageView.setImageURI(uri)
-                }
-            } else {
-                // Mostrar mensaje de error si la selección de imagen falla
-                Log.e("SignInActivity", "Error al seleccionar imagen de la galería")
-                Toast.makeText(this, "Error al seleccionar imagen de la galería", Toast.LENGTH_SHORT).show()
-            }
-        } else if (requestCode == RC_SIGN_IN) {
+
+        if (requestCode == RC_SIGN_IN) {
             // Manejar el resultado de iniciar sesión con Google
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
@@ -158,10 +153,4 @@ class SignInActivity : AppCompatActivity() {
             }
     }
 
-    // Método para abrir la galería de imágenes
-    private fun openGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, PICK_IMAGE_REQUEST)
-    }
 }

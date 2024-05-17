@@ -51,4 +51,7 @@
     <string name="altaText">Ejercicio 6-7 días por semana</string>
     <string name="atletaProfesional">Atleta profesional</string>
     <string name="atletaProfesionalText">Ejercicio intenso 6-7 días por semana</string>
+    <string name="signin">SIGN IN</string>
+    <string name="signup">Not Registered Yet , Sign Up !</string>
+    <string name="google">Google</string>
 </resources>
