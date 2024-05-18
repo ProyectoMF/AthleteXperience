@@ -36,7 +36,7 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         // Listener para el botón de registro
-        binding.button.setOnClickListener {
+        binding.btSignUp.setOnClickListener {
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
             val confirmPass = binding.confirmPassET.text.toString()
