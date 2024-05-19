@@ -25,9 +25,6 @@ class PersonalActividadFisicaActivity : AppCompatActivity() {
     }
 
 
-
-
-
     private fun initComponent() {
         //Vaariable para volver atras
         bt_back_actividad = findViewById(R.id.bt_back_actividad)

@@ -73,16 +73,13 @@ class PersonalResumenActivity : AppCompatActivity() {
         if (altura != 0.0 && peso != 0.0) {
             val imc = peso / ((altura / 100) * (altura / 100))
             val mensajeIMC = when {
-                imc < 18.5 -> "Bajo peso"
-                imc <= 24.9 -> "Normal"
-                imc <= 29.9 -> "Sobrepeso"
-                else -> "Obeso"
+                imc < 18.5 -> "\nBajo peso"
+                imc <= 24.9 -> "\nNormal"
+                imc <= 29.9 -> "\nSobrepeso"
+                else -> "\nObeso"
             }
             tv_imc.text = String.format(
-                Locale.US,
-                "IMC actual: %.2f %s",
-                imc,
-                mensajeIMC
+                Locale.US, "IMC actual: %.2f %s", imc, mensajeIMC
             )
         } else {
             tv_imc.text = "Altura o peso no válidos"

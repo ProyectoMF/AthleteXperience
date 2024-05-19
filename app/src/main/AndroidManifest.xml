@@ -15,9 +15,9 @@
         android:theme="@style/Base.Theme.AthleteXperience"
         tools:targetApi="31" >
         <activity
-            android:name=".loggin.SignInActivity"
-            android:theme="@style/SplashTheme"
+            android:name=".loggin.SplashActivity"
             android:launchMode="singleTask"
+            android:theme="@style/SplashTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,12 +27,17 @@
         </activity>
 
         <activity
-            android:name=".PersonalObjetivoActivity"
+            android:name=".loggin.SignInActivity"
             android:exported="false" >
         </activity>
 
         <activity
             android:name=".loggin.SignUpActivity"
+            android:exported="false" >
+        </activity>
+
+        <activity
+            android:name=".PersonalObjetivoActivity"
             android:exported="false" >
         </activity>
 
