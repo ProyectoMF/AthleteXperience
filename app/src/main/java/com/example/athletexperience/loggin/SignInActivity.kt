@@ -14,6 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.FirebaseDatabase
 
 class SignInActivity : AppCompatActivity() {
     // Variable de enlace de vistas
@@ -74,6 +75,10 @@ class SignInActivity : AppCompatActivity() {
                         val user = firebaseAuth.currentUser
                         if (user != null) {
                             val isNewUser = task.result.additionalUserInfo?.isNewUser ?: false
+                            if (isNewUser) {
+                                // Guardar datos en Firebase Realtime Database para un nuevo usuario
+                                saveUserDataToDatabase(user.uid)
+                            }
                             val intent = if (isNewUser) {
                                 Intent(this, PersonalObjetivoActivity::class.java)
                             } else {
@@ -142,6 +147,13 @@ class SignInActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val newUser = task.result.additionalUserInfo?.isNewUser ?: false
+                    if (newUser) {
+                        // Guardar datos en Firebase Realtime Database para un nuevo usuario
+                        val user = firebaseAuth.currentUser
+                        if (user != null) {
+                            saveUserDataToDatabase(user.uid)
+                        }
+                    }
                     val intent = if (newUser) {
                         Intent(this, PersonalObjetivoActivity::class.java)
                     } else {
@@ -154,6 +166,21 @@ class SignInActivity : AppCompatActivity() {
                     Toast.makeText(this, "Authentication Failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    private fun saveUserDataToDatabase(userId: String) {
+        val userMap = mapOf(
+            "imc" to "",
+            "calorias" to "",
+            "macronutrientes" to mapOf(
+                "proteinas" to "",
+                "carbohidratos" to "",
+                "grasas" to ""
+            )
+        )
+        FirebaseDatabase.getInstance().getReference("users")
+            .child(userId)
+            .setValue(userMap)
     }
 
 }

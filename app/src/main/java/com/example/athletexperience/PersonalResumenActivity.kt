@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.athletexperience.PersonalObjetivoActivity.Companion.actividad
 import com.example.athletexperience.PersonalObjetivoActivity.Companion.altura
@@ -12,6 +13,8 @@ import com.example.athletexperience.PersonalObjetivoActivity.Companion.objetivo
 import com.example.athletexperience.PersonalObjetivoActivity.Companion.peso
 import com.example.athletexperience.PersonalObjetivoActivity.Companion.sexo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -61,6 +64,36 @@ class PersonalResumenActivity : AppCompatActivity() {
         }
 
         bt_crearplan.setOnClickListener {
+            // Guardar los datos en la base de datos Firebase
+            val userId = FirebaseAuth.getInstance().currentUser?.uid
+            if (userId != null) {
+                val imcString = tv_imc.text.toString().split(" ")[2].toDoubleOrNull()?.toInt() ?: 0.0
+                val caloriasString = tv_calorias.text.toString().split(":")[1].trim().toDoubleOrNull()?.toInt() ?: 0.0
+                val macronutrientesText = tv_macronutrientes.text.toString().split("\n")
+                val proteinas = macronutrientesText[0].split(":")[1].trim().split(" ")[0].toDoubleOrNull()?.toInt() ?: 0.0
+                val carbohidratos = macronutrientesText[1].split(":")[1].trim().split(" ")[0].toDoubleOrNull()?.toInt() ?: 0.0
+                val grasas = macronutrientesText[2].split(":")[1].trim().split(" ")[0].toDoubleOrNull()?.toInt() ?: 0.0
+                val userMap = mapOf(
+                    "imc" to imcString,
+                    "calorias" to caloriasString,
+                    "macronutrientes" to mapOf(
+                        "proteinas" to proteinas,
+                        "carbohidratos" to carbohidratos,
+                        "grasas" to grasas
+                    )
+                )
+
+                FirebaseDatabase.getInstance().getReference("users")
+                    .child(userId)
+                    .setValue(userMap)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this, "Plan creado exitosamente", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this, "Error al crear el plan: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+            }
             val intent = Intent(this, mainActivity::class.java)
             startActivity(intent)
             finish()
