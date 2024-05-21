@@ -7,7 +7,8 @@
     tools:openDrawer="start"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mainActivity">
+    tools:context=".mainActivity"
+>
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -24,7 +25,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorSencundary"
+        >
 
 
         <TextView
@@ -38,6 +41,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
    <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"

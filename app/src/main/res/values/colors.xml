@@ -7,6 +7,7 @@
     <color name="orangeDark">#AC9778</color>
     <color name="orangeLight">#FFBD5B</color>
     <color name="colorPrimary">#011823</color>
+    <color name="colorSencundary">#2b2b2b</color>
     <color name="blue">#459DE4</color>
     <color name="red">#FF0000</color>
 </resources>
