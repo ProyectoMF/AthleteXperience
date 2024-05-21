@@ -6,31 +6,25 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/baseline_home_24"
-            android:title="Home">
+            android:title="Inicio">
 
 
         </item>
         <item
-            android:id="@+id/nav_message"
-            android:title="Message"
+            android:id="@+id/nav_notes"
+            android:title="Notas"
             android:icon="@drawable/baseline_message_24">
 
         </item>
         <item
-            android:id="@+id/nav_sync"
-            android:title="Sync"
-            android:icon="@drawable/icono_google">
-
-        </item>
-        <item
             android:id="@+id/nav_trash"
-            android:title="Trash"
+            android:title="Basura"
             android:icon="@drawable/baseline_delete_24">
 
         </item>
         <item
             android:id="@+id/nav_settings"
-            android:title="Settings"
+            android:title="Ajustes"
             android:icon="@drawable/baseline_settings_24">
 
         </item>
@@ -40,7 +34,7 @@
                         <item
                             android:id="@+id/nav_logout"
                             android:icon="@drawable/baseline_login_24"
-                            android:title="Logout">
+                            android:title="Cerrar sesion">
 
                         </item>
                 </menu>
@@ -50,12 +44,12 @@
               <menu>
                       <item android:id="@+id/nav_share"
                           android:icon="@drawable/baseline_share_24"
-                          android:title="Share">
+                          android:title="Compartir">
 
                       </item>
                       <item  android:id="@+id/nav_rate_us"
                           android:icon="@drawable/baseline_rate_review_24"
-                          android:title="Rate Us">
+                          android:title="Valoranos">
 
                       </item>
               </menu>

@@ -64,7 +64,7 @@ class mainActivity : AppCompatActivity() {
         // Configurar el listener del elemento de navegación seleccionado
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.nav_message -> {
+                R.id.nav_notes -> {
                     // Iniciar la actividad NotesActivity
                     val intent = Intent(this, NotesActivity::class.java)
                     startActivity(intent)
