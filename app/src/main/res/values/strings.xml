@@ -58,4 +58,7 @@
     <string name="EscribeContraseña">Escribe tu contraseña</string>
     <string name="ConfirmaContraseña">Repite la contraseña</string>
     <string name="tengoCuenta">Ya estoy registrado, Inicia sesión!</string>
+    <string name="borrar_nota">Borrar Nota</string>
+    <string name="guardar_nota">Guardar nota</string>
+    <string name="escribe_una_nota">Escribe una nota</string>
 </resources>
