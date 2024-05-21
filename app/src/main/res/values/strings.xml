@@ -56,6 +56,6 @@
     <string name="google">Google</string>
     <string name="EscribeCorreo">Escribe tu correo</string>
     <string name="EscribeContraseña">Escribe tu contraseña</string>
-    <string name="EscribeRepiteContraseña">Repite la contraseña</string>
+    <string name="ConfirmaContraseña">Repite la contraseña</string>
     <string name="tengoCuenta">Ya estoy registrado, Inicia sesión!</string>
 </resources>
