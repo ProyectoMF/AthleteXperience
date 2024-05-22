@@ -56,6 +56,9 @@ dependencies {
     //SPLASH
     implementation ("androidx.core:core-splashscreen:1.0.0")
 
+    //RECYCLERVIEW
+    implementation ("androidx.recyclerview:recyclerview:1.2.1")
+
 
 
     implementation(libs.androidx.core.ktx)

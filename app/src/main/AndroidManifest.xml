@@ -63,6 +63,7 @@
             android:name=".NotesActivity"
             android:exported="false" >
         </activity>
+
     </application>
 
 </manifest>

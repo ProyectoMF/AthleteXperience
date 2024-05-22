@@ -72,12 +72,12 @@ class NotesActivity : AppCompatActivity() {
             }
         }
 
-        // Inicializar vistas
+       /* // Inicializar vistas
         calendarView = findViewById(R.id.calendarView)
         noteEditText = findViewById(R.id.noteEditText)
         saveButton = findViewById(R.id.saveButton)
         deleteButton = findViewById(R.id.deleteButton)
-        notesContainer = findViewById(R.id.notesContainer)
+        notesContainer = findViewById(R.id.notesContainer)*/
 
         // Configurar botón de guardar
         saveButton.setOnClickListener {
