@@ -105,7 +105,7 @@ class NotesActivity : AppCompatActivity() {
         val textView = TextView(this).apply {
             text = note
             textSize = 20f
-            setTextColor(ContextCompat.getColor(this@NotesActivity, android.R.color.black))
+            setTextColor(ContextCompat.getColor(this@NotesActivity, android.R.color.holo_orange_light))
             setPadding(16, 16, 16, 16)
             gravity = android.view.Gravity.CENTER
             setTypeface(null, android.graphics.Typeface.BOLD)
@@ -124,9 +124,6 @@ class NotesActivity : AppCompatActivity() {
             if (deleteButton.isSelected) {
                 notesContainer.removeView(textView)
                 notesList.remove(textView)
-            } else {
-                // Cambiar el color de fondo a naranja
-                textView.setBackgroundColor(ContextCompat.getColor(this@NotesActivity, android.R.color.holo_orange_light))
             }
         }
 
