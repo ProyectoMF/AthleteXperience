@@ -42,19 +42,18 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                <!--<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                     android:id="@+id/btnAddRoutine"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:background="@drawable/anadir_rutina" />
-
+                    android:background="@drawable/anadir_rutina" />-->
 
             </LinearLayout>
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -63,6 +62,7 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
         app:itemIconTint="@color/colorAccent"
-        app:menu="@menu/nav_menu"></com.google.android.material.navigation.NavigationView>
--->
+        app:menu="@menu/nav_menu">
+    </com.google.android.material.navigation.NavigationView>
+
 </androidx.drawerlayout.widget.DrawerLayout>
