@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.athletexperience"
-        minSdk = 24
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -59,7 +59,7 @@ dependencies {
     //RECYCLERVIEW
     implementation ("androidx.recyclerview:recyclerview:1.2.1")
 
-
+    implementation ("com.google.code.gson:gson:2.8.8")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -71,6 +71,8 @@ dependencies {
     implementation(libs.navigation.ui.ktx)
     implementation(libs.firebase.database.ktx)
     implementation(libs.firebase.database)
+    implementation(libs.car.ui.lib)
+    implementation(libs.compose.preview.renderer)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

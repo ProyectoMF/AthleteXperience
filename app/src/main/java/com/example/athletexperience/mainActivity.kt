@@ -3,14 +3,17 @@ package com.example.athletexperience
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.EditText
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.athletexperience.databinding.ActivityMainBinding
 import com.example.athletexperience.loggin.SignInActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 
@@ -27,6 +30,9 @@ class mainActivity : AppCompatActivity() {
 
     // Instancia de FirebaseAuth para autenticación
     private lateinit var mAuth: FirebaseAuth
+
+
+    private lateinit var routineAdapter: RoutineAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -78,6 +84,36 @@ class mainActivity : AppCompatActivity() {
             }
         }
 
+        routineAdapter = RoutineAdapter(mutableListOf()) { routine ->
+            val intent = Intent(this, EjerciciosActivity::class.java)
+            intent.putExtra("ROUTINE_NAME", routine.name)
+            startActivity(intent)
+        }
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.adapter = routineAdapter
+
+        binding.btAddRutina.setOnClickListener {
+            showAddRoutineDialog()
+        }
+    }
+
+    private fun showAddRoutineDialog() {
+        val builder = MaterialAlertDialogBuilder(this)
+        val input = EditText(this)
+        input.hint = "Nombre de la rutina"
+        builder.setTitle("Añadir Rutina")
+        builder.setView(input)
+        builder.setPositiveButton("Añadir") { _, _ ->
+            val routineName = input.text.toString()
+            if (routineName.isNotEmpty()) {
+                val newRoutine = Routine(routineName)
+                routineAdapter.addRoutine(newRoutine)
+            }
+        }
+        builder.setNegativeButton("Cancelar") { dialog, _ ->
+            dialog.cancel()
+        }
+        builder.show()
     }
 
     // Método para cerrar sesión y iniciar la actividad de inicio de sesión

@@ -1,0 +1,155 @@
+{
+  "item_name": "cross_promotion",
+  "item_array": [
+    {
+      "name": "Press de Banca",
+      "description": "Ejercicio básico de press de banca",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/bench-press/bench-press-400.avif"
+    },
+    {
+      "name": "Press de Banca Inclinado",
+      "description": "Ejercicio de press de banca inclinado para pecho",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/incline-bench-press/incline-bench-press-400.avif"
+    },
+    {
+      "name": "Press de Banca Declinado",
+      "description": "Ejercicio de press de banca declinado para pecho",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/decline-bench-press/decline-bench-press-400.avif"
+    },
+    {
+      "name": "Aperturas en máquina",
+      "description": "Ejercicio de aperturas en máquina",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/machine-chest-fly/machine-chest-fly-400.avif"
+    },
+    {
+      "name": "Fondos",
+      "description": "Ejercicio de fondos para pecho y tríceps",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/dips/dips-400.avif"
+    },
+    {
+      "name": "Triceps en Polea",
+      "description": "Ejercicio de triceps en polea con cuerda",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/tricep-rope-pushdown/tricep-rope-pushdown-400.avif"
+    },
+    {
+      "name": "Triceps en Polea tras Nuca",
+      "description": "Ejercicio de triceps en polea tras nuca",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/cable-overhead-tricep-extension/cable-overhead-tricep-extension-400.avif"
+    },
+    {
+      "name": "Crunch Abdominal",
+      "description": "Ejercicio de crunch abdominal",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/machine-seated-crunch/machine-seated-crunch-400.avif"
+    },
+    {
+      "name": "Crunch laterales",
+      "description": "Ejercicio de crunch laterales",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/side-crunch/side-crunch-400.avif"
+    },
+    {
+      "name": "Biceps en Banco Scott",
+      "description": "Ejercicio de biceps en banco scott",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/machine-bicep-curl/machine-bicep-curl-400.avif"
+    },
+    {
+      "name": "Curl de Biceps en Banco Inclinado",
+      "description": "Ejercicio de curl de biceps en banco inclinado",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/incline-dumbbell-curl/incline-dumbbell-curl-400.avif"
+    },
+    {
+      "name": "Curl de Martillo",
+      "description": "Ejercicio de curl de martillo",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/hammer-curl/hammer-curl-400.avif"
+    },
+    {
+      "name": "Encogimiento de Hombros",
+      "description": "Ejercicio de encogimiento de hombros",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/dumbbell-shrug/dumbbell-shrug-400.avif"
+    },
+    {
+      "name": "Pull Over",
+      "description": "Ejercicio de pull over",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/straight-arm-pulldown/straight-arm-pulldown-400.avif"
+    },
+    {
+      "name": "Remo en Barra T",
+      "description": "Ejercicio de remo en barra T",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/t-bar-row/t-bar-row-400.avif"
+    },
+    {
+      "name": "Remo Dorsal",
+      "description": "Ejercicio para dorsal",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/seated-cable-row/seated-cable-row-400.avif"
+    },
+    {
+      "name": "Jalón al Pecho",
+      "description": "Ejercicio de jalón al pecho",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/lat-pulldown/lat-pulldown-400.avif"
+    },
+    {
+      "name": "Peso Muerto",
+      "description": "Ejercicio de peso muerto",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/deadlift/deadlift-400.avif"
+    },
+    {
+      "name": "Sentadilla con Barra",
+      "description": "Ejercicio de sentadilla con barra",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/squat/squat-400.avif"
+    },
+    {
+      "name": "Sentadilla Hacka",
+      "description": "Ejercicio de sentadilla en hacka",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/hack-squat/hack-squat-400.avif"
+    },
+    {
+      "name": "Prensa inclinada",
+      "description": "Ejercicio de prensa inclinada",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/sled-leg-press/sled-leg-press-400.avif"
+    },
+    {
+      "name": "Extensión de Gemelos",
+      "description": "Ejercicio de extensión de gemelos",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/seated-calf-raise/seated-calf-raise-400.avif"
+    },
+    {
+      "name": "Máquina de Aductores",
+      "description": "Ejercicio en máquina de aductores",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/hip-adduction/hip-adduction-400.avif"
+    },
+    {
+      "name": "Máquina de Abductores",
+      "description": "Ejercicio en máquina de abductores",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/hip-abduction/hip-abduction-400.avif"
+    },
+    {
+      "name": "Elevaciones Laterales Hombro",
+      "description": "Ejercicio de elevaciones laterales de hombro",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/cable-lateral-raise/cable-lateral-raise-400.avif"
+    },
+    {
+      "name": "Extensiones de Cuádriceps",
+      "description": "Ejercicio de extensiones de cuádriceps",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/leg-extension/leg-extension-400.avif"
+    },
+    {
+      "name": "Curl de Femoral",
+      "description": "Ejercicio de curl femoral tumbado",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/lying-leg-curl/lying-leg-curl-400.avif"
+    },
+    {
+      "name": "Press Militar",
+      "description": "Ejercicio de press militar",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/seated-dumbbell-shoulder-press/seated-dumbbell-shoulder-press-400.avif"
+    },
+    {
+      "name": "Hombro Posterior en Máquina",
+      "description": "Ejercicio de hombro",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/dumbbell-reverse-fly/dumbbell-reverse-fly-400.avif"
+    },
+    {
+      "name": "Patada de Glúteo",
+      "description": "Ejercicio de patada de glúteo",
+      "icon_url": "https://static.strengthlevel.com/images/exercises/cable-kickback/cable-kickback-400.avif"
+    }
+  ]
+}
