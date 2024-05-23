@@ -13,7 +13,7 @@
         android:iconifiedByDefault="false"
         android:queryHint="Buscar ejercicios"
         android:background="@color/white"
-        android:layout_margin="20dp" />
+        android:layout_margin="19dp" />
 
     <ScrollView
         android:layout_width="match_parent"
