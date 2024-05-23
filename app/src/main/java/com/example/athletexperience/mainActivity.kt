@@ -23,7 +23,7 @@ class mainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     // Toggle para el botón de navegación
-    lateinit var toggle : ActionBarDrawerToggle
+    lateinit var toggle: ActionBarDrawerToggle
 
     // Cliente de inicio de sesión de Google
     private lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -31,15 +31,12 @@ class mainActivity : AppCompatActivity() {
     // Instancia de FirebaseAuth para autenticación
     private lateinit var mAuth: FirebaseAuth
 
-
     private lateinit var routineAdapter: RoutineAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         // Inicializar FirebaseAuth
         mAuth = FirebaseAuth.getInstance()
@@ -57,15 +54,15 @@ class mainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         // Obtener el layout del NavigationDrawer
-        val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
 
         // Configurar el toggle para abrir y cerrar el NavigationDrawer
-        toggle = ActionBarDrawerToggle(this,drawerLayout,binding.toolbar,R.string.open,R.string.close)
+        toggle = ActionBarDrawerToggle(this, drawerLayout, binding.toolbar, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
         // Obtener la vista de navegación
-        val navView : NavigationView = findViewById(R.id.nav_view)
+        val navView: NavigationView = findViewById(R.id.nav_view)
 
         // Configurar el listener del elemento de navegación seleccionado
         navView.setNavigationItemSelectedListener { menuItem ->
@@ -128,10 +125,9 @@ class mainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             return true
         }
         return super.onOptionsItemSelected(item)
     }
-
 }

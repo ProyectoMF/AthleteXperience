@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.athletexperience"
-        minSdk = 28
+        minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -71,8 +71,6 @@ dependencies {
     implementation(libs.navigation.ui.ktx)
     implementation(libs.firebase.database.ktx)
     implementation(libs.firebase.database)
-    implementation(libs.car.ui.lib)
-    implementation(libs.compose.preview.renderer)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
