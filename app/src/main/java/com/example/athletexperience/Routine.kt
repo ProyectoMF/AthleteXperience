@@ -7,7 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-data class Routine (val name: String)
+data class Routine(val name: String, val exercises: MutableList<Exercise> = mutableListOf())
+
 class RoutineAdapter(
     private val routines: MutableList<Routine>,
     private val onAddExerciseClick: (Routine) -> Unit
@@ -15,6 +16,7 @@ class RoutineAdapter(
 
     class RoutineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val routineName: TextView = itemView.findViewById(R.id.tvRoutineName)
+        val exercises: TextView = itemView.findViewById(R.id.tvExercises)
         val btnAddExercise: FloatingActionButton = itemView.findViewById(R.id.btnAddExercise)
     }
 
@@ -27,6 +29,7 @@ class RoutineAdapter(
     override fun onBindViewHolder(holder: RoutineViewHolder, position: Int) {
         val routine = routines[position]
         holder.routineName.text = routine.name
+        holder.exercises.text = routine.exercises.joinToString("\n") { it.name }
         holder.btnAddExercise.setOnClickListener {
             onAddExerciseClick(routine)
         }
@@ -37,5 +40,11 @@ class RoutineAdapter(
     fun addRoutine(routine: Routine) {
         routines.add(routine)
         notifyItemInserted(routines.size - 1)
+    }
+
+    fun addExerciseToRoutine(routineName: String, exercise: Exercise) {
+        val routine = routines.find { it.name == routineName }
+        routine?.exercises?.add(exercise)
+        notifyDataSetChanged()
     }
 }

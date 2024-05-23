@@ -111,7 +111,6 @@
                     android:src="https://static.strengthlevel.com/images/exercises/incline-bench-press/incline-bench-press-400.avif" /> -->
             </LinearLayout>
 
-            <!-- Repetir para cada ejercicio, cambiando los IDs -->
             <!-- Ejercicio 3 -->
             <LinearLayout
                 android:id="@+id/exercise_3"
@@ -154,7 +153,6 @@
                     android:src="https://static.strengthlevel.com/images/exercises/decline-bench-press/decline-bench-press-400.avif" /> -->
             </LinearLayout>
 
-            <!-- Repetir para cada ejercicio, cambiando los IDs -->
             <!-- Ejercicio 4 -->
             <LinearLayout
                 android:id="@+id/exercise_4"

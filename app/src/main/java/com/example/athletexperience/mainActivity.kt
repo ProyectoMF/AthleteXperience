@@ -32,6 +32,7 @@ class mainActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
 
     private lateinit var routineAdapter: RoutineAdapter
+    private val ADD_EXERCISE_REQUEST_CODE = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,7 +85,7 @@ class mainActivity : AppCompatActivity() {
         routineAdapter = RoutineAdapter(mutableListOf()) { routine ->
             val intent = Intent(this, EjerciciosActivity::class.java)
             intent.putExtra("ROUTINE_NAME", routine.name)
-            startActivity(intent)
+            startActivityForResult(intent, ADD_EXERCISE_REQUEST_CODE)
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = routineAdapter
@@ -129,5 +130,18 @@ class mainActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == ADD_EXERCISE_REQUEST_CODE && resultCode == RESULT_OK) {
+            val exerciseName = data?.getStringExtra("EXERCISE_NAME")
+            val exerciseDescription = data?.getStringExtra("EXERCISE_DESCRIPTION")
+            val routineName = data?.getStringExtra("ROUTINE_NAME")
+
+            if (exerciseName != null && exerciseDescription != null && routineName != null) {
+                routineAdapter.addExerciseToRoutine(routineName, Exercise(exerciseName, exerciseDescription))
+            }
+        }
     }
 }
