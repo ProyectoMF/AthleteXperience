@@ -136,11 +136,10 @@ class mainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == ADD_EXERCISE_REQUEST_CODE && resultCode == RESULT_OK) {
             val exerciseName = data?.getStringExtra("EXERCISE_NAME")
-            val exerciseDescription = data?.getStringExtra("EXERCISE_DESCRIPTION")
             val routineName = data?.getStringExtra("ROUTINE_NAME")
 
-            if (exerciseName != null && exerciseDescription != null && routineName != null) {
-                routineAdapter.addExerciseToRoutine(routineName, Exercise(exerciseName, exerciseDescription))
+            if (exerciseName != null && routineName != null) {
+                routineAdapter.addExerciseToRoutine(routineName, Exercise(exerciseName))
             }
         }
     }

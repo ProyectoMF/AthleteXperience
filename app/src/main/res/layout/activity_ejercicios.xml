@@ -13,8 +13,7 @@
         android:iconifiedByDefault="false"
         android:queryHint="Buscar ejercicios"
         android:background="@color/white"
-        android:layout_margin="20dp"
-        />
+        android:layout_margin="20dp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -279,7 +278,1013 @@
                     android:src="https://static.strengthlevel.com/images/exercises/tricep-rope-pushdown/tricep-rope-pushdown-400.avif" /> -->
             </LinearLayout>
 
-            <!-- Repetir para los demás ejercicios con IDs adecuados... -->
+            <!-- Ejercicio 7 -->
+            <LinearLayout
+                android:id="@+id/exercise_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Triceps en Polea tras Nuca"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de triceps en polea tras nuca"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_7"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/cable-overhead-tricep-extension/cable-overhead-tricep-extension-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 8 -->
+            <LinearLayout
+                android:id="@+id/exercise_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Crunch Abdominal"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de crunch abdominal"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_8"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/machine-seated-crunch/machine-seated-crunch-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 9 -->
+            <LinearLayout
+                android:id="@+id/exercise_9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Crunch laterales"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de crunch laterales"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_9"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/side-crunch/side-crunch-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 10 -->
+            <LinearLayout
+                android:id="@+id/exercise_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Biceps en Banco Scott"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de biceps en banco scott"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_10"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/machine-bicep-curl/machine-bicep-curl-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 11 -->
+            <LinearLayout
+                android:id="@+id/exercise_11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Curl de Biceps en Banco Inclinado"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de curl de biceps en banco inclinado"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_11"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/incline-dumbbell-curl/incline-dumbbell-curl-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 12 -->
+            <LinearLayout
+                android:id="@+id/exercise_12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Curl de Martillo"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de curl de martillo"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_12"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/hammer-curl/hammer-curl-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 13 -->
+            <LinearLayout
+                android:id="@+id/exercise_13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Encogimiento de Hombros"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de encogimiento de hombros"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_13"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/dumbbell-shrug/dumbbell-shrug-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 14 -->
+            <LinearLayout
+                android:id="@+id/exercise_14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Pull Over"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de pull over"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_14"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/straight-arm-pulldown/straight-arm-pulldown-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 15 -->
+            <LinearLayout
+                android:id="@+id/exercise_15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Remo en Barra T"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de remo en barra T"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_15"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/t-bar-row/t-bar-row-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 16 -->
+            <LinearLayout
+                android:id="@+id/exercise_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Remo Dorsal"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio para dorsal"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_16"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/seated-cable-row/seated-cable-row-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 17 -->
+            <LinearLayout
+                android:id="@+id/exercise_17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Jalón al Pecho"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de jalón al pecho"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_17"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/lat-pulldown/lat-pulldown-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 18 -->
+            <LinearLayout
+                android:id="@+id/exercise_18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Peso Muerto"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de peso muerto"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_18"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/deadlift/deadlift-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 19 -->
+            <LinearLayout
+                android:id="@+id/exercise_19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Sentadilla con Barra"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de sentadilla con barra"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_19"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/squat/squat-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 20 -->
+            <LinearLayout
+                android:id="@+id/exercise_20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Sentadilla Hacka"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de sentadilla en hacka"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_20"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/hack-squat/hack-squat-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 21 -->
+            <LinearLayout
+                android:id="@+id/exercise_21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Prensa inclinada"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de prensa inclinada"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_21"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/sled-leg-press/sled-leg-press-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 22 -->
+            <LinearLayout
+                android:id="@+id/exercise_22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Extensión de Gemelos"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de extensión de gemelos"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_22"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/seated-calf-raise/seated-calf-raise-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 23 -->
+            <LinearLayout
+                android:id="@+id/exercise_23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Máquina de Aductores"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio en máquina de aductores"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_23"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/hip-adduction/hip-adduction-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 24 -->
+            <LinearLayout
+                android:id="@+id/exercise_24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Máquina de Abductores"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio en máquina de abductores"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_24"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/hip-abduction/hip-abduction-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 25 -->
+            <LinearLayout
+                android:id="@+id/exercise_25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Elevaciones Laterales Hombro"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de elevaciones laterales de hombro"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_25"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/cable-lateral-raise/cable-lateral-raise-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 26 -->
+            <LinearLayout
+                android:id="@+id/exercise_26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Extensiones de Cuádriceps"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de extensiones de cuádriceps"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_26"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/leg-extension/leg-extension-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 27 -->
+            <LinearLayout
+                android:id="@+id/exercise_27"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_27"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Curl de Femoral"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_27"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de curl femoral tumbado"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_27"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/lying-leg-curl/lying-leg-curl-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 28 -->
+            <LinearLayout
+                android:id="@+id/exercise_28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_28"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Press Militar"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_28"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de press militar"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_28"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/seated-dumbbell-shoulder-press/seated-dumbbell-shoulder-press-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 29 -->
+            <LinearLayout
+                android:id="@+id/exercise_29"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_29"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Hombro Posterior en Máquina"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_29"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de hombro"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_29"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/dumbbell-reverse-fly/dumbbell-reverse-fly-400.avif" /> -->
+            </LinearLayout>
+
+            <!-- Ejercicio 30 -->
+            <LinearLayout
+                android:id="@+id/exercise_30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/exercise_name_30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Patada de Glúteo"
+                        android:textColor="@color/orange"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/exercise_description_30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ejercicio de patada de glúteo"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Comentar la imagen para evitar errores -->
+                <!-- <ImageView
+                    android:id="@+id/exercise_icon_30"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="https://static.strengthlevel.com/images/exercises/cable-kickback/cable-kickback-400.avif" /> -->
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
