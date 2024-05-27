@@ -148,7 +148,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginEnd="8dp"
-                    android:src="@drawable/exercise_icon_2" />
+                    android:src="@drawable/exercise_icon_3" />
             </LinearLayout>
 
             <!-- Ejercicio 4 -->
@@ -189,7 +189,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginEnd="8dp"
-                   android:src="@drawable/exercise_icon_2" />
+                   android:src="@drawable/exercise_icon_4" />
             </LinearLayout>
 
             <!-- Ejercicio 5 -->
