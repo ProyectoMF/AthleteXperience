@@ -59,13 +59,12 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_1"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/bench-press/bench-press-400.avif" /> -->
+                    android:src="@drawable/exercise_icon_1" />
             </LinearLayout>
 
             <!-- Ejercicio 2 -->
@@ -101,13 +100,13 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+
+                <ImageView
                     android:id="@+id/exercise_icon_2"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/incline-bench-press/incline-bench-press-400.avif" /> -->
+                    android:src="@drawable/exercise_icon_2" />
             </LinearLayout>
 
             <!-- Ejercicio 3 -->
@@ -143,13 +142,13 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+
+                <ImageView
                     android:id="@+id/exercise_icon_3"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/decline-bench-press/decline-bench-press-400.avif" /> -->
+                    android:src="@drawable/exercise_icon_2" />
             </LinearLayout>
 
             <!-- Ejercicio 4 -->
@@ -185,13 +184,12 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+               <ImageView
                     android:id="@+id/exercise_icon_4"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/machine-chest-fly/machine-chest-fly-400.avif" /> -->
+                   android:src="@drawable/exercise_icon_2" />
             </LinearLayout>
 
             <!-- Ejercicio 5 -->
@@ -227,13 +225,12 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_5"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/dips/dips-400.avif" /> -->
+                    android:src="@drawable/exercise_icon_2" />
             </LinearLayout>
 
             <!-- Ejercicio 6 -->

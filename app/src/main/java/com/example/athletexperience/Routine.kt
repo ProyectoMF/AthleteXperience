@@ -20,7 +20,8 @@ class RoutineAdapter(private val routines: MutableList<Routine>, private val onR
     override fun onBindViewHolder(holder: RoutineViewHolder, position: Int) {
         val routine = routines[position]
         holder.binding.tvRoutineName.text = routine.name
-        holder.itemView.setOnClickListener { onRoutineClick(routine) }
+        holder.binding.tvExercises.text = routine.exercises.joinToString("\n") { it.name }
+        holder.binding.btnAddExercise.setOnClickListener { onRoutineClick(routine) }
     }
 
     override fun getItemCount(): Int = routines.size
