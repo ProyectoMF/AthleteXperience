@@ -1,40 +1,26 @@
 package com.example.athletexperience
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
+import com.example.athletexperience.databinding.ItemRoutineBinding
 
 data class Routine(val name: String, val exercises: MutableList<Exercise> = mutableListOf())
 
-class RoutineAdapter(
-    private val routines: MutableList<Routine>,
-    private val onAddExerciseClick: (Routine) -> Unit
-) : RecyclerView.Adapter<RoutineAdapter.RoutineViewHolder>() {
+class RoutineAdapter(private val routines: MutableList<Routine>, private val onRoutineClick: (Routine) -> Unit) :
+    RecyclerView.Adapter<RoutineAdapter.RoutineViewHolder>() {
 
-    class RoutineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val routineName: TextView = itemView.findViewById(R.id.tvRoutineName)
-        val exercises: TextView = itemView.findViewById(R.id.tvExercises)
-        val btnAddExercise: FloatingActionButton = itemView.findViewById(R.id.btnAddExercise)
-    }
+    class RoutineViewHolder(val binding: ItemRoutineBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoutineViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_routine, parent, false)
-        return RoutineViewHolder(view)
+        val binding = ItemRoutineBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return RoutineViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: RoutineViewHolder, position: Int) {
         val routine = routines[position]
-        holder.routineName.text = routine.name
-        holder.exercises.text = routine.exercises.joinToString("\n") { it.name }
-        holder.btnAddExercise.setOnClickListener {
-            onAddExerciseClick(routine)
-        }
+        holder.binding.tvRoutineName.text = routine.name
+        holder.itemView.setOnClickListener { onRoutineClick(routine) }
     }
 
     override fun getItemCount(): Int = routines.size
@@ -47,6 +33,12 @@ class RoutineAdapter(
     fun addExerciseToRoutine(routineName: String, exercise: Exercise) {
         val routine = routines.find { it.name == routineName }
         routine?.exercises?.add(exercise)
+        notifyDataSetChanged()
+    }
+
+    fun updateRoutines(newRoutines: List<Routine>) {
+        routines.clear()
+        routines.addAll(newRoutines)
         notifyDataSetChanged()
     }
 }

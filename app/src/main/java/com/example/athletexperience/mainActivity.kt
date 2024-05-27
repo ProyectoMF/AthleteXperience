@@ -16,7 +16,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class mainActivity : AppCompatActivity() {
 
@@ -94,6 +97,8 @@ class mainActivity : AppCompatActivity() {
         binding.btAddRutina.setOnClickListener {
             showAddRoutineDialog()
         }
+
+        loadRoutinesFromFirebase()
     }
 
     private fun showAddRoutineDialog() {
@@ -107,6 +112,7 @@ class mainActivity : AppCompatActivity() {
             if (routineName.isNotEmpty()) {
                 val newRoutine = Routine(routineName)
                 routineAdapter.addRoutine(newRoutine)
+                saveRoutineToFirebase(newRoutine)
             }
         }
         builder.setNegativeButton("Cancelar") { dialog, _ ->
@@ -115,6 +121,47 @@ class mainActivity : AppCompatActivity() {
         builder.show()
     }
 
+    private fun saveRoutineToFirebase(routine: Routine) {
+        val userId = mAuth.currentUser?.uid ?: return
+        val routineId = FirebaseDatabase.getInstance().getReference("users")
+            .child(userId)
+            .child("routines")
+            .push()
+            .key ?: return
+
+        val routineMap = mapOf(
+            "name" to routine.name
+        )
+
+        FirebaseDatabase.getInstance().getReference("users")
+            .child(userId)
+            .child("routines")
+            .child(routineId)
+            .setValue(routineMap)
+    }
+
+    private fun loadRoutinesFromFirebase() {
+        val userId = mAuth.currentUser?.uid ?: return
+        val routinesRef = FirebaseDatabase.getInstance().getReference("users")
+            .child(userId)
+            .child("routines")
+
+        routinesRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val routines = mutableListOf<Routine>()
+                for (routineSnapshot in snapshot.children) {
+                    val routineName = routineSnapshot.child("name").getValue(String::class.java) ?: continue
+                    val routine = Routine(routineName)
+                    routines.add(routine)
+                }
+                routineAdapter.updateRoutines(routines)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle possible errors.
+            }
+        })
+    }
     // Método para cerrar sesión y iniciar la actividad de inicio de sesión
     private fun signOutAndStartSignInActivity() {
         mAuth.signOut()
