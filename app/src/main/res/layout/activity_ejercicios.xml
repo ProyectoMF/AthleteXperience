@@ -9,15 +9,16 @@
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_margin="19dp"
         android:iconifiedByDefault="false"
         android:queryHint="Buscar ejercicios"
-        android:background="@color/white"
-        android:layout_margin="19dp" />
+        android:background="@drawable/border_white"
+        />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,12 +32,13 @@
                 android:id="@+id/exercise_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -61,9 +63,8 @@
 
                 <ImageView
                     android:id="@+id/exercise_icon_1"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
                     android:src="@drawable/exercise_icon_1" />
             </LinearLayout>
 
@@ -72,12 +73,13 @@
                 android:id="@+id/exercise_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -100,12 +102,10 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-
                 <ImageView
                     android:id="@+id/exercise_icon_2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
                     android:src="@drawable/exercise_icon_2" />
             </LinearLayout>
 
@@ -114,12 +114,13 @@
                 android:id="@+id/exercise_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -142,12 +143,10 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-
                 <ImageView
                     android:id="@+id/exercise_icon_3"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
                     android:src="@drawable/exercise_icon_3" />
             </LinearLayout>
 
@@ -156,12 +155,13 @@
                 android:id="@+id/exercise_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -184,12 +184,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-               <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_4"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                   android:src="@drawable/exercise_icon_4" />
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_4" />
             </LinearLayout>
 
             <!-- Ejercicio 5 -->
@@ -197,12 +196,13 @@
                 android:id="@+id/exercise_5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -227,10 +227,9 @@
 
                 <ImageView
                     android:id="@+id/exercise_icon_5"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/exercise_icon_2" />
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_5" />
             </LinearLayout>
 
             <!-- Ejercicio 6 -->
@@ -238,12 +237,13 @@
                 android:id="@+id/exercise_6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -266,13 +266,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_6"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/tricep-rope-pushdown/tricep-rope-pushdown-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_6" />
             </LinearLayout>
 
             <!-- Ejercicio 7 -->
@@ -280,12 +278,13 @@
                 android:id="@+id/exercise_7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -308,13 +307,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_7"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/cable-overhead-tricep-extension/cable-overhead-tricep-extension-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_7" />
             </LinearLayout>
 
             <!-- Ejercicio 8 -->
@@ -322,12 +319,13 @@
                 android:id="@+id/exercise_8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -350,13 +348,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_8"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/machine-seated-crunch/machine-seated-crunch-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_8" />
             </LinearLayout>
 
             <!-- Ejercicio 9 -->
@@ -364,12 +360,13 @@
                 android:id="@+id/exercise_9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -392,13 +389,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_9"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/side-crunch/side-crunch-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_9" />
             </LinearLayout>
 
             <!-- Ejercicio 10 -->
@@ -406,12 +401,13 @@
                 android:id="@+id/exercise_10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -434,13 +430,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_10"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/machine-bicep-curl/machine-bicep-curl-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_10" />
             </LinearLayout>
 
             <!-- Ejercicio 11 -->
@@ -448,12 +442,13 @@
                 android:id="@+id/exercise_11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -476,13 +471,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_11"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/incline-dumbbell-curl/incline-dumbbell-curl-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_11" />
             </LinearLayout>
 
             <!-- Ejercicio 12 -->
@@ -490,12 +483,13 @@
                 android:id="@+id/exercise_12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -518,13 +512,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_12"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/hammer-curl/hammer-curl-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_12" />
             </LinearLayout>
 
             <!-- Ejercicio 13 -->
@@ -532,12 +524,13 @@
                 android:id="@+id/exercise_13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -560,13 +553,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_13"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/dumbbell-shrug/dumbbell-shrug-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_13" />
             </LinearLayout>
 
             <!-- Ejercicio 14 -->
@@ -574,12 +565,13 @@
                 android:id="@+id/exercise_14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -602,13 +594,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_14"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/straight-arm-pulldown/straight-arm-pulldown-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_14" />
             </LinearLayout>
 
             <!-- Ejercicio 15 -->
@@ -616,12 +606,13 @@
                 android:id="@+id/exercise_15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -644,13 +635,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_15"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/t-bar-row/t-bar-row-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_15" />
             </LinearLayout>
 
             <!-- Ejercicio 16 -->
@@ -658,12 +647,13 @@
                 android:id="@+id/exercise_16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -686,13 +676,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_16"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/seated-cable-row/seated-cable-row-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_16" />
             </LinearLayout>
 
             <!-- Ejercicio 17 -->
@@ -700,12 +688,13 @@
                 android:id="@+id/exercise_17"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -728,13 +717,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_17"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/lat-pulldown/lat-pulldown-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_17" />
             </LinearLayout>
 
             <!-- Ejercicio 18 -->
@@ -742,12 +729,13 @@
                 android:id="@+id/exercise_18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -770,13 +758,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_18"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/deadlift/deadlift-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_18" />
             </LinearLayout>
 
             <!-- Ejercicio 19 -->
@@ -784,12 +770,13 @@
                 android:id="@+id/exercise_19"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -812,13 +799,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_19"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/squat/squat-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_19" />
             </LinearLayout>
 
             <!-- Ejercicio 20 -->
@@ -826,12 +811,13 @@
                 android:id="@+id/exercise_20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -854,13 +840,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_20"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/hack-squat/hack-squat-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_20" />
             </LinearLayout>
 
             <!-- Ejercicio 21 -->
@@ -868,12 +852,13 @@
                 android:id="@+id/exercise_21"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -896,13 +881,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_21"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/sled-leg-press/sled-leg-press-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_21" />
             </LinearLayout>
 
             <!-- Ejercicio 22 -->
@@ -910,12 +893,13 @@
                 android:id="@+id/exercise_22"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -938,13 +922,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_22"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/seated-calf-raise/seated-calf-raise-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_22" />
             </LinearLayout>
 
             <!-- Ejercicio 23 -->
@@ -952,12 +934,13 @@
                 android:id="@+id/exercise_23"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -980,13 +963,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_23"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/hip-adduction/hip-adduction-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_23" />
             </LinearLayout>
 
             <!-- Ejercicio 24 -->
@@ -994,12 +975,13 @@
                 android:id="@+id/exercise_24"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -1022,13 +1004,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_24"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/hip-abduction/hip-abduction-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_24" />
             </LinearLayout>
 
             <!-- Ejercicio 25 -->
@@ -1036,12 +1016,13 @@
                 android:id="@+id/exercise_25"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -1064,13 +1045,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_25"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/cable-lateral-raise/cable-lateral-raise-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_25" />
             </LinearLayout>
 
             <!-- Ejercicio 26 -->
@@ -1078,12 +1057,13 @@
                 android:id="@+id/exercise_26"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -1106,13 +1086,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_26"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/leg-extension/leg-extension-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_26" />
             </LinearLayout>
 
             <!-- Ejercicio 27 -->
@@ -1120,12 +1098,13 @@
                 android:id="@+id/exercise_27"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -1148,13 +1127,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_27"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/lying-leg-curl/lying-leg-curl-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_27" />
             </LinearLayout>
 
             <!-- Ejercicio 28 -->
@@ -1162,12 +1139,13 @@
                 android:id="@+id/exercise_28"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -1190,13 +1168,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_28"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/seated-dumbbell-shoulder-press/seated-dumbbell-shoulder-press-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_28" />
             </LinearLayout>
 
             <!-- Ejercicio 29 -->
@@ -1204,12 +1180,13 @@
                 android:id="@+id/exercise_29"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -1232,13 +1209,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_29"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/dumbbell-reverse-fly/dumbbell-reverse-fly-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_29" />
             </LinearLayout>
 
             <!-- Ejercicio 30 -->
@@ -1246,12 +1221,13 @@
                 android:id="@+id/exercise_30"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -1274,13 +1250,11 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Comentar la imagen para evitar errores -->
-                <!-- <ImageView
+                <ImageView
                     android:id="@+id/exercise_icon_30"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="https://static.strengthlevel.com/images/exercises/cable-kickback/cable-kickback-400.avif" /> -->
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/exercise_icon_30" />
             </LinearLayout>
 
         </LinearLayout>
