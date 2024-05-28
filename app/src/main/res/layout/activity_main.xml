@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/orange"
+            app:title="@string/inicio"
             app:popupTheme="@style/Base.Theme.AthleteXperience" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -52,7 +53,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <com.google.android.material.navigation.NavigationView
+    <!--com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -60,7 +61,7 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
         app:itemIconTint="@color/colorAccent"
-        app:menu="@menu/nav_menu"/>
+        app:menu="@menu/nav_menu"/-->
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
