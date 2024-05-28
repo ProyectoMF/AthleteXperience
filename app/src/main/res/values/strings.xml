@@ -62,5 +62,5 @@
     <string name="guardar_nota">Guardar nota</string>
     <string name="escribe_una_nota">Escribe una nota</string>
     <string name="crearRutina">Rutina nueva</string>
-    <string name="inicio">Inicio</string>
+    <string name="inicio">Rutinas</string>
 </resources>

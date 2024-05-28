@@ -7,8 +7,8 @@ import android.view.MenuItem
 import android.widget.EditText
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.athletexperience.databinding.ActivityMainBinding
 import com.example.athletexperience.loggin.SignInActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -16,6 +16,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -71,14 +73,24 @@ class mainActivity : AppCompatActivity() {
             }
         }
 
-        routineAdapter = RoutineAdapter(mutableListOf()) { routine ->
+        routineAdapter = RoutineAdapter(mutableListOf(), { routine ->
             selectedRoutineName = routine.name
             val intent = Intent(this, EjerciciosActivity::class.java)
             intent.putExtra("ROUTINE_NAME", routine.name)
             startActivityForResult(intent, ADD_EXERCISE_REQUEST_CODE)
-        }
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = routineAdapter
+        }, { routine ->
+            updateRoutineInDatabase(routine)
+        }, { routine ->
+            deleteRoutineFromDatabase(routine)
+        }, { routine, exercise ->
+            deleteExerciseFromRoutineInDatabase(routine, exercise)
+        })
+
+        binding.viewPager.adapter = routineAdapter
+
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            tab.setCustomView(R.layout.custom_tab)
+        }.attach()
 
         binding.btAddRutina.setOnClickListener {
             showAddRoutineDialog()
@@ -97,8 +109,9 @@ class mainActivity : AppCompatActivity() {
             val routineName = input.text.toString()
             if (routineName.isNotEmpty()) {
                 val newRoutine = Routine(routineName, mutableListOf())
-                routineAdapter.addRoutine(newRoutine)
+                val newPosition = routineAdapter.addRoutine(newRoutine)
                 saveRoutineToDatabase(newRoutine)
+                binding.viewPager.setCurrentItem(newPosition, true)
             }
         }
         builder.setNegativeButton("Cancelar") { dialog, _ ->
@@ -111,6 +124,75 @@ class mainActivity : AppCompatActivity() {
         val userId = mAuth.currentUser?.uid ?: return
         val routineId = database.child("users").child(userId).child("routines").push().key ?: return
         database.child("users").child(userId).child("routines").child(routineId).setValue(routine)
+    }
+
+    private fun updateRoutineInDatabase(routine: Routine) {
+        val userId = mAuth.currentUser?.uid ?: return
+        database.child("users").child(userId).child("routines")
+            .orderByChild("name").equalTo(routine.name)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (routineSnapshot in snapshot.children) {
+                        val routineKey = routineSnapshot.key ?: continue
+                        database.child("users").child(userId).child("routines").child(routineKey)
+                            .setValue(routine)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("MainActivity", "Failed to update routine", error.toException())
+                }
+            })
+    }
+
+    private fun deleteRoutineFromDatabase(routine: Routine) {
+        val userId = mAuth.currentUser?.uid ?: return
+        database.child("users").child(userId).child("routines")
+            .orderByChild("name").equalTo(routine.name)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (routineSnapshot in snapshot.children) {
+                        val routineKey = routineSnapshot.key ?: continue
+                        database.child("users").child(userId).child("routines").child(routineKey)
+                            .removeValue()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("MainActivity", "Failed to delete routine", error.toException())
+                }
+            })
+    }
+
+    private fun deleteExerciseFromRoutineInDatabase(routine: Routine, exercise: Exercise) {
+        val userId = mAuth.currentUser?.uid ?: return
+        database.child("users").child(userId).child("routines")
+            .orderByChild("name").equalTo(routine.name)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (routineSnapshot in snapshot.children) {
+                        val routineKey = routineSnapshot.key ?: continue
+                        val exercisesRef = database.child("users").child(userId).child("routines")
+                            .child(routineKey).child("exercises")
+                        exercisesRef.orderByChild("name").equalTo(exercise.name)
+                            .addListenerForSingleValueEvent(object : ValueEventListener {
+                                override fun onDataChange(exerciseSnapshot: DataSnapshot) {
+                                    for (exerciseChild in exerciseSnapshot.children) {
+                                        exerciseChild.ref.removeValue()
+                                    }
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {
+                                    Log.e("MainActivity", "Failed to delete exercise", error.toException())
+                                }
+                            })
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("MainActivity", "Failed to delete exercise from routine", error.toException())
+                }
+            })
     }
 
     private fun loadUserRoutines() {
@@ -132,12 +214,21 @@ class mainActivity : AppCompatActivity() {
                         routines.add(Routine(routineName, exercises))
                     }
                     routineAdapter.updateRoutines(routines)
+                    setupTabs(routines) // Configurar las pestañas después de cargar las rutinas
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Log.e("mainActivity", "Failed to load routines", error.toException())
+                    Log.e("MainActivity", "Failed to load routines", error.toException())
                 }
             })
+    }
+
+    private fun setupTabs(routines: List<Routine>) {
+        val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
+        tabLayout.removeAllTabs() // Limpiar todas las pestañas existentes
+        routines.forEach { routine ->
+            tabLayout.addTab(tabLayout.newTab().setCustomView(R.layout.custom_tab)) // Añadir pestaña con diseño personalizado
+        }
     }
 
     private fun signOutAndStartSignInActivity() {
@@ -182,7 +273,7 @@ class mainActivity : AppCompatActivity() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Log.e("mainActivity", "Failed to update routine", error.toException())
+                    Log.e("MainActivity", "Failed to update routine", error.toException())
                 }
             })
     }

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="19dp"
-        android:background="@drawable/border_white"
+        android:background="@drawable/border_exercice"
         android:iconifiedByDefault="false"
         android:queryHint="Buscar ejercicios" />
 
@@ -31,32 +31,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:text="Press de Banca"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio básico de press de banca"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        />
                 </LinearLayout>
 
                 <ImageView
@@ -72,32 +64,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:text="Press de Banca Inclinado"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de press de banca inclinado para pecho"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -113,32 +97,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:text="Press de Banca Declinado"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de press de banca declinado para pecho"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -154,32 +130,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Aperturas en máquina"
+                        android:text="Aperturas en Máquina"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de aperturas en máquina"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -195,32 +163,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Fondos"
+                        android:text="Fondos Libres"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de fondos para pecho y tríceps"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        />
                 </LinearLayout>
 
                 <ImageView
@@ -236,32 +196,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:text="Triceps en Polea"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de triceps en polea con cuerda"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        />
                 </LinearLayout>
 
                 <ImageView
@@ -277,32 +229,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:text="Triceps en Polea tras Nuca"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de triceps en polea tras nuca"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -318,32 +262,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:text="Crunch Abdominal"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
                         android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de crunch abdominal"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <ImageView
@@ -359,39 +294,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Crunch laterales"
+                        android:text="Crunch Laterales"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de crunch laterales"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        />
                 </LinearLayout>
 
                 <ImageView
                     android:id="@+id/exercise_icon_9"
                     android:layout_width="125dp"
                     android:layout_height="125dp"
-                    android:src="@drawable/exercise_icon_9" />
+                    android:src="@drawable/exercise_icon_9"
+                    />
             </LinearLayout>
 
             <!-- Ejercicio 10 -->
@@ -400,32 +328,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:text="Biceps en Banco Scott"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de biceps en banco scott"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -441,32 +361,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:text="Curl de Biceps en Banco Inclinado"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_11"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de curl de biceps en banco inclinado"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -482,32 +394,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:text="Curl de Martillo"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de curl de martillo"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        />
                 </LinearLayout>
 
                 <ImageView
@@ -523,32 +427,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:text="Encogimiento de Hombros"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de encogimiento de hombros"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -564,32 +460,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Pull Over"
+                        android:text="Pull Over en Polea"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de pull over"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        />
                 </LinearLayout>
 
                 <ImageView
@@ -605,32 +493,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:text="Remo en Barra T"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de remo en barra T"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"/>
                 </LinearLayout>
 
                 <ImageView
@@ -646,32 +525,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Remo Dorsal"
+                        android:text="Remo Dorsal en Polea"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_16"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio para dorsal"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -687,32 +558,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_17"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Jalón al Pecho"
+                        android:text="Jalón al Pecho en Polea"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_17"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de jalón al pecho"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -728,32 +591,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_18"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Peso Muerto"
+                        android:text="Peso Muerto con Barra"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_18"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de peso muerto"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -769,32 +624,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_19"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:text="Sentadilla con Barra"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_19"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de sentadilla con barra"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -810,32 +657,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:text="Sentadilla Hacka"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_20"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de sentadilla en hacka"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        />
                 </LinearLayout>
 
                 <ImageView
@@ -851,32 +690,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_21"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:text="Prensa inclinada"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_21"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de prensa inclinada"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        />
                 </LinearLayout>
 
                 <ImageView
@@ -892,32 +723,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:text="Extensión de Gemelos"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_22"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de extensión de gemelos"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -933,32 +756,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_23"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Máquina de Aductores"
+                        android:text="Aductores en Máquina"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_23"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio en máquina de aductores"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -974,32 +789,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Máquina de Abductores"
+                        android:text="Abductores en Máquina"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_24"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio en máquina de abductores"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -1015,32 +822,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_25"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:text="Elevaciones Laterales Hombro"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_25"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de elevaciones laterales de hombro"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -1056,32 +855,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_26"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
                         android:text="Extensiones de Cuádriceps"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_26"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de extensiones de cuádriceps"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -1097,32 +888,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_27"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Curl de Femoral"
+                        android:text="Curl de Femoral Tumbado"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_27"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de curl femoral tumbado"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp" />
                 </LinearLayout>
 
                 <ImageView
@@ -1138,32 +921,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_28"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Press Militar"
+                        android:text="Press Militar con Mancuernas"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_28"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de press militar"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp" />
                 </LinearLayout>
 
                 <ImageView
@@ -1179,32 +954,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_29"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Hombro Posterior en Máquina"
+                        android:text="Hombro Posterior con Mancuernas"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_29"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de hombro"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -1220,32 +987,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border_white_search">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/exercise_name_30"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Patada de Glúteo"
+                        android:text="Patada de Glúteo en Polea"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/exercise_description_30"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ejercicio de patada de glúteo"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textStyle="bold"
+                        android:paddingStart="35dp"/>
                 </LinearLayout>
 
                 <ImageView
