@@ -1,50 +1,63 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
+    android:background="@drawable/border_white_search"
     android:minHeight="400dp"
-    android:background="@drawable/border_white_search">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/tvRoutineName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:textColor="@color/orange"
         android:textSize="25sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/ly_Exercises"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
         android:orientation="horizontal"
+        android:paddingBottom="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvRoutineName"
         >
 
         <TextView
             android:id="@+id/tvExercises"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="15dp"/>
+            android:textSize="18sp" />
+
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ic_arrownext"
-            android:background="@color/white"/>
-
+            android:id="@+id/arrowExercises"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:src="@drawable/ic_arrownext" />
     </LinearLayout>
-
-
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnAddExercise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
         android:backgroundTint="@color/orange"
-        android:src="@drawable/ic_add" />
+        android:src="@drawable/ic_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
