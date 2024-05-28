@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.athletexperience.databinding.ItemRoutineBinding
 
-data class Routine(val name: String, val exercises: MutableList<Exercise> = mutableListOf())
+data class Routine(val name: String = "", val exercises: MutableList<Exercise> = mutableListOf())
 
 class RoutineAdapter(private val routines: MutableList<Routine>, private val onRoutineClick: (Routine) -> Unit) :
     RecyclerView.Adapter<RoutineAdapter.RoutineViewHolder>() {

@@ -8,6 +8,7 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
+
 class EjerciciosActivity : AppCompatActivity() {
 
     private lateinit var exerciseLayouts: List<Pair<LinearLayout, String>>
@@ -95,4 +96,5 @@ class EjerciciosActivity : AppCompatActivity() {
         setResult(RESULT_OK, returnIntent)
         finish()
     }
+
 }
