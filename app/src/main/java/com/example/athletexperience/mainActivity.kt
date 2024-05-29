@@ -7,7 +7,6 @@ import android.view.MenuItem
 import android.widget.EditText
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.athletexperience.databinding.ActivityMainBinding
 import com.example.athletexperience.loggin.SignInActivity
@@ -67,6 +66,11 @@ class mainActivity : AppCompatActivity() {
                 }
                 R.id.nav_logout -> {
                     signOutAndStartSignInActivity()
+                    true
+                }
+                R.id.nav_map -> {
+                    val intent = Intent(this, MapActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> false

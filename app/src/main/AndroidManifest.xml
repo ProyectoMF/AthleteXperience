@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools" >
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.AthleteXperience"
         tools:targetApi="31" >
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_map_api_key">
+        </meta-data>
         <activity
             android:name=".loggin.SplashActivity"
             android:launchMode="singleTask"
@@ -68,6 +75,14 @@
             android:name=".EjerciciosActivity"
             android:exported="false" >
         </activity>
+
+        <activity
+            android:name=".MapActivity"
+            android:exported="false" >
+        </activity>
+
+
+
 
     </application>
 

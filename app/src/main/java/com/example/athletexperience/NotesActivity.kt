@@ -68,6 +68,12 @@ class NotesActivity : AppCompatActivity() {
                     signOutAndStartSignInActivity()
                     true
                 }
+                R.id.nav_map -> {
+                    val intent = Intent(this, MapActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
                 else -> false
             }
         }

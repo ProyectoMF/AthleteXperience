@@ -63,4 +63,6 @@
     <string name="escribe_una_nota">Escribe una nota</string>
     <string name="crearRutina">Rutina nueva</string>
     <string name="inicio">Rutinas</string>
+    <string name="Mapa" />
+    <string name="google_map_api_key">AIzaSyASbxbaGkkiaN0_xkmz2x3mYuY8hxSsxEI</string>
 </resources>
