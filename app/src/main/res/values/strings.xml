@@ -65,4 +65,10 @@
     <string name="inicio">Rutinas</string>
     <string name="Mapa" />
     <string name="google_map_api_key">AIzaSyASbxbaGkkiaN0_xkmz2x3mYuY8hxSsxEI</string>
+    <string name="menos">---</string>
+    <string name="veinte">20</string>
+    <string name="peso">Peso (kg):</string>
+    <string name="repeticiones">Reps:</string>
+    <string name="guardar">Guardar</string>
+    <string name="borrar">Borrar</string>
 </resources>
