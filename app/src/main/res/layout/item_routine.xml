@@ -26,7 +26,6 @@
         android:layout_marginTop="25dp"
         android:layout_marginBottom="25dp"
         android:orientation="horizontal"
-        android:paddingEnd="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvRoutineName"
