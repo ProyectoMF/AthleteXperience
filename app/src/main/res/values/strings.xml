@@ -71,4 +71,6 @@
     <string name="repeticiones">Reps:</string>
     <string name="guardar">Guardar</string>
     <string name="borrar">Borrar</string>
+    <string name="uno">1</string>
+    <string name="dos">2.5</string>
 </resources>

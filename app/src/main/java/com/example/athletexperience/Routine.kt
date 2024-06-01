@@ -1,15 +1,18 @@
 package com.example.athletexperience
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.example.athletexperience.databinding.ItemRoutineBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-data class Routine(var name: String = "", val exercises: MutableList<Exercise> = mutableListOf())
+data class Routine(var name: String = "", val exercises: MutableList<Exercise> = mutableListOf(), val image: Int)
 
 class RoutineAdapter(private val routines: MutableList<Routine>,
                      private val onRoutineClick: (Routine) -> Unit,
@@ -28,49 +31,49 @@ class RoutineAdapter(private val routines: MutableList<Routine>,
     override fun onBindViewHolder(holder: RoutineViewHolder, position: Int) {
         val routine = routines[position]
         holder.binding.tvRoutineName.text = routine.name
-        holder.binding.tvExercises.text = routine.exercises.joinToString("\n") { it.name }
+
+        holder.binding.lyExercisesContainer.removeAllViews() // Elimina las vistas previas
+
+        routine.exercises.forEach { exercise ->
+            val exerciseView = LayoutInflater.from(holder.itemView.context)
+                .inflate(R.layout.item_exercise, holder.binding.lyExercisesContainer, false)
+            val exerciseNameTextView = exerciseView.findViewById<TextView>(R.id.tvExercises)
+            val ly_ejercicios_to_reps = exerciseView.findViewById<LinearLayout>(R.id.ly_ejercicios_to_reps)
+
+            exerciseNameTextView.text = exercise.name
+
+            // Configurar el listener de click largo para eliminar el ejercicio
+            exerciseView.setOnLongClickListener {
+                showDeleteExerciseDialog(holder.itemView, routine, exercise)
+                true
+            }
+
+            // Configurar el listener de click para navegar a RepsActivity
+            ly_ejercicios_to_reps.setOnClickListener() {
+                val context = holder.itemView.context
+                val intent = Intent(context, RepsActivity::class.java)
+                context.startActivity(intent)
+            }
+
+
+            holder.binding.lyExercisesContainer.addView(exerciseView)
+        }
+
         holder.binding.btnAddExercise.setOnClickListener { onRoutineClick(routine) }
 
-        // Mantener en el nombre de la rutina para cambiar el nombre
-        holder.binding.tvRoutineName.setOnLongClickListener {
+        // Configurar el listener de click para editar el nombre de la rutina
+        holder.binding.tvRoutineName.setOnClickListener {
             showEditRoutineDialog(holder.itemView, routine)
-            true
         }
 
-        // Mantener en el ejercicio para borrarlo
-        holder.binding.tvExercises.setOnLongClickListener {
-            showDeleteExerciseDialog(holder.itemView, routine)
-            true
-        }
-
-        // Mantener para borrar la rutina
-        holder.itemView.setOnLongClickListener {
+        // Configurar el listener de click largo para eliminar la rutina
+        holder.binding.clRutina.setOnLongClickListener {
             showDeleteRoutineDialog(holder.itemView, routine)
             true
-        }
-
-        // Ajustar tamaño
-        holder.itemView.viewTreeObserver.addOnGlobalLayoutListener {
-            adjustViewPagerHeight(holder.itemView)
         }
     }
 
     override fun getItemCount(): Int = routines.size
-
-    private fun adjustViewPagerHeight(view: View) {
-        val parentView = view.parent
-        if (parentView is ViewGroup) {
-            val viewPager = parentView.parent
-            if (viewPager is ViewPager2) {
-                val currentHeight = view.height
-                val layoutParams = viewPager.layoutParams
-                if (currentHeight > layoutParams.height) {
-                    layoutParams.height = currentHeight
-                    viewPager.layoutParams = layoutParams
-                }
-            }
-        }
-    }
 
     fun addRoutine(routine: Routine): Int {
         routines.add(routine)
@@ -110,13 +113,12 @@ class RoutineAdapter(private val routines: MutableList<Routine>,
         builder.show()
     }
 
-    private fun showDeleteExerciseDialog(view: View, routine: Routine) {
-        val exercises = routine.exercises.map { it.name }.toTypedArray()
+    private fun showDeleteExerciseDialog(view: View, routine: Routine, exercise: Exercise) {
         val builder = MaterialAlertDialogBuilder(view.context)
         builder.setTitle("Eliminar Ejercicio")
-        builder.setItems(exercises) { _, which ->
-            val exercise = routine.exercises[which]
-            routine.exercises.removeAt(which)
+        builder.setMessage("¿Seguro que deseas eliminar este ejercicio?")
+        builder.setPositiveButton("Eliminar") { _, _ ->
+            routine.exercises.remove(exercise)
             onExerciseDelete(routine, exercise)
             notifyDataSetChanged()
         }

@@ -68,8 +68,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/black"
+            app:menu="@menu/main_menu_bottom"
+            app:itemIconTint="@color/colorAccent"
+            app:itemTextColor="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -80,6 +92,7 @@
         app:headerLayout="@layout/nav_header"
         app:itemIconTint="@color/colorAccent"
         app:menu="@menu/nav_menu" />
+
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

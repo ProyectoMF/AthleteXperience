@@ -112,7 +112,9 @@ class mainActivity : AppCompatActivity() {
         builder.setPositiveButton("Añadir") { _, _ ->
             val routineName = input.text.toString()
             if (routineName.isNotEmpty()) {
-                val newRoutine = Routine(routineName, mutableListOf())
+                // Supongamos que utilizamos una imagen predeterminada para todas las rutinas nuevas
+                val defaultImageResId = R.drawable.ic_arrownext // Reemplaza con tu recurso de imagen
+                val newRoutine = Routine(routineName, mutableListOf(), defaultImageResId)
                 val newPosition = routineAdapter.addRoutine(newRoutine)
                 saveRoutineToDatabase(newRoutine)
                 binding.viewPager.setCurrentItem(newPosition, true)
@@ -215,7 +217,9 @@ class mainActivity : AppCompatActivity() {
                                 exercises.add(Exercise(exerciseName))
                             }
                         }
-                        routines.add(Routine(routineName, exercises))
+                        // Obtén el recurso de imagen, aquí se usa una imagen predeterminada si no hay ninguna específica en la base de datos
+                        val imageResId = routineSnapshot.child("image").getValue(Int::class.java) ?: R.drawable.ic_arrownext
+                        routines.add(Routine(routineName, exercises, imageResId))
                     }
                     routineAdapter.updateRoutines(routines)
                     setupTabs(routines) // Configurar las pestañas después de cargar las rutinas
@@ -255,8 +259,9 @@ class mainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == ADD_EXERCISE_REQUEST_CODE && resultCode == RESULT_OK) {
             val exerciseName = data?.getStringExtra("EXERCISE_NAME")
+            val exerciseImage = data?.getIntExtra("EXERCISE_IMAGE", R.drawable.ic_arrownext)
             if (exerciseName != null && selectedRoutineName != null) {
-                routineAdapter.addExerciseToRoutine(selectedRoutineName!!, Exercise(exerciseName))
+                routineAdapter.addExerciseToRoutine(selectedRoutineName!!, Exercise(exerciseName, exerciseImage!!))
                 updateRoutineInDatabase(selectedRoutineName!!, exerciseName)
             }
         }

@@ -81,7 +81,10 @@
             android:exported="false" >
         </activity>
 
-
+        <activity
+            android:name=".RepsActivity"
+            android:exported="false" >
+        </activity>
 
 
     </application>

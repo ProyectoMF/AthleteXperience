@@ -93,6 +93,7 @@ class EjerciciosActivity : AppCompatActivity() {
         val returnIntent = Intent()
         returnIntent.putExtra("EXERCISE_NAME", exerciseName)
         returnIntent.putExtra("ROUTINE_NAME", routineName)
+        returnIntent.putExtra("EXERCISE_IMAGE", R.drawable.ic_arrownext) // Agrega la imagen del ejercicio
         setResult(RESULT_OK, returnIntent)
         finish()
     }
