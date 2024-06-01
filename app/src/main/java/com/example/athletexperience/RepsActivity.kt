@@ -2,12 +2,13 @@ package com.example.athletexperience
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.util.Locale
 
 data class Set(var number: Int, var weight: Double, var reps: Int, var isSelected: Boolean = false)
 
@@ -17,8 +18,8 @@ class RepsActivity : AppCompatActivity() {
     private lateinit var btnIncreaseWeight: ImageButton
     private lateinit var btnDecreaseReps: ImageButton
     private lateinit var btnIncreaseReps: ImageButton
-    private lateinit var tvWeight: TextView
-    private lateinit var tvReps: TextView
+    private lateinit var etWeight: EditText
+    private lateinit var etReps: EditText
     private lateinit var btnSave: Button
     private lateinit var btnDelete: Button
     private lateinit var recyclerViewSets: RecyclerView
@@ -27,6 +28,7 @@ class RepsActivity : AppCompatActivity() {
     private var weight: Double = 2.5
     private var reps: Int = 1
     private val sets = mutableListOf<Set>()
+    private var selectedSet: Set? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,18 +44,18 @@ class RepsActivity : AppCompatActivity() {
         btnIncreaseWeight = findViewById(R.id.btnIncreaseWeight)
         btnDecreaseReps = findViewById(R.id.btnDecreaseReps)
         btnIncreaseReps = findViewById(R.id.btnIncreaseReps)
-        tvWeight = findViewById(R.id.tvWeight)
-        tvReps = findViewById(R.id.tvReps)
+        etWeight = findViewById(R.id.etWeight)
+        etReps = findViewById(R.id.etReps)
         btnSave = findViewById(R.id.btn_guardar)
         btnDelete = findViewById(R.id.btn_borrar)
         recyclerViewSets = findViewById(R.id.recyclerViewSets)
 
         recyclerViewSets.layoutManager = LinearLayoutManager(this)
-        setsAdapter = SetsAdapter(sets)
+        setsAdapter = SetsAdapter(sets, ::onSetClicked)
         recyclerViewSets.adapter = setsAdapter
 
-        tvWeight.text = String.format("%.1f", weight)
-        tvReps.text = reps.toString()
+        etWeight.setText(String.format(Locale.US, "%.1f", weight))
+        etReps.setText(reps.toString())
     }
 
     private fun initListeners() {
@@ -65,34 +67,58 @@ class RepsActivity : AppCompatActivity() {
             if (weight > 0) {
                 weight -= 2.5
                 if (weight < 0) weight = 0.0
-                tvWeight.text = String.format("%.1f", weight)
+                etWeight.setText(String.format(Locale.US, "%.1f", weight))
             }
         }
 
         btnIncreaseWeight.setOnClickListener {
             weight += 2.5
-            tvWeight.text = String.format("%.1f", weight)
+            etWeight.setText(String.format(Locale.US, "%.1f", weight))
         }
 
         btnDecreaseReps.setOnClickListener {
             if (reps > 1) {
                 reps -= 1
-                tvReps.text = reps.toString()
+                etReps.setText(reps.toString())
             }
         }
 
         btnIncreaseReps.setOnClickListener {
             reps += 1
-            tvReps.text = reps.toString()
+            etReps.setText(reps.toString())
         }
 
         btnSave.setOnClickListener {
-            addSet()
+            weight = etWeight.text.toString().replace(",", ".").toDoubleOrNull() ?: weight
+            reps = etReps.text.toString().toIntOrNull() ?: reps
+            if (selectedSet != null) {
+                updateSet(selectedSet!!)
+            } else {
+                addSet()
+            }
+            clearSelection()
         }
 
         btnDelete.setOnClickListener {
-            deleteSelectedSets()
+            deleteSelectedSet()
+            clearSelection()
         }
+    }
+
+    private fun onSetClicked(set: Set) {
+        if (set == selectedSet) {
+            set.isSelected = false
+            selectedSet = null
+        } else {
+            selectedSet?.isSelected = false
+            set.isSelected = true
+            selectedSet = set
+            weight = set.weight
+            reps = set.reps
+            etWeight.setText(String.format(Locale.US, "%.1f", weight))
+            etReps.setText(reps.toString())
+        }
+        setsAdapter.notifyDataSetChanged()
     }
 
     private fun addSet() {
@@ -102,10 +128,26 @@ class RepsActivity : AppCompatActivity() {
         setsAdapter.notifyItemInserted(sets.size - 1)
     }
 
-    private fun deleteSelectedSets() {
-        val setsToRemove = sets.filter { it.isSelected }
-        sets.removeAll(setsToRemove)
-        sets.forEachIndexed { index, set -> set.number = index + 1 } // Update set numbers
+    private fun updateSet(set: Set) {
+        set.weight = weight
+        set.reps = reps
+        setsAdapter.notifyDataSetChanged()
+        selectedSet = null
+    }
+
+    private fun deleteSelectedSet() {
+        selectedSet?.let {
+            sets.remove(it)
+            sets.forEachIndexed { index, set -> set.number = index + 1 }
+            setsAdapter.notifyDataSetChanged()
+            selectedSet = null
+        }
+    }
+
+    private fun clearSelection() {
+        selectedSet?.isSelected = false
+        selectedSet = null
+        sets.forEach { it.isSelected = false }
         setsAdapter.notifyDataSetChanged()
     }
 }

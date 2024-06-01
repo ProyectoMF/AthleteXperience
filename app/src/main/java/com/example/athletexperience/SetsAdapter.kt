@@ -3,19 +3,19 @@ package com.example.athletexperience
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 
-class SetsAdapter(private val sets: MutableList<Set>) : RecyclerView.Adapter<SetsAdapter.SetViewHolder>() {
+class SetsAdapter(
+    private val sets: MutableList<Set>,
+    private val onSetClicked: (Set) -> Unit
+) : RecyclerView.Adapter<SetsAdapter.SetViewHolder>() {
 
     class SetViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvSetNumber: TextView = view.findViewById(R.id.tvSetNumber)
         val tvWeight: TextView = view.findViewById(R.id.tvWeight)
         val tvReps: TextView = view.findViewById(R.id.tvReps)
-        val btnEdit: ImageView = view.findViewById(R.id.btnEdit)
-        val chkDelete: CheckBox = view.findViewById(R.id.chkDelete)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SetViewHolder {
@@ -29,12 +29,13 @@ class SetsAdapter(private val sets: MutableList<Set>) : RecyclerView.Adapter<Set
         holder.tvWeight.text = "${set.weight} kg"
         holder.tvReps.text = "${set.reps} reps"
 
-        holder.btnEdit.setOnClickListener {
-            // Handle edit functionality here
-        }
+        holder.itemView.setBackgroundResource(
+            if (set.isSelected) R.drawable.rounded_background_selected
+            else R.color.colorSencundary
+        )
 
-        holder.chkDelete.setOnCheckedChangeListener { _, isChecked ->
-            set.isSelected = isChecked
+        holder.itemView.setOnClickListener {
+            onSetClicked(set)
         }
     }
 

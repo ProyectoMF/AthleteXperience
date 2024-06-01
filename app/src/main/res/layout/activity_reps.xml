@@ -73,15 +73,15 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/ic_menos" />
 
-
-        <TextView
-            android:id="@+id/tvWeight"
+        <EditText
+            android:id="@+id/etWeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:text="@string/dos"
+            android:inputType="numberDecimal"
             android:textColor="@android:color/white"
-            android:textSize="40sp" />
+            android:textSize="40sp"
+            android:text="2.5" />
 
         <ImageButton
             android:id="@+id/btnIncreaseWeight"
@@ -105,18 +105,6 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="240dp" />
 
-    <View
-        android:id="@+id/line_below_ly_peso"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/gray"
-        app:layout_constraintEnd_toEndOf="@id/guideline_end_tvWeight"
-        app:layout_constraintStart_toStartOf="@id/guideline_start_tvWeight"
-        app:layout_constraintTop_toBottomOf="@+id/ly_peso" />
-
-
     <!-- Reps Section -->
     <TextView
         android:id="@+id/tv_reps"
@@ -128,7 +116,7 @@
         android:textColor="@color/orange"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line_below_ly_peso" />
+        app:layout_constraintTop_toBottomOf="@+id/ly_peso" />
 
     <View
         android:id="@+id/line_below_reps"
@@ -159,15 +147,15 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/ic_menos" />
 
-
-        <TextView
-            android:id="@+id/tvReps"
+        <EditText
+            android:id="@+id/etReps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:text="@string/uno"
+            android:inputType="number"
             android:textColor="@android:color/white"
-            android:textSize="40sp" />
+            android:textSize="40sp"
+            android:text="1" />
 
         <ImageButton
             android:id="@+id/btnIncreaseReps"
@@ -191,17 +179,6 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="240dp" />
 
-    <View
-        android:id="@+id/line_below_ly_reps"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/gray"
-        app:layout_constraintEnd_toEndOf="@id/guideline_end_tvWeight"
-        app:layout_constraintStart_toStartOf="@id/guideline_start_tvWeight"
-        app:layout_constraintTop_toBottomOf="@+id/ly_reps" />
-
     <!-- Save and Delete Buttons -->
     <LinearLayout
         android:id="@+id/ly_botones"
@@ -212,7 +189,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line_below_ly_reps">
+        app:layout_constraintTop_toBottomOf="@+id/ly_reps">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -251,6 +228,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="30dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
