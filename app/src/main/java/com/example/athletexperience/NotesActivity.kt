@@ -79,6 +79,11 @@ class NotesActivity : AppCompatActivity() {
                     startActivity(intent)
                     true
                 }
+                R.id.nav_rate_us -> {
+                    val intent = Intent(this, RateActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
 
                 else -> false
             }

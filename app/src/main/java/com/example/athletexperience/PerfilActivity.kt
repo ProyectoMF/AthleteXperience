@@ -8,7 +8,6 @@ import android.provider.MediaStore
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
-import android.util.Patterns
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
@@ -24,7 +23,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import de.hdodenhof.circleimageview.CircleImageView
 
 class PerfilActivity : AppCompatActivity() {
@@ -75,6 +78,11 @@ class PerfilActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_profile -> {
+                    true
+                }
+                R.id.nav_rate_us -> {
+                    val intent = Intent(this, RateActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> false

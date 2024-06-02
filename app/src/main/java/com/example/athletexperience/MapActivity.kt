@@ -1,17 +1,23 @@
 package com.example.athletexperience
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageButton
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.athletexperience.databinding.AcitivityMapBinding
 import com.example.athletexperience.loggin.SignInActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -24,6 +30,9 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback{
     private lateinit var binding: AcitivityMapBinding
     private lateinit var toggle: ActionBarDrawerToggle
     private var mGoogleMap: GoogleMap? = null
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
+    private val LOCATION_PERMISSION_REQUEST_CODE = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +40,8 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback{
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -75,9 +86,16 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback{
                     startActivity(intent)
                     true
                 }
+                R.id.nav_rate_us -> {
+                    val intent = Intent(this, RateActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
                 else -> false
             }
         }
+
+        checkLocationPermission() // Check location permission on activity creation
     }
 
     private fun changeMap(itemId: Int) {
@@ -107,8 +125,41 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback{
 
     override fun onMapReady(googleMap: GoogleMap) {
         mGoogleMap = googleMap
-        // Set a default location and zoom level
-        val defaultLocation = LatLng(-34.0, 151.0)
-        mGoogleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 10f))
+        enableMyLocation()
+    }
+
+    private fun enableMyLocation() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            mGoogleMap?.isMyLocationEnabled = true
+            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+                if (location != null) {
+                    val currentLatLng = LatLng(location.latitude, location.longitude)
+                    mGoogleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
+                }
+            }
+        } else {
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
+        }
+    }
+
+    private fun checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            LOCATION_PERMISSION_REQUEST_CODE -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    enableMyLocation()
+                } else {
+
+                    Toast.makeText(this@MapActivity, "Error al cargar la ubicacion", Toast.LENGTH_SHORT).show()
+                }
+                return
+            }
+        }
     }
 }

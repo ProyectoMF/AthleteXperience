@@ -91,6 +91,12 @@
             android:exported="false" >
         </activity>
 
+        <activity
+            android:name=".RateActivity"
+            android:exported="false" >
+        </activity>
+
+
 
     </application>
 

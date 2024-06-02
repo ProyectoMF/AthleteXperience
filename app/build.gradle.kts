@@ -69,6 +69,8 @@ dependencies {
     implementation("com.google.android.gms:play-services-location:21.2.0")
     implementation ("com.google.android.libraries.places:places:3.1.0")
 
+    //ALIMENTACION
+
 
 
     implementation(libs.androidx.core.ktx)

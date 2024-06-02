@@ -23,7 +23,11 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import de.hdodenhof.circleimageview.CircleImageView
 
 class mainActivity : AppCompatActivity() {
@@ -83,6 +87,11 @@ class mainActivity : AppCompatActivity() {
                 R.id.nav_profile -> {
                     val intent = Intent(this, PerfilActivity::class.java)
                     startActivityForResult(intent, UPDATE_PROFILE_REQUEST_CODE)
+                    true
+                }
+                R.id.nav_rate_us -> {
+                    val intent = Intent(this, RateActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> false
@@ -252,8 +261,6 @@ class mainActivity : AppCompatActivity() {
                             navHeaderUserName.text = userProfile.name
                             navHeaderUserEmail.text = userProfile.email
 
-                            // Si tienes la URL de la imagen de perfil guardada en Firebase, puedes cargarla usando una biblioteca de carga de imágenes como Glide o Picasso
-                            // Glide.with(this@mainActivity).load(userProfile.profileImageUri).into(navHeaderProfileImage)
                         }
                     }
 
