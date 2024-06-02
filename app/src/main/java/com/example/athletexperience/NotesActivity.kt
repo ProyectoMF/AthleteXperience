@@ -8,6 +8,7 @@ import android.widget.CalendarView
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -15,7 +16,6 @@ import com.example.athletexperience.databinding.ActivityNotesBinding
 import com.example.athletexperience.loggin.SignInActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
@@ -25,6 +25,7 @@ import java.util.Locale
 class NotesActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNotesBinding
+    private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var calendarView: CalendarView
     private lateinit var noteEditText: EditText
     private lateinit var saveButton: Button
@@ -32,29 +33,27 @@ class NotesActivity : AppCompatActivity() {
     private lateinit var notesContainer: LinearLayout
     private val notesList = mutableListOf<TextView>()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNotesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Configurar la barra de herramientas como la barra de soporte
+        setSupportActionBar(binding.toolbar)
+
+        // Obtener el layout del NavigationDrawer
         val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
+
+        // Configurar el toggle para abrir y cerrar el NavigationDrawer
+        toggle = ActionBarDrawerToggle(this, drawerLayout, binding.toolbar, R.string.open, R.string.close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        // Obtener la vista de navegación
         val navView: NavigationView = findViewById(R.id.nav_view)
-        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        bottomNavigation.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    startActivity(Intent(this, mainActivity::class.java))
-                    true
-                }
-                R.id.nav_profile -> {
-                    // Implement logic for "Profile"
-                    true
-                }
-                else -> false
-            }
-        }
-
+        // Configurar el listener del elemento de navegación seleccionado
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_home -> {
@@ -62,7 +61,7 @@ class NotesActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_notes -> {
-                    // Already in NotesActivity
+                    // Ya estamos en MessageActivity
                     true
                 }
                 R.id.nav_logout -> {
@@ -74,16 +73,19 @@ class NotesActivity : AppCompatActivity() {
                     startActivity(intent)
                     true
                 }
+
                 else -> false
             }
         }
 
+        // Inicializar vistas
         calendarView = findViewById(R.id.calendarView)
         noteEditText = findViewById(R.id.noteEditText)
         saveButton = findViewById(R.id.saveButton)
         deleteButton = findViewById(R.id.deleteButton)
         notesContainer = findViewById(R.id.notesContainer)
 
+        // Configurar botón de guardar
         saveButton.setOnClickListener {
             val note = noteEditText.text.toString()
             if (note.isNotEmpty()) {
@@ -94,8 +96,9 @@ class NotesActivity : AppCompatActivity() {
             }
         }
 
+        // Configurar botón de borrar
         deleteButton.setOnClickListener {
-            activateDeleteMode()
+            ActivarModoBorrado()
         }
     }
 
@@ -121,6 +124,8 @@ class NotesActivity : AppCompatActivity() {
         }
         textView.layoutParams = layoutParams
 
+
+        // Añadir click listener para borrar nota
         textView.setOnClickListener {
             if (deleteButton.isSelected) {
                 notesContainer.removeView(textView)
@@ -132,7 +137,7 @@ class NotesActivity : AppCompatActivity() {
         notesContainer.addView(textView)
     }
 
-    private fun activateDeleteMode() {
+    private fun ActivarModoBorrado() {
         deleteButton.isSelected = !deleteButton.isSelected
         if (deleteButton.isSelected) {
             deleteButton.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_red_light))
@@ -141,6 +146,7 @@ class NotesActivity : AppCompatActivity() {
         }
     }
 
+    // Método para cerrar sesión y iniciar la actividad de inicio de sesión
     private fun signOutAndStartSignInActivity() {
         FirebaseAuth.getInstance().signOut()
         GoogleSignIn.getClient(this, GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()).signOut().addOnCompleteListener(this) {
@@ -151,7 +157,9 @@ class NotesActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item)) {
+            return true
+        }
         return super.onOptionsItemSelected(item)
     }
 }
-
