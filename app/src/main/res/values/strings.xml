@@ -71,4 +71,8 @@
     <string name="repeticiones">Reps:</string>
     <string name="guardar">Guardar</string>
     <string name="borrar">Borrar</string>
+    <string name="micuenta">Mi cuenta</string>
+    <string name="ActualizarPerfil">Actualizar perfil</string>
+    <string name="Escribetelf">Escribe tu teléfono</string>
+    <string name="EscribeNombre">Escribe tu nombre</string>
 </resources>

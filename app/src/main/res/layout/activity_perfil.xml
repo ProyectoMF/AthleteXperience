@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayout"
-    tools:openDrawer="start"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PerfilActivity">
@@ -20,93 +19,69 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/orange"
             app:popupTheme="@style/Base.Theme.AthleteXperience" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_marginTop="50dp">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:background="@color/white"
                 android:padding="20dp">
+
                 <ImageView
                     android:id="@+id/image_profile"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_centerVertical="true"
                     android:src="@drawable/baseline_person_24"
-                    android:onClick="onProfileImageClick">
+                    android:onClick="onProfileImageClick" />
 
-                </ImageView>
                 <TextView
                     android:id="@+id/textview_fullname"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Mi cuenta"
+                    android:text="@string/micuenta"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="10dp"
+                    android:gravity="center"
                     android:layout_toEndOf="@id/image_profile"
                     android:includeFontPadding="false"
-                    android:textSize="30dp">
-
-                </TextView>
-
+                    android:textColor="@color/white"
+                    android:textSize="30dp" />
             </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="10dp">
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+
+                <EditText
                     android:id="@+id/edittext_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
-                    >
+                    android:drawableStart="@drawable/baseline_person_24"
+                    android:background="@drawable/border_exercice"
+                    android:drawablePadding="20dp"
+                    android:hint="@string/EscribeNombre"
+                    android:padding="15dp" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/baseline_person_24"
-                        android:background="@color/orange"
-                        android:drawablePadding="20dp"
-                        />
 
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/edittext_email"
-
-                    android:layout_marginBottom="10dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/baseline_email_24"
-                        android:background="@color/orange"
-                        android:drawablePadding="20dp"
-                        />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                <EditText
                     android:id="@+id/edittext_phone"
-
-                    android:layout_marginBottom="10dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/baseline_local_phone_24"
-                        android:background="@color/orange"
-                        android:drawablePadding="20dp"
-                        />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:drawableStart="@drawable/baseline_local_phone_24"
+                    android:background="@drawable/border_exercice"
+                    android:hint="@string/Escribetelf"
+                    android:drawablePadding="20dp"
+                    android:padding="15dp"
+                    android:layout_marginTop="10dp"
+                    />
 
                 <Button
                     android:id="@+id/btn_update"
@@ -115,19 +90,11 @@
                     android:layout_marginTop="20dp"
                     android:layout_gravity="center"
                     android:backgroundTint="@color/orange"
-                    android:text="Actualizar perfil"
-                    android:textColor="@android:color/black"/>
-
-
+                    android:text="@string/ActualizarPerfil"
+                    android:textColor="@android:color/white" />
             </LinearLayout>
-
         </LinearLayout>
-
-
-
     </com.google.android.material.appbar.AppBarLayout>
-
-
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -137,7 +104,5 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
         app:itemIconTint="@color/colorAccent"
-        app:menu="@menu/nav_menu">
-    </com.google.android.material.navigation.NavigationView>
-
+        app:menu="@menu/nav_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>

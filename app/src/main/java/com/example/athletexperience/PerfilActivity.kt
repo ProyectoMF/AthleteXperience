@@ -11,6 +11,7 @@ import android.text.TextWatcher
 import android.util.Patterns
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -23,9 +24,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import de.hdodenhof.circleimageview.CircleImageView
-
-data class UserProfile(val name: String = "", val email: String = "", val phone: String = "", val profileImageUri: String = "")
 
 class PerfilActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPerfilBinding
@@ -33,15 +33,20 @@ class PerfilActivity : AppCompatActivity() {
     private lateinit var navHeaderProfileImage: CircleImageView
     private lateinit var navHeaderUserName: TextView
     private lateinit var navHeaderUserEmail: TextView
+    private lateinit var database: DatabaseReference
+    private lateinit var mAuth: FirebaseAuth
 
     companion object {
-        private const val PICK_IMAGE_REQUEST = 1
+        const val PICK_IMAGE_REQUEST = 1
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPerfilBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        mAuth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance().reference
 
         setSupportActionBar(binding.toolbar)
 
@@ -82,6 +87,9 @@ class PerfilActivity : AppCompatActivity() {
         navHeaderUserName = headerView.findViewById(R.id.user_name)
         navHeaderUserEmail = headerView.findViewById(R.id.usermail)
 
+        // Cargar datos del perfil desde Firebase
+        loadUserProfile()
+
         setupInputFilters()
         binding.btnUpdate.setOnClickListener {
             updateProfile()
@@ -95,7 +103,7 @@ class PerfilActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun onProfileImageClick(view: android.view.View) {
+    fun onProfileImageClick(view: View) {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
@@ -113,7 +121,7 @@ class PerfilActivity : AppCompatActivity() {
     }
 
     private fun signOutAndStartSignInActivity() {
-        FirebaseAuth.getInstance().signOut()
+        mAuth.signOut()
         GoogleSignIn.getClient(this, GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()).signOut().addOnCompleteListener(this) {
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
@@ -122,25 +130,14 @@ class PerfilActivity : AppCompatActivity() {
     }
 
     private fun setupInputFilters() {
-        val emailEditText = binding.edittextEmail.editText
-        val phoneEditText = binding.edittextPhone.editText
+        val phoneEditText: EditText = findViewById(R.id.edittext_phone)
 
-        emailEditText?.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!s.toString().endsWith("@gmail.com")) {
-                    emailEditText.error = "Email must be @gmail.com"
-                }
-            }
-            override fun afterTextChanged(s: Editable?) {}
-        })
-
-        phoneEditText?.filters = arrayOf(InputFilter.LengthFilter(9))
-        phoneEditText?.addTextChangedListener(object : TextWatcher {
+        phoneEditText.filters = arrayOf(InputFilter.LengthFilter(9))
+        phoneEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (!s.toString().matches(Regex("^[0-9]*$"))) {
-                    phoneEditText.error = "Only numbers are allowed"
+                    phoneEditText.error = "Solo se permiten números"
                 }
             }
             override fun afterTextChanged(s: Editable?) {}
@@ -148,31 +145,73 @@ class PerfilActivity : AppCompatActivity() {
     }
 
     private fun updateProfile() {
-        val name = binding.edittextName.editText?.text.toString()
-        val email = binding.edittextEmail.editText?.text.toString()
-        val phone = binding.edittextPhone.editText?.text.toString()
+        val nameEditText: EditText = findViewById(R.id.edittext_name)
+        val phoneEditText: EditText = findViewById(R.id.edittext_phone)
 
-        if (name.isEmpty() || email.isEmpty() || phone.isEmpty()) {
-            Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
-            return
-        }
+        val name = nameEditText.text.toString()
+        val phone = phoneEditText.text.toString()
 
-        if (!email.endsWith("@gmail.com") || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(this, "Invalid email format", Toast.LENGTH_SHORT).show()
+        if (name.isEmpty() || phone.isEmpty()) {
+            Toast.makeText(this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show()
             return
         }
 
         if (!phone.matches(Regex("^[0-9]{9}$"))) {
-            Toast.makeText(this, "Invalid phone number", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Número de teléfono inválido", Toast.LENGTH_SHORT).show()
             return
         }
 
-        binding.textviewFullname.text = name
+        // Guardar los datos en Firebase
+        val userId = mAuth.currentUser?.uid
+        if (userId != null) {
+            val email = mAuth.currentUser?.email ?: ""
+            val userProfile = UserProfile(name, email, phone)
+            database.child("users").child(userId).setValue(userProfile)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        binding.textviewFullname.text = name
 
-        // Actualizar los campos del nav_header
-        navHeaderUserName.text = name
-        navHeaderUserEmail.text = email
+                        // Actualizar los campos del nav_header
+                        navHeaderUserName.text = name
+                        navHeaderUserEmail.text = email
 
-        Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
+                        // Actualizar los datos en mainActivity
+                        val resultIntent = Intent()
+                        resultIntent.putExtra("USER_PROFILE", userProfile)
+                        setResult(Activity.RESULT_OK, resultIntent)
+
+                        Toast.makeText(this, "Perfil actualizado", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Error al actualizar el perfil", Toast.LENGTH_SHORT).show()
+                    }
+                }
+        }
+    }
+
+    private fun loadUserProfile() {
+        val userId = mAuth.currentUser?.uid
+        if (userId != null) {
+            database.child("users").child(userId)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val userProfile = snapshot.getValue(UserProfile::class.java)
+                        if (userProfile != null) {
+                            findViewById<EditText>(R.id.edittext_name).setText(userProfile.name)
+                            findViewById<EditText>(R.id.edittext_phone).setText(userProfile.phone)
+                            binding.textviewFullname.text = userProfile.name
+
+                            navHeaderUserName.text = userProfile.name
+                            navHeaderUserEmail.text = userProfile.email
+
+                            // Si tienes la URL de la imagen de perfil guardada en Firebase, puedes cargarla usando una biblioteca de carga de imágenes como Glide o Picasso
+                            // Glide.with(this@PerfilActivity).load(userProfile.profileImageUri).into(navHeaderProfileImage)
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Toast.makeText(this@PerfilActivity, "Error al cargar el perfil", Toast.LENGTH_SHORT).show()
+                    }
+                })
+        }
     }
 }
