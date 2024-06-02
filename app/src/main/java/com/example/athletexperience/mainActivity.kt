@@ -18,7 +18,11 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class mainActivity : AppCompatActivity() {
 
@@ -67,6 +71,16 @@ class mainActivity : AppCompatActivity() {
                 }
                 R.id.nav_map -> {
                     val intent = Intent(this, MapActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.nav_profile ->{
+                    val intent = Intent(this, PerfilActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.nav_map -> {
+                    val intent = Intent(this, PerfilActivity::class.java)
                     startActivity(intent)
                     true
                 }
@@ -198,6 +212,7 @@ class mainActivity : AppCompatActivity() {
     }
 
     private fun setupTabs(routines: List<Routine>) {
+
         val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
         tabLayout.removeAllTabs() // Limpiar todas las pestañas existentes
         routines.forEach { routine ->

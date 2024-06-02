@@ -86,6 +86,11 @@
             android:exported="false" >
         </activity>
 
+        <activity
+            android:name=".PerfilActivity"
+            android:exported="false" >
+        </activity>
+
 
     </application>
 

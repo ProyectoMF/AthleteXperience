@@ -24,6 +24,7 @@ import java.util.Locale
 
 class NotesActivity : AppCompatActivity() {
 
+
     private lateinit var binding: ActivityNotesBinding
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var calendarView: CalendarView
@@ -70,6 +71,11 @@ class NotesActivity : AppCompatActivity() {
                 }
                 R.id.nav_map -> {
                     val intent = Intent(this, MapActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.nav_map -> {
+                    val intent = Intent(this, PerfilActivity::class.java)
                     startActivity(intent)
                     true
                 }
