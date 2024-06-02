@@ -5,11 +5,34 @@
     android:orientation="vertical"
     android:padding="8dp">
 
+    <LinearLayout
+        android:id="@+id/ly_back_mainActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/lv_back_mainActivity"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_arrowback" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/inicio"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="19dp"
+        android:layout_margin="20dp"
         android:background="@drawable/border_exercice"
         android:iconifiedByDefault="false"
         android:queryHint="Buscar ejercicios" />
@@ -31,8 +54,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -47,8 +70,7 @@
                         android:text="Press de Banca"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -64,8 +86,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -77,11 +99,11 @@
                         android:id="@+id/exercise_name_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Press de Banca Inclinado"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -97,8 +119,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -110,11 +132,11 @@
                         android:id="@+id/exercise_name_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Press de Banca Declinado"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -130,8 +152,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -143,11 +165,11 @@
                         android:id="@+id/exercise_name_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Aperturas en Máquina"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -163,8 +185,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -179,8 +201,7 @@
                         android:text="Fondos Libres"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -196,8 +217,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -212,8 +233,7 @@
                         android:text="Triceps en Polea"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -229,8 +249,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -242,11 +262,11 @@
                         android:id="@+id/exercise_name_7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Triceps en Polea tras Nuca"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -262,8 +282,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -294,8 +314,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -310,16 +330,14 @@
                         android:text="Crunch Laterales"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
                     android:id="@+id/exercise_icon_9"
                     android:layout_width="125dp"
                     android:layout_height="125dp"
-                    android:src="@drawable/exercise_icon_9"
-                    />
+                    android:src="@drawable/exercise_icon_9" />
             </LinearLayout>
 
             <!-- Ejercicio 10 -->
@@ -328,8 +346,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -341,11 +359,11 @@
                         android:id="@+id/exercise_name_10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Biceps en Banco Scott"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -361,8 +379,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -374,11 +392,11 @@
                         android:id="@+id/exercise_name_11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Curl de Biceps en Banco Inclinado"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -394,8 +412,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -410,8 +428,7 @@
                         android:text="Curl de Martillo"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -427,8 +444,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -440,11 +457,11 @@
                         android:id="@+id/exercise_name_13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Encogimiento de Hombros"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -460,8 +477,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -476,8 +493,7 @@
                         android:text="Pull Over en Polea"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -493,8 +509,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -509,7 +525,7 @@
                         android:text="Remo en Barra T"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -525,8 +541,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -538,11 +554,11 @@
                         android:id="@+id/exercise_name_16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Remo Dorsal en Polea"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -558,8 +574,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -571,11 +587,11 @@
                         android:id="@+id/exercise_name_17"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Jalón al Pecho en Polea"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -591,8 +607,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -604,11 +620,11 @@
                         android:id="@+id/exercise_name_18"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Peso Muerto con Barra"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -624,8 +640,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -637,11 +653,11 @@
                         android:id="@+id/exercise_name_19"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Sentadilla con Barra"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -657,8 +673,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -673,8 +689,7 @@
                         android:text="Sentadilla Hacka"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -690,8 +705,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -706,8 +721,7 @@
                         android:text="Prensa inclinada"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -723,8 +737,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -736,11 +750,11 @@
                         android:id="@+id/exercise_name_22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Extensión de Gemelos"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -756,8 +770,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -769,11 +783,11 @@
                         android:id="@+id/exercise_name_23"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Aductores en Máquina"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -789,8 +803,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -802,11 +816,11 @@
                         android:id="@+id/exercise_name_24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Abductores en Máquina"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -822,8 +836,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -835,11 +849,11 @@
                         android:id="@+id/exercise_name_25"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Elevaciones Laterales Hombro"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -855,8 +869,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -868,11 +882,11 @@
                         android:id="@+id/exercise_name_26"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Extensiones de Cuádriceps"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -888,8 +902,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -901,11 +915,11 @@
                         android:id="@+id/exercise_name_27"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Curl de Femoral Tumbado"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp" />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -921,8 +935,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -934,11 +948,11 @@
                         android:id="@+id/exercise_name_28"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Press Militar con Mancuernas"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp" />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -954,8 +968,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -967,11 +981,11 @@
                         android:id="@+id/exercise_name_29"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Hombro Posterior con Mancuernas"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
@@ -987,8 +1001,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/border_white_search">
+                android:background="@drawable/border_white_search"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1000,11 +1014,11 @@
                         android:id="@+id/exercise_name_30"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingStart="35dp"
                         android:text="Patada de Glúteo en Polea"
                         android:textColor="@color/orange"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:paddingStart="35dp"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView

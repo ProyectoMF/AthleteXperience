@@ -13,14 +13,19 @@ class EjerciciosActivity : AppCompatActivity() {
 
     private lateinit var exerciseLayouts: List<Pair<LinearLayout, String>>
     private lateinit var routineName: String
+    private lateinit var lyBackMainActivity: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ejercicios)
 
+
+
+        initListeners()
+
         routineName = intent.getStringExtra("ROUTINE_NAME") ?: ""
 
-// Inicializar la lista de ejercicios
+        // Inicializar la lista de ejercicios
         exerciseLayouts = listOf(
             Pair(findViewById(R.id.exercise_1), "Press de Banca"),
             Pair(findViewById(R.id.exercise_2), "Press de Banca Inclinado"),
@@ -74,6 +79,13 @@ class EjerciciosActivity : AppCompatActivity() {
                 return true
             }
         })
+    }
+
+    private fun initListeners() {
+        lyBackMainActivity = findViewById(R.id.ly_back_mainActivity)
+        lyBackMainActivity.setOnClickListener {
+            finish()
+        }
     }
 
     private fun filterExercises(query: String) {

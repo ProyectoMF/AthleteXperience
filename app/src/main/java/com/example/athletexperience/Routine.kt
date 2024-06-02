@@ -5,21 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.athletexperience.databinding.ItemRoutineBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-data class Routine(var name: String = "", val exercises: MutableList<Exercise> = mutableListOf(), val image: Int)
+data class Routine(
+    val name: String = "",
+    val exercises: MutableList<Exercise> = mutableListOf()
+)
 
-class RoutineAdapter(private val routines: MutableList<Routine>,
-                     private val onRoutineClick: (Routine) -> Unit,
-                     private val onRoutineUpdate: (Routine) -> Unit,
-                     private val onRoutineDelete: (Routine) -> Unit,
-                     private val onExerciseDelete: (Routine, Exercise) -> Unit) :
-    RecyclerView.Adapter<RoutineAdapter.RoutineViewHolder>() {
+class RoutineAdapter(
+    private val routines: MutableList<Routine>,
+    private val onRoutineClick: (Routine) -> Unit,
+    private val onRoutineUpdate: (Routine) -> Unit,
+    private val onRoutineDelete: (Routine) -> Unit,
+    private val onExerciseDelete: (Routine, Exercise) -> Unit
+) : RecyclerView.Adapter<RoutineAdapter.RoutineViewHolder>() {
 
     class RoutineViewHolder(val binding: ItemRoutineBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -49,12 +52,14 @@ class RoutineAdapter(private val routines: MutableList<Routine>,
             }
 
             // Configurar el listener de click para navegar a RepsActivity
-            ly_ejercicios_to_reps.setOnClickListener() {
+            ly_ejercicios_to_reps.setOnClickListener {
                 val context = holder.itemView.context
-                val intent = Intent(context, RepsActivity::class.java)
+                val intent = Intent(context, RepsActivity::class.java).apply {
+                    putExtra("ROUTINE_NAME", routine.name)
+                    putExtra("EXERCISE_NAME", exercise.name)
+                }
                 context.startActivity(intent)
             }
-
 
             holder.binding.lyExercisesContainer.addView(exerciseView)
         }
@@ -102,8 +107,10 @@ class RoutineAdapter(private val routines: MutableList<Routine>,
         builder.setPositiveButton("Guardar") { _, _ ->
             val newName = input.text.toString()
             if (newName.isNotEmpty()) {
-                routine.name = newName
-                onRoutineUpdate(routine)
+                val newRoutine = routine.copy(name = newName)
+                val index = routines.indexOf(routine)
+                routines[index] = newRoutine
+                onRoutineUpdate(newRoutine)
                 notifyDataSetChanged()
             }
         }

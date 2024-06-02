@@ -5,35 +5,36 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.EditText
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.athletexperience.databinding.ActivityMainBinding
 import com.example.athletexperience.loggin.SignInActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 
 class mainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var constraintLayout: ConstraintLayout
+    private lateinit var bottomNavigation: BottomNavigationView
+    private lateinit var navigationView: NavigationView
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var mAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var routineAdapter: RoutineAdapter
     private val ADD_EXERCISE_REQUEST_CODE = 1
     private var selectedRoutineName: String? = null
+    private var userName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,32 +51,74 @@ class mainActivity : AppCompatActivity() {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        setSupportActionBar(binding.toolbar)
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
-        toggle = ActionBarDrawerToggle(this, drawerLayout, binding.toolbar, R.string.open, R.string.close)
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
+        drawerLayout = findViewById(R.id.drawer_layout)
+        constraintLayout = findViewById(R.id.constraint_layout)
+        bottomNavigation = findViewById(R.id.bottom_navigation)
+        navigationView = findViewById(R.id.navigation_view)
 
-        val navView: NavigationView = findViewById(R.id.nav_view)
-        navView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.nav_notes -> {
-                    val intent = Intent(this, NotesActivity::class.java)
+        bottomNavigation.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_view -> {
+                    drawerLayout.openDrawer(navigationView)
+                    true
+                }
+                R.id.nav_home -> {
+                    val intent = Intent(this, mainActivity::class.java)
                     startActivity(intent)
                     true
                 }
-                R.id.nav_logout -> {
-                    signOutAndStartSignInActivity()
-                    true
-                }
-                R.id.nav_map -> {
-                    val intent = Intent(this, MapActivity::class.java)
-                    startActivity(intent)
+                R.id.nav_profile -> {
+                    // Implement logic for "Profile"
                     true
                 }
                 else -> false
             }
         }
+
+        navigationView.setNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    // Implement logic for "Home"
+                    drawerLayout.closeDrawer(navigationView)
+                    true
+                }
+                R.id.nav_notes -> {
+                    val intent = Intent(this, NotesActivity::class.java)
+                    startActivity(intent)
+                    drawerLayout.closeDrawer(navigationView)
+                    true
+                }
+                R.id.nav_map -> {
+                    val intent = Intent(this, MapActivity::class.java)
+                    startActivity(intent)
+                    drawerLayout.closeDrawer(navigationView)
+                    true
+                }
+                R.id.nav_settings -> {
+                    // Implement logic for "Settings"
+                    drawerLayout.closeDrawer(navigationView)
+                    true
+                }
+                R.id.nav_logout -> {
+                    signOutAndStartSignInActivity()
+                    drawerLayout.closeDrawer(navigationView)
+                    true
+                }
+                R.id.nav_share -> {
+                    // Implement logic for "Share"
+                    drawerLayout.closeDrawer(navigationView)
+                    true
+                }
+                R.id.nav_rate_us -> {
+                    // Implement logic for "Rate Us"
+                    drawerLayout.closeDrawer(navigationView)
+                    true
+                }
+                else -> false
+            }
+        }
+
+        getUserName()
 
         routineAdapter = RoutineAdapter(mutableListOf(), { routine ->
             selectedRoutineName = routine.name
@@ -103,126 +146,91 @@ class mainActivity : AppCompatActivity() {
         loadUserRoutines()
     }
 
+    private fun getUserName() {
+        val user = mAuth.currentUser
+        user?.let {
+            userName = it.displayName?.replace(".", "_")?.replace("#", "_")?.replace("$", "_")?.replace("[", "_")?.replace("]", "_")
+            if (userName.isNullOrEmpty()) {
+                userName = "Unknown"
+            }
+        }
+    }
+
     private fun showAddRoutineDialog() {
         val builder = MaterialAlertDialogBuilder(this)
         val input = EditText(this)
-        input.hint = "Nombre de la rutina"
-        builder.setTitle("Añadir Rutina")
+        input.hint = "Routine Name"
+        builder.setTitle("Add Routine")
         builder.setView(input)
-        builder.setPositiveButton("Añadir") { _, _ ->
+        builder.setPositiveButton("Add") { _, _ ->
             val routineName = input.text.toString()
             if (routineName.isNotEmpty()) {
-                // Supongamos que utilizamos una imagen predeterminada para todas las rutinas nuevas
-                val defaultImageResId = R.drawable.ic_arrownext // Reemplaza con tu recurso de imagen
-                val newRoutine = Routine(routineName, mutableListOf(), defaultImageResId)
+                val newRoutine = Routine(routineName, mutableListOf())
                 val newPosition = routineAdapter.addRoutine(newRoutine)
                 saveRoutineToDatabase(newRoutine)
                 binding.viewPager.setCurrentItem(newPosition, true)
             }
         }
-        builder.setNegativeButton("Cancelar") { dialog, _ ->
+        builder.setNegativeButton("Cancel") { dialog, _ ->
             dialog.cancel()
         }
         builder.show()
     }
 
     private fun saveRoutineToDatabase(routine: Routine) {
-        val userId = mAuth.currentUser?.uid ?: return
-        val routineId = database.child("users").child(userId).child("routines").push().key ?: return
-        database.child("users").child(userId).child("routines").child(routineId).setValue(routine)
+        if (userName == null) getUserName()
+        val routineRef = database.child("users").child(userName!!).child("routines").child(routine.name)
+        val routineData = routine.exercises.map { exercise ->
+            exercise.name to exercise.sets
+        }.toMap()
+        routineRef.setValue(routineData)
     }
 
     private fun updateRoutineInDatabase(routine: Routine) {
-        val userId = mAuth.currentUser?.uid ?: return
-        database.child("users").child(userId).child("routines")
-            .orderByChild("name").equalTo(routine.name)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for (routineSnapshot in snapshot.children) {
-                        val routineKey = routineSnapshot.key ?: continue
-                        database.child("users").child(userId).child("routines").child(routineKey)
-                            .setValue(routine)
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Log.e("MainActivity", "Failed to update routine", error.toException())
-                }
-            })
+        if (userName == null) getUserName()
+        val routineRef = database.child("users").child(userName!!).child("routines").child(routine.name)
+        val routineData = routine.exercises.map { exercise ->
+            exercise.name to exercise.sets
+        }.toMap()
+        routineRef.setValue(routineData)
     }
 
     private fun deleteRoutineFromDatabase(routine: Routine) {
-        val userId = mAuth.currentUser?.uid ?: return
-        database.child("users").child(userId).child("routines")
-            .orderByChild("name").equalTo(routine.name)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for (routineSnapshot in snapshot.children) {
-                        val routineKey = routineSnapshot.key ?: continue
-                        database.child("users").child(userId).child("routines").child(routineKey)
-                            .removeValue()
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Log.e("MainActivity", "Failed to delete routine", error.toException())
-                }
-            })
+        if (userName == null) getUserName()
+        database.child("users").child(userName!!).child("routines").child(routine.name).removeValue()
     }
 
     private fun deleteExerciseFromRoutineInDatabase(routine: Routine, exercise: Exercise) {
-        val userId = mAuth.currentUser?.uid ?: return
-        database.child("users").child(userId).child("routines")
-            .orderByChild("name").equalTo(routine.name)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for (routineSnapshot in snapshot.children) {
-                        val routineKey = routineSnapshot.key ?: continue
-                        val exercisesRef = database.child("users").child(userId).child("routines")
-                            .child(routineKey).child("exercises")
-                        exercisesRef.orderByChild("name").equalTo(exercise.name)
-                            .addListenerForSingleValueEvent(object : ValueEventListener {
-                                override fun onDataChange(exerciseSnapshot: DataSnapshot) {
-                                    for (exerciseChild in exerciseSnapshot.children) {
-                                        exerciseChild.ref.removeValue()
-                                    }
-                                }
-
-                                override fun onCancelled(error: DatabaseError) {
-                                    Log.e("MainActivity", "Failed to delete exercise", error.toException())
-                                }
-                            })
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Log.e("MainActivity", "Failed to delete exercise from routine", error.toException())
-                }
-            })
+        if (userName == null) getUserName()
+        database.child("users").child(userName!!).child("routines").child(routine.name).child("exercises").child(exercise.name).removeValue()
     }
 
     private fun loadUserRoutines() {
-        val userId = mAuth.currentUser?.uid ?: return
-        database.child("users").child(userId).child("routines")
+        if (userName == null) getUserName()
+        database.child("users").child(userName!!).child("routines")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val routines = mutableListOf<Routine>()
                     for (routineSnapshot in snapshot.children) {
-                        val routineName = routineSnapshot.child("name").getValue(String::class.java) ?: continue
+                        val routineName = routineSnapshot.key ?: continue
                         val exercisesSnapshot = routineSnapshot.child("exercises")
                         val exercises = mutableListOf<Exercise>()
                         for (exerciseSnapshot in exercisesSnapshot.children) {
-                            val exerciseName = exerciseSnapshot.child("name").getValue(String::class.java)
-                            if (exerciseName != null) {
-                                exercises.add(Exercise(exerciseName))
+                            val exerciseName = exerciseSnapshot.key ?: continue
+                            val setsSnapshot = exerciseSnapshot.child("sets")
+                            val sets = mutableListOf<Set>()
+                            for (setSnapshot in setsSnapshot.children) {
+                                val setNumber = setSnapshot.key?.toIntOrNull() ?: continue
+                                val weight = setSnapshot.child("weight").getValue(Double::class.java) ?: 0.0
+                                val reps = setSnapshot.child("reps").getValue(Int::class.java) ?: 0
+                                sets.add(Set(setNumber, weight, reps))
                             }
+                            exercises.add(Exercise(exerciseName, sets))
                         }
-                        // Obtén el recurso de imagen, aquí se usa una imagen predeterminada si no hay ninguna específica en la base de datos
-                        val imageResId = routineSnapshot.child("image").getValue(Int::class.java) ?: R.drawable.ic_arrownext
-                        routines.add(Routine(routineName, exercises, imageResId))
+                        routines.add(Routine(routineName, exercises))
                     }
                     routineAdapter.updateRoutines(routines)
-                    setupTabs(routines) // Configurar las pestañas después de cargar las rutinas
+                    setupTabs(routines)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -233,9 +241,9 @@ class mainActivity : AppCompatActivity() {
 
     private fun setupTabs(routines: List<Routine>) {
         val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
-        tabLayout.removeAllTabs() // Limpiar todas las pestañas existentes
+        tabLayout.removeAllTabs()
         routines.forEach { routine ->
-            tabLayout.addTab(tabLayout.newTab().setCustomView(R.layout.custom_tab)) // Añadir pestaña con diseño personalizado
+            tabLayout.addTab(tabLayout.newTab().setCustomView(R.layout.custom_tab))
         }
     }
 
@@ -249,9 +257,6 @@ class mainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (toggle.onOptionsItemSelected(item)) {
-            return true
-        }
         return super.onOptionsItemSelected(item)
     }
 
@@ -259,31 +264,26 @@ class mainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == ADD_EXERCISE_REQUEST_CODE && resultCode == RESULT_OK) {
             val exerciseName = data?.getStringExtra("EXERCISE_NAME")
-            val exerciseImage = data?.getIntExtra("EXERCISE_IMAGE", R.drawable.ic_arrownext)
             if (exerciseName != null && selectedRoutineName != null) {
-                routineAdapter.addExerciseToRoutine(selectedRoutineName!!, Exercise(exerciseName, exerciseImage!!))
-                updateRoutineInDatabase(selectedRoutineName!!, exerciseName)
+                routineAdapter.addExerciseToRoutine(selectedRoutineName!!, Exercise(exerciseName))
+                saveExerciseToDatabase(selectedRoutineName!!, Exercise(exerciseName))
             }
         }
     }
 
-    private fun updateRoutineInDatabase(routineName: String, exerciseName: String) {
-        val userId = mAuth.currentUser?.uid ?: return
-        database.child("users").child(userId).child("routines")
-            .orderByChild("name").equalTo(routineName)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for (routineSnapshot in snapshot.children) {
-                        val routineKey = routineSnapshot.key ?: continue
-                        val exercisesRef = database.child("users").child(userId).child("routines")
-                            .child(routineKey).child("exercises")
-                        exercisesRef.push().setValue(Exercise(exerciseName))
-                    }
-                }
+    private fun saveExerciseToDatabase(routineName: String, exercise: Exercise) {
+        if (userName == null) getUserName()
+        val exerciseRef = database.child("users").child(userName!!).child("routines")
+            .child(routineName).child("exercises").child(exercise.name)
+        exerciseRef.setValue(exercise.sets)
+    }
 
-                override fun onCancelled(error: DatabaseError) {
-                    Log.e("MainActivity", "Failed to update routine", error.toException())
-                }
-            })
+    private fun saveSetToDatabase(routineName: String, exerciseName: String, set: Set) {
+        if (userName == null) getUserName()
+        val setRef = database.child("users").child(userName!!).child("routines")
+            .child(routineName).child("exercises").child(exerciseName).child("sets").child(set.number.toString())
+        setRef.child("weight").setValue(set.weight)
+        setRef.child("reps").setValue(set.reps)
     }
 }
+

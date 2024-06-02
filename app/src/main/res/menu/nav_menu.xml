@@ -6,52 +6,37 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/baseline_home_24"
-            android:title="Inicio">
-
-
-        </item>
+            android:title="Inicio" />
         <item
             android:id="@+id/nav_notes"
-            android:title="Notas"
-            android:icon="@drawable/baseline_message_24">
-
-        </item>
+            android:icon="@drawable/baseline_message_24"
+            android:title="Notas" />
         <item
             android:id="@+id/nav_map"
-            android:title="Mapa"
-            android:icon="@drawable/baseline_map_24">
-
-        </item>
+            android:icon="@drawable/baseline_map_24"
+            android:title="Mapa" />
         <item
             android:id="@+id/nav_settings"
-            android:title="Ajustes"
-            android:icon="@drawable/baseline_settings_24">
-
-        </item>
+            android:icon="@drawable/baseline_settings_24"
+            android:title="Ajustes" />
         <item android:title="Porfile">
-
                 <menu>
                         <item
                             android:id="@+id/nav_logout"
                             android:icon="@drawable/baseline_login_24"
-                            android:title="Cerrar sesion">
-
-                        </item>
+                            android:title="Cerrar sesión" />
                 </menu>
-
         </item>
         <item android:title="Comunicate">
-              <menu>
-                      <item android:id="@+id/nav_share"
-                          android:icon="@drawable/baseline_share_24"
-                          android:title="Compartir">
-
-                      </item>
-                      <item  android:id="@+id/nav_rate_us"
-                          android:icon="@drawable/baseline_rate_review_24"
-                          android:title="Valoranos">
-
-                      </item>
-              </menu>
+                <menu>
+                        <item
+                            android:id="@+id/nav_share"
+                            android:icon="@drawable/baseline_share_24"
+                            android:title="Compartir" />
+                        <item
+                            android:id="@+id/nav_rate_us"
+                            android:icon="@drawable/baseline_rate_review_24"
+                            android:title="Valóranos" />
+                </menu>
         </item>
 </menu>

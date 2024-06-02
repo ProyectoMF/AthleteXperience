@@ -14,6 +14,7 @@ import com.example.athletexperience.PersonalObjetivoActivity.Companion.peso
 import com.example.athletexperience.PersonalObjetivoActivity.Companion.sexo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -26,14 +27,18 @@ class PersonalResumenActivity : AppCompatActivity() {
     private lateinit var tv_macronutrientes: TextView
     private lateinit var bt_back_resumen: FloatingActionButton
     private lateinit var bt_crearplan: Button
+    private lateinit var database: DatabaseReference
+    private var userName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_resumen)
 
+        database = FirebaseDatabase.getInstance().reference
+
         initComponent()
         initListeners()
-        //initUI()
+        getUserName()
 
         val edad = calcularEdad(fecha)
         calcularIMC()
@@ -65,14 +70,14 @@ class PersonalResumenActivity : AppCompatActivity() {
 
         bt_crearplan.setOnClickListener {
             // Guardar los datos en la base de datos Firebase
-            val userId = FirebaseAuth.getInstance().currentUser?.uid
-            if (userId != null) {
-                val imcString = tv_imc.text.toString().split(" ")[2].toDoubleOrNull()?.toInt() ?: 0.0
-                val caloriasString = tv_calorias.text.toString().split(":")[1].trim().toDoubleOrNull()?.toInt() ?: 0.0
+            if (userName != null) {
+                val imcString = tv_imc.text.toString().split(" ")[2].toDoubleOrNull() ?: 0.0
+                val caloriasString = tv_calorias.text.toString().split(":")[1].trim().toDoubleOrNull() ?: 0.0
                 val macronutrientesText = tv_macronutrientes.text.toString().split("\n")
-                val proteinas = macronutrientesText[0].split(":")[1].trim().split(" ")[0].toDoubleOrNull()?.toInt() ?: 0.0
-                val carbohidratos = macronutrientesText[1].split(":")[1].trim().split(" ")[0].toDoubleOrNull()?.toInt() ?: 0.0
-                val grasas = macronutrientesText[2].split(":")[1].trim().split(" ")[0].toDoubleOrNull()?.toInt() ?: 0.0
+                val proteinas = macronutrientesText[0].split(":")[1].trim().split(" ")[0].toDoubleOrNull() ?: 0.0
+                val carbohidratos = macronutrientesText[1].split(":")[1].trim().split(" ")[0].toDoubleOrNull() ?: 0.0
+                val grasas = macronutrientesText[2].split(":")[1].trim().split(" ")[0].toDoubleOrNull() ?: 0.0
+
                 val userMap = mapOf(
                     "imc" to imcString,
                     "calorias" to caloriasString,
@@ -83,24 +88,31 @@ class PersonalResumenActivity : AppCompatActivity() {
                     )
                 )
 
-                FirebaseDatabase.getInstance().getReference("users")
-                    .child(userId)
-                    .setValue(userMap)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Toast.makeText(this, "Plan creado exitosamente", Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(this, "Error al crear el plan: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
-                        }
+                database.child("users").child(userName!!).setValue(userMap).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(this, "Plan creado exitosamente", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Error al crear el plan: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                     }
+                }
+
+                val intent = Intent(this, mainActivity::class.java)
+                startActivity(intent)
+                finish()
             }
-            val intent = Intent(this, mainActivity::class.java)
-            startActivity(intent)
-            finish()
         }
     }
 
-
+    private fun getUserName() {
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let {
+            // Obtener el nombre del usuario desde el perfil de Google
+            userName = it.displayName?.replace(".", "_")?.replace("#", "_")?.replace("$", "_")?.replace("[", "_")?.replace("]", "_")
+            if (userName.isNullOrEmpty()) {
+                userName = "Unknown"
+            }
+        }
+    }
 
     private fun calcularIMC() {
         if (altura != 0.0 && peso != 0.0) {
@@ -118,7 +130,6 @@ class PersonalResumenActivity : AppCompatActivity() {
             tv_imc.text = "Altura o peso no válidos"
         }
     }
-
 
     private fun calcularEdad(fechaNacimientoStr: String?): Int {
         if (fechaNacimientoStr != null) {
@@ -141,7 +152,6 @@ class PersonalResumenActivity : AppCompatActivity() {
         return 0
     }
 
-
     private fun calcularCalorias(sexo: String?, edad: Int?, actividad: String?): Double {
         if (altura != null && peso != null && sexo != null && edad != null && actividad != null) {
             val factorActividad = when (actividad) {
@@ -163,7 +173,6 @@ class PersonalResumenActivity : AppCompatActivity() {
         }
         return 0.0
     }
-
 
     private fun calcularCaloriasObjetivo(calorias: Double, objetivo: String?): String {
         val caloriasAjustadas = when (objetivo) {
@@ -198,5 +207,4 @@ class PersonalResumenActivity : AppCompatActivity() {
             "grasas" to String.format(Locale.US, "%.2f", gramosGrasas)
         )
     }
-
 }
