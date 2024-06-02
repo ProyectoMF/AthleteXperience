@@ -132,6 +132,7 @@ class mainActivity : AppCompatActivity() {
                 showAddRoutineDialog()
             }
 
+            // Cargar las rutinas del usuario
             loadUserRoutines(userName)
         }
     }
@@ -181,10 +182,14 @@ class mainActivity : AppCompatActivity() {
     private fun saveRoutineToDatabase(routine: Routine) {
         getUserName { userName ->
             val routineRef = database.child("users").child(userName).child("routines").child(routine.name)
-            val routineData = routine.exercises.map { exercise ->
-                exercise.name to exercise.sets
-            }.toMap()
-            routineRef.setValue(routineData)
+            routineRef.child("exercises").setValue(routine.exercises.map { exercise ->
+                exercise.name to exercise.sets.map { set ->
+                    set.number.toString() to mapOf(
+                        "weight" to set.weight,
+                        "reps" to set.reps
+                    )
+                }.toMap()
+            }.toMap())
         }
     }
 
@@ -201,19 +206,21 @@ class mainActivity : AppCompatActivity() {
     }
 
     private fun loadUserRoutines(userName: String) {
+        Log.d("MainActivity", "Loading routines for user: $userName")
         database.child("users").child(userName).child("routines")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    Log.d("MainActivity", "Routines snapshot: ${snapshot.value}")
                     val routines = mutableListOf<Routine>()
                     for (routineSnapshot in snapshot.children) {
                         val routineName = routineSnapshot.key ?: continue
-                        val exercisesSnapshot = routineSnapshot.child("exercises")
+                        Log.d("MainActivity", "Routine name: $routineName")
                         val exercises = mutableListOf<Exercise>()
-                        for (exerciseSnapshot in exercisesSnapshot.children) {
+                        for (exerciseSnapshot in routineSnapshot.child("exercises").children) {
                             val exerciseName = exerciseSnapshot.key ?: continue
-                            val setsSnapshot = exerciseSnapshot.child("sets")
+                            Log.d("MainActivity", "Exercise name: $exerciseName")
                             val sets = mutableListOf<Set>()
-                            for (setSnapshot in setsSnapshot.children) {
+                            for (setSnapshot in exerciseSnapshot.children) {
                                 val setNumber = setSnapshot.key?.toIntOrNull() ?: continue
                                 val weight = setSnapshot.child("weight").getValue(Double::class.java) ?: 0.0
                                 val reps = setSnapshot.child("reps").getValue(Int::class.java) ?: 0

@@ -8,7 +8,6 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-
 class EjerciciosActivity : AppCompatActivity() {
 
     private lateinit var exerciseLayouts: List<Pair<LinearLayout, String>>
@@ -18,8 +17,6 @@ class EjerciciosActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ejercicios)
-
-
 
         initListeners()
 
@@ -58,7 +55,6 @@ class EjerciciosActivity : AppCompatActivity() {
             Pair(findViewById(R.id.exercise_29), "Hombro Posterior en Máquina"),
             Pair(findViewById(R.id.exercise_30), "Patada de Glúteo")
         )
-
 
         // Configurar listeners para todos los ejercicios
         exerciseLayouts.forEach { pair ->
@@ -109,5 +105,4 @@ class EjerciciosActivity : AppCompatActivity() {
         setResult(RESULT_OK, returnIntent)
         finish()
     }
-
 }
