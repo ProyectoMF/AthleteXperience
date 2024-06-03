@@ -1,7 +1,6 @@
 package com.example.athletexperience
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -9,23 +8,19 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.PopupMenu
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.athletexperience.databinding.AcitivityMapBinding
 import com.example.athletexperience.loggin.SignInActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -38,13 +33,10 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback{
     private lateinit var binding: AcitivityMapBinding
     private lateinit var toggle: ActionBarDrawerToggle
     private var mGoogleMap: GoogleMap? = null
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var navHeaderUserName: TextView
     private lateinit var navHeaderUserEmail: TextView
     private lateinit var mAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
-
-    private val LOCATION_PERMISSION_REQUEST_CODE = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +44,6 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback{
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -86,7 +76,6 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback{
                     true
                 }
                 R.id.nav_map -> {
-                    // Ya estamos en MapActivity
                     true
                 }
                 R.id.nav_logout -> {
@@ -107,15 +96,11 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback{
             }
         }
 
-        // Obtener referencias a las vistas del nav_header
         val headerView: View = navView.getHeaderView(0)
         navHeaderUserName = headerView.findViewById(R.id.user_name)
         navHeaderUserEmail = headerView.findViewById(R.id.usermail)
 
-        // Cargar datos del perfil desde Firebase
         loadUserProfile()
-
-        checkLocationPermission() // Check location permission on activity creation
     }
 
     private fun loadUserProfile() {
@@ -168,40 +153,53 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback{
 
     override fun onMapReady(googleMap: GoogleMap) {
         mGoogleMap = googleMap
-        enableMyLocation()
+
+        val gyms = getFamousGyms()
+        for (gym in gyms) {
+            mGoogleMap?.addMarker(
+                MarkerOptions()
+                    .position(gym.location)
+                    .title(gym.name))
+        }
+
+        val madrid = LatLng(40.416775, -3.703790)
+        mGoogleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(madrid, 10f))
     }
 
-    private fun enableMyLocation() {
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            mGoogleMap?.isMyLocationEnabled = true
-            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-                if (location != null) {
-                    val currentLatLng = LatLng(location.latitude, location.longitude)
-                    mGoogleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
-                }
-            }
-        } else {
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
-        }
-    }
-
-    private fun checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            LOCATION_PERMISSION_REQUEST_CODE -> {
-                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    enableMyLocation()
-                } else {
-                    Toast.makeText(this@MapActivity, "Error al cargar la ubicacion", Toast.LENGTH_SHORT).show()
-                }
-                return
-            }
-        }
+    private fun getFamousGyms(): List<Gym> {
+        return listOf(
+            Gym("David Lloyds Sports Club", LatLng(40.465845, -3.615453)),
+            Gym("B3B Woman Studio", LatLng(40.426210, -3.681383)),
+            Gym("Holmes Place", LatLng(40.476570, -3.676029)),
+            Gym("Sergio Ramos by John Reed", LatLng(40.459619, -3.689530)),
+            Gym("Reebok Sports Club", LatLng(40.435004, -3.688347)),
+            Gym("Holiday Gym Princesa", LatLng(40.431635, -3.714312)),
+            Gym("Metropolitan Abascal", LatLng(40.440782, -3.699536)),
+            Gym("Opera Gym", LatLng(40.421342, -3.711044)),
+            Gym("McFit", LatLng(40.394110, -3.693196)),
+            Gym("Anytime Fitness", LatLng(40.426081, -3.676694)),
+            Gym("CrossFit Singular Box", LatLng(40.433634, -3.679927)),
+            Gym("In Shape 24Seven", LatLng(40.430000, -3.709997)),
+            Gym("Gymage Lounge Resort", LatLng(40.423516, -3.705416)),
+            Gym("GO fit", LatLng(40.444429, -3.654167)),
+            Gym("SmartClub", LatLng(40.429572, -3.709292)),
+            Gym("Reto 48", LatLng(40.446578, -3.694242)),
+            Gym("Basic Fit", LatLng(40.416347, -3.703828)),
+            Gym("Viva Gym", LatLng(40.428516, -3.704484)),
+            Gym("Siclo", LatLng(40.445308, -3.688416)),
+            Gym("Crys Dyaz & Co", LatLng(40.518567, -3.648158)),
+            Gym("Yoofit", LatLng(40.472505, -3.688073)),
+            Gym("Tru Cycle", LatLng(40.426800, -3.704074)),
+            Gym("Hiit Studio", LatLng(40.420000, -3.703716)),
+            Gym("TopCycle", LatLng(40.447029, -3.705528)),
+            Gym("Síclo", LatLng(40.423865, -3.693731)),
+            Gym("Club Deportivo José Valenciano", LatLng(40.431224, -3.714221)),
+            Gym("Fightland", LatLng(40.437688, -3.703382)),
+            Gym("Boxing Club Suanzes", LatLng(40.440317, -3.704329)),
+            Gym("Brooklyn Fitboxing", LatLng(40.419879, -3.704269)),
+            Gym("Madison Boxing Gym", LatLng(40.428243, -3.702218)),
+            Gym("47 MMA Studio", LatLng(40.432389, -3.702671)),
+            Gym("Tatamisfera", LatLng(40.426700, -3.704800))
+        )
     }
 }
