@@ -14,29 +14,53 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tvRoutineName"
-            android:layout_width="0dp"
+        <!-- Nuevo ConstraintLayout para el fondo negro -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clHeader"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/orange"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:layout_margin="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/btnAddExercise"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnAddExercise"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/orange"
-            android:src="@drawable/ic_add"
-            android:layout_marginTop="10dp"
+            <TextView
+                android:id="@+id/tvRoutineName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/orange"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/btnAddExercise"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/btnAddExercise" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnAddExercise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/orangeLight"
+                android:src="@drawable/ic_add"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvRoutineName"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/tvRoutineName" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Línea debajo del nuevo ConstraintLayout -->
+        <View
+            android:id="@+id/line"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            app:layout_constraintTop_toBottomOf="@+id/clHeader"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tvRoutineName"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="30dp"/>
 
         <LinearLayout
             android:id="@+id/lyExercisesContainer"
@@ -47,7 +71,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvRoutineName" />
+            app:layout_constraintTop_toBottomOf="@id/line" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
