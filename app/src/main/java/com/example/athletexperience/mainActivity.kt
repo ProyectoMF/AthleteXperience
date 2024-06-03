@@ -1,15 +1,12 @@
 package com.example.athletexperience
 
-import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
@@ -28,23 +25,18 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import de.hdodenhof.circleimageview.CircleImageView
 
 class mainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var mAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var routineAdapter: RoutineAdapter
-    private lateinit var navHeaderProfileImage: CircleImageView
+    private val ADD_EXERCISE_REQUEST_CODE = 1
+    private var selectedRoutineName: String? = null
     private lateinit var navHeaderUserName: TextView
     private lateinit var navHeaderUserEmail: TextView
-    private val ADD_EXERCISE_REQUEST_CODE = 1
-    private val UPDATE_PROFILE_REQUEST_CODE = 2
-    private var selectedRoutineName: String? = null
-    private var userName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,7 +78,7 @@ class mainActivity : AppCompatActivity() {
                 }
                 R.id.nav_profile -> {
                     val intent = Intent(this, PerfilActivity::class.java)
-                    startActivityForResult(intent, UPDATE_PROFILE_REQUEST_CODE)
+                    startActivity(intent)
                     true
                 }
                 R.id.nav_rate_us -> {
@@ -100,61 +92,55 @@ class mainActivity : AppCompatActivity() {
 
         // Obtener referencias a las vistas del nav_header
         val headerView: View = navView.getHeaderView(0)
-        navHeaderProfileImage = headerView.findViewById(R.id.profile_image)
         navHeaderUserName = headerView.findViewById(R.id.user_name)
         navHeaderUserEmail = headerView.findViewById(R.id.usermail)
 
         // Cargar datos del perfil desde Firebase
         loadUserProfile()
 
-        // Obtener el nombre del usuario
-        getUserName { userName ->
-            routineAdapter = RoutineAdapter(mutableListOf(), { routine ->
-                selectedRoutineName = routine.name
-                val intent = Intent(this, EjerciciosActivity::class.java)
-                intent.putExtra("ROUTINE_NAME", routine.name)
-                startActivityForResult(intent, ADD_EXERCISE_REQUEST_CODE)
-            }, { routine ->
-                saveRoutineToDatabase(routine)
-            }, { routine ->
-                deleteRoutineFromDatabase(routine)
-            }, { routine, exercise ->
-                deleteExerciseFromRoutineInDatabase(routine, exercise)
-            })
+        routineAdapter = RoutineAdapter(mutableListOf(), { routine ->
+            selectedRoutineName = routine.name
+            val intent = Intent(this, EjerciciosActivity::class.java)
+            intent.putExtra("ROUTINE_NAME", routine.name)
+            startActivityForResult(intent, ADD_EXERCISE_REQUEST_CODE)
+        }, { routine ->
+            updateRoutineInDatabase(routine)
+        }, { routine ->
+            deleteRoutineFromDatabase(routine)
+        }, { routine, exercise ->
+            deleteExerciseFromRoutineInDatabase(routine, exercise)
+        })
 
-            binding.viewPager.adapter = routineAdapter
+        binding.viewPager.adapter = routineAdapter
 
-            TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-                tab.setCustomView(R.layout.custom_tab)
-            }.attach()
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            tab.setCustomView(R.layout.custom_tab)
+        }.attach()
 
-            binding.btAddRutina.setOnClickListener {
-                showAddRoutineDialog()
-            }
-
-            // Cargar las rutinas del usuario
-            loadUserRoutines(userName)
+        binding.btAddRutina.setOnClickListener {
+            showAddRoutineDialog()
         }
+
+        loadUserRoutines()
     }
 
-    private fun getUserName(callback: (String) -> Unit) {
-        val user = mAuth.currentUser
-        user?.let {
-            val userId = it.uid
-            database.child("users").child(userId).addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val userProfile = snapshot.getValue(UserProfile::class.java)
-                    userName = userProfile?.name?.replace(".", "_")?.replace("#", "_")?.replace("$", "_")?.replace("[", "_")?.replace("]", "_")
-                    if (userName.isNullOrEmpty()) {
-                        userName = "Unknown"
+    private fun loadUserProfile() {
+        val userId = mAuth.currentUser?.uid
+        if (userId != null) {
+            database.child("users").child(userId)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val userProfile = snapshot.getValue(UserProfile::class.java)
+                        if (userProfile != null) {
+                            navHeaderUserName.text = userProfile.name
+                            navHeaderUserEmail.text = userProfile.email
+                        }
                     }
-                    callback(userName!!)
-                }
 
-                override fun onCancelled(error: DatabaseError) {
-                    Log.e("MainActivity", "Failed to get user name", error.toException())
-                }
-            })
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.e("MainActivity", "Error al cargar el perfil", error.toException())
+                    }
+                })
         }
     }
 
@@ -180,53 +166,95 @@ class mainActivity : AppCompatActivity() {
     }
 
     private fun saveRoutineToDatabase(routine: Routine) {
-        getUserName { userName ->
-            val routineRef = database.child("users").child(userName).child("routines").child(routine.name)
-            routineRef.child("exercises").setValue(routine.exercises.map { exercise ->
-                exercise.name to exercise.sets.map { set ->
-                    set.number.toString() to mapOf(
-                        "weight" to set.weight,
-                        "reps" to set.reps
-                    )
-                }.toMap()
-            }.toMap())
-        }
+        val userId = mAuth.currentUser?.uid ?: return
+        val routineId = database.child("users").child(userId).child("routines").push().key ?: return
+        database.child("users").child(userId).child("routines").child(routineId).setValue(routine)
+    }
+
+    private fun updateRoutineInDatabase(routine: Routine) {
+        val userId = mAuth.currentUser?.uid ?: return
+        database.child("users").child(userId).child("routines")
+            .orderByChild("name").equalTo(routine.name)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (routineSnapshot in snapshot.children) {
+                        val routineKey = routineSnapshot.key ?: continue
+                        database.child("users").child(userId).child("routines").child(routineKey)
+                            .setValue(routine)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("MainActivity", "Failed to update routine", error.toException())
+                }
+            })
     }
 
     private fun deleteRoutineFromDatabase(routine: Routine) {
-        getUserName { userName ->
-            database.child("users").child(userName).child("routines").child(routine.name).removeValue()
-        }
+        val userId = mAuth.currentUser?.uid ?: return
+        database.child("users").child(userId).child("routines")
+            .orderByChild("name").equalTo(routine.name)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (routineSnapshot in snapshot.children) {
+                        val routineKey = routineSnapshot.key ?: continue
+                        database.child("users").child(userId).child("routines").child(routineKey)
+                            .removeValue()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("MainActivity", "Failed to delete routine", error.toException())
+                }
+            })
     }
 
     private fun deleteExerciseFromRoutineInDatabase(routine: Routine, exercise: Exercise) {
-        getUserName { userName ->
-            database.child("users").child(userName).child("routines").child(routine.name).child("exercises").child(exercise.name).removeValue()
-        }
-    }
-
-    private fun loadUserRoutines(userName: String) {
-        Log.d("MainActivity", "Loading routines for user: $userName")
-        database.child("users").child(userName).child("routines")
+        val userId = mAuth.currentUser?.uid ?: return
+        database.child("users").child(userId).child("routines")
+            .orderByChild("name").equalTo(routine.name)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    Log.d("MainActivity", "Routines snapshot: ${snapshot.value}")
+                    for (routineSnapshot in snapshot.children) {
+                        val routineKey = routineSnapshot.key ?: continue
+                        val exercisesRef = database.child("users").child(userId).child("routines")
+                            .child(routineKey).child("exercises")
+                        exercisesRef.orderByChild("name").equalTo(exercise.name)
+                            .addListenerForSingleValueEvent(object : ValueEventListener {
+                                override fun onDataChange(exerciseSnapshot: DataSnapshot) {
+                                    for (exerciseChild in exerciseSnapshot.children) {
+                                        exerciseChild.ref.removeValue()
+                                    }
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {
+                                    Log.e("MainActivity", "Failed to delete exercise", error.toException())
+                                }
+                            })
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("MainActivity", "Failed to delete exercise from routine", error.toException())
+                }
+            })
+    }
+
+    private fun loadUserRoutines() {
+        val userId = mAuth.currentUser?.uid ?: return
+        database.child("users").child(userId).child("routines")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
                     val routines = mutableListOf<Routine>()
                     for (routineSnapshot in snapshot.children) {
-                        val routineName = routineSnapshot.key ?: continue
-                        Log.d("MainActivity", "Routine name: $routineName")
+                        val routineName = routineSnapshot.child("name").getValue(String::class.java) ?: continue
+                        val exercisesSnapshot = routineSnapshot.child("exercises")
                         val exercises = mutableListOf<Exercise>()
-                        for (exerciseSnapshot in routineSnapshot.child("exercises").children) {
-                            val exerciseName = exerciseSnapshot.key ?: continue
-                            Log.d("MainActivity", "Exercise name: $exerciseName")
-                            val sets = mutableListOf<Set>()
-                            for (setSnapshot in exerciseSnapshot.children) {
-                                val setNumber = setSnapshot.key?.toIntOrNull() ?: continue
-                                val weight = setSnapshot.child("weight").getValue(Double::class.java) ?: 0.0
-                                val reps = setSnapshot.child("reps").getValue(Int::class.java) ?: 0
-                                sets.add(Set(setNumber, weight, reps))
+                        for (exerciseSnapshot in exercisesSnapshot.children) {
+                            val exerciseName = exerciseSnapshot.child("name").getValue(String::class.java)
+                            if (exerciseName != null) {
+                                exercises.add(Exercise(exerciseName))
                             }
-                            exercises.add(Exercise(exerciseName, sets))
                         }
                         routines.add(Routine(routineName, exercises))
                     }
@@ -257,27 +285,6 @@ class mainActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadUserProfile() {
-        val userId = mAuth.currentUser?.uid
-        if (userId != null) {
-            database.child("users").child(userId)
-                .addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        val userProfile = snapshot.getValue(UserProfile::class.java)
-                        if (userProfile != null) {
-                            navHeaderUserName.text = userProfile.name
-                            navHeaderUserEmail.text = userProfile.email
-
-                        }
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        Toast.makeText(this@mainActivity, "Error al cargar el perfil", Toast.LENGTH_SHORT).show()
-                    }
-                })
-        }
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (toggle.onOptionsItemSelected(item)) {
             return true
@@ -287,38 +294,32 @@ class mainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == ADD_EXERCISE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == ADD_EXERCISE_REQUEST_CODE && resultCode == RESULT_OK) {
             val exerciseName = data?.getStringExtra("EXERCISE_NAME")
             if (exerciseName != null && selectedRoutineName != null) {
                 routineAdapter.addExerciseToRoutine(selectedRoutineName!!, Exercise(exerciseName))
-                saveExerciseToDatabase(selectedRoutineName!!, Exercise(exerciseName))
+                updateRoutineInDatabase(selectedRoutineName!!, exerciseName)
             }
-        } else if (requestCode == UPDATE_PROFILE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            val userProfile = data?.getParcelableExtra<UserProfile>("USER_PROFILE")
-            if (userProfile != null) {
-                navHeaderUserName.text = userProfile.name
-                navHeaderUserEmail.text = userProfile.email
-            }
-        } else if (requestCode == PerfilActivity.PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
-            val selectedImage: Uri? = data?.data
-            navHeaderProfileImage.setImageURI(selectedImage)
         }
     }
 
-    private fun saveExerciseToDatabase(routineName: String, exercise: Exercise) {
-        getUserName { userName ->
-            val exerciseRef = database.child("users").child(userName).child("routines")
-                .child(routineName).child("exercises").child(exercise.name)
-            exerciseRef.setValue(exercise.sets)
-        }
-    }
+    private fun updateRoutineInDatabase(routineName: String, exerciseName: String) {
+        val userId = mAuth.currentUser?.uid ?: return
+        database.child("users").child(userId).child("routines")
+            .orderByChild("name").equalTo(routineName)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (routineSnapshot in snapshot.children) {
+                        val routineKey = routineSnapshot.key ?: continue
+                        val exercisesRef = database.child("users").child(userId).child("routines")
+                            .child(routineKey).child("exercises")
+                        exercisesRef.push().setValue(Exercise(exerciseName))
+                    }
+                }
 
-    private fun saveSetToDatabase(routineName: String, exerciseName: String, set: Set) {
-        getUserName { userName ->
-            val setRef = database.child("users").child(userName).child("routines")
-                .child(routineName).child("exercises").child(exerciseName).child("sets").child(set.number.toString())
-            setRef.child("weight").setValue(set.weight)
-            setRef.child("reps").setValue(set.reps)
-        }
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("MainActivity", "Failed to update routine", error.toException())
+                }
+            })
     }
 }
