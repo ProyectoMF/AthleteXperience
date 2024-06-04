@@ -90,12 +90,10 @@ class mainActivity : AppCompatActivity() {
             }
         }
 
-        // Obtener referencias a las vistas del nav_header
         val headerView: View = navView.getHeaderView(0)
         navHeaderUserName = headerView.findViewById(R.id.user_name)
         navHeaderUserEmail = headerView.findViewById(R.id.usermail)
 
-        // Cargar datos del perfil desde Firebase
         loadUserProfile()
 
         routineAdapter = RoutineAdapter(mutableListOf(), { routine ->
@@ -127,7 +125,7 @@ class mainActivity : AppCompatActivity() {
     private fun loadUserProfile() {
         val userId = mAuth.currentUser?.uid
         if (userId != null) {
-            database.child("users").child(userId)
+            database.child("users").child(userId).child("profile")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val userProfile = snapshot.getValue(UserProfile::class.java)

@@ -125,7 +125,7 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback{
 
         val userId = mAuth.currentUser?.uid
         if (userId != null) {
-            database.child("users").child(userId)
+            database.child("users").child(userId).child("profile")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val userProfile = snapshot.getValue(UserProfile::class.java)
