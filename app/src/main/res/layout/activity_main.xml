@@ -17,8 +17,21 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/orange"
-            app:popupTheme="@style/Base.Theme.AthleteXperience"
-            app:title="@string/inicio" />
+            android:gravity="center"
+            app:popupTheme="@style/Base.Theme.AthleteXperience">
+
+            <!-- TextView personalizado para el título -->
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/Rutinas"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+        </androidx.appcompat.widget.Toolbar>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

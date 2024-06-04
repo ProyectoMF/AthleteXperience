@@ -47,6 +47,9 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback{
 
         setSupportActionBar(binding.toolbar)
 
+        supportActionBar?.setDisplayShowTitleEnabled(false) // Desactiva el título predeterminado
+
+
         val mapFragment = supportFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
