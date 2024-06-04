@@ -71,7 +71,8 @@ dependencies {
 
     //ALIMENTACION
 
-
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -84,6 +85,7 @@ dependencies {
     implementation(libs.firebase.database.ktx)
     implementation(libs.firebase.database)
     implementation(libs.androidx.ui.test.android)
+    implementation(libs.firebase.storage.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

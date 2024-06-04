@@ -21,6 +21,7 @@ carUiLib = "2.6.0"
 composePreviewRenderer = "0.0.1-alpha01"
 uiTestAndroid = "1.6.7"
 uiTestDesktop = "1.6.7"
+firebaseStorageKtx = "21.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -43,6 +44,7 @@ car-ui-lib = { group = "com.android.car.ui", name = "car-ui-lib", version.ref = 
 compose-preview-renderer = { group = "com.android.tools.compose", name = "compose-preview-renderer", version.ref = "composePreviewRenderer" }
 androidx-ui-test-android = { group = "androidx.compose.ui", name = "ui-test-android", version.ref = "uiTestAndroid" }
 androidx-ui-test-desktop = { group = "androidx.compose.ui", name = "ui-test-desktop", version.ref = "uiTestDesktop" }
+firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage-ktx", version.ref = "firebaseStorageKtx" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
