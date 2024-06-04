@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/border_white_search"
         android:minHeight="450dp"
+        android:maxHeight="450dp"
         android:orientation="vertical"
         android:padding="16dp">
 
