@@ -19,32 +19,60 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/orange"
             app:popupTheme="@style/Base.Theme.AthleteXperience" />
-
-        <ImageButton
-            android:id="@+id/mapOptionsMenu"
-            android:layout_width="56dp"
-            android:layout_height="50dp"
-            android:background="@null"
-            android:scaleType="fitXY"
-            android:src="@drawable/baseline_menu_24">
-
-        </ImageButton>
-
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
+            android:layout_height="match_parent">
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/mapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                class="com.google.android.gms.maps.SupportMapFragment">
+                class="com.google.android.gms.maps.SupportMapFragment" />
 
-            </androidx.fragment.app.FragmentContainerView>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:layout_margin="20dp">
 
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/handImage"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/mano2"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="-15dp"/>
+
+                <FrameLayout
+                    android:id="@+id/circleBackground"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/handImage"
+                    android:background="@color/white"
+                    android:padding="8dp">
+
+                    <Spinner
+                        android:id="@+id/citySelector"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/cities_array"
+                        android:background="@android:color/transparent"/>
+                </FrameLayout>
+            </RelativeLayout>
+
+            <ImageButton
+                android:id="@+id/mapOptionsMenu"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/baseline_menu_open_22"
+                android:layout_gravity="top|start"
+                android:layout_margin="15dp"
+                android:layout_marginTop="70dp"/>
+        </FrameLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 

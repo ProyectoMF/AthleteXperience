@@ -75,4 +75,9 @@
     <string name="ActualizarPerfil">Actualizar perfil</string>
     <string name="Escribetelf">Escribe tu teléfono</string>
     <string name="EscribeNombre">Escribe tu nombre</string>
+    <string-array name="cities_array">
+        <item>Madrid</item>
+        <item>Barcelona</item>
+        <item>Valencia</item>
+    </string-array>
 </resources>
