@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:text="@string/guardar_nota"
-                android:backgroundTint="@android:color/holo_orange_light"
+                android:backgroundTint="@color/green"
                 android:textColor="@android:color/white" />
 
             <Button
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/borrar_nota"
-                android:backgroundTint="@android:color/holo_orange_light"
+                android:backgroundTint="@color/red"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>
