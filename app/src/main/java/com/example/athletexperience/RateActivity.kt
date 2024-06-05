@@ -76,6 +76,10 @@ class RateActivity: AppCompatActivity()  {
                     // Ya estamos en RateActivity
                     true
                 }
+                R.id.nav_share -> {
+                    shareLink()
+                    true
+                }
                 else -> false
             }
         }
@@ -178,6 +182,14 @@ class RateActivity: AppCompatActivity()  {
                 Log.e("RateActivity", "Error loading average rating", error.toException())
             }
         })
+    }
+    private fun shareLink() {
+        val shareIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, "Echa un vistazo a este link: https://github.com/ProyectoMF/AthleteXperience")
+            type = "text/plain"
+        }
+        startActivity(Intent.createChooser(shareIntent, "Share via"))
     }
 
     private fun signOutAndStartSignInActivity() {

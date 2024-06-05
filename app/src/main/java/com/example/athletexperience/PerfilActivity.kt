@@ -78,6 +78,10 @@ class PerfilActivity : AppCompatActivity() {
                     startActivity(intent)
                     true
                 }
+                R.id.nav_share -> {
+                    shareLink()
+                    true
+                }
                 else -> false
             }
         }
@@ -172,6 +176,14 @@ class PerfilActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+    private fun shareLink() {
+        val shareIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, "Echa un vistazo a este link: https://github.com/ProyectoMF/AthleteXperience")
+            type = "text/plain"
+        }
+        startActivity(Intent.createChooser(shareIntent, "Share via"))
     }
 
     private fun setupInputFilters() {
