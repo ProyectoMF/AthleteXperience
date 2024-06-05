@@ -26,6 +26,7 @@
             android:name=".loggin.SplashActivity"
             android:launchMode="singleTask"
             android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,65 +37,79 @@
 
         <activity
             android:name=".loggin.SignInActivity"
-            android:exported="false" >
+            android:exported="false"
+            android:screenOrientation="portrait">
+
         </activity>
 
         <activity
             android:name=".loggin.SignUpActivity"
-            android:exported="false" >
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".PersonalObjetivoActivity"
-            android:exported="false" >
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".PersonalActividadFisicaActivity"
-            android:exported="false" >
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".PersonalInfoActivity"
-            android:exported="false" >
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".PersonalResumenActivity"
-            android:exported="false" >
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".mainActivity"
-            android:exported="false" >
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".NotesActivity"
-            android:exported="false" >
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".EjerciciosActivity"
-            android:exported="false" >
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".MapActivity"
-            android:exported="false" >
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".RepsActivity"
-            android:exported="false" >
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".PerfilActivity"
-            android:exported="false" >
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".RateActivity"
-            android:exported="false" >
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
 
 
