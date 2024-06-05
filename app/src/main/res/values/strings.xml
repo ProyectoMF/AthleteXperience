@@ -78,6 +78,8 @@
     <string name="Rutinas">Rutinas</string>
     <string name="Notas">Notas</string>
     <string name="Perfil">Perfil</string>
+    <string name="Valoranos" />
+    <string name="valoraci_n">Valoración</string>
     <string-array name="cities_array">
         <item>Madrid</item>
         <item>Barcelona</item>

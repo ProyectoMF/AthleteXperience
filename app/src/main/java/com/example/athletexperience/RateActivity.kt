@@ -90,7 +90,6 @@ class RateActivity: AppCompatActivity()  {
 
         loadUserProfile()
 
-        // Inicializar vistas de la actividad de valoración
         ratingBar = findViewById(R.id.ratingBar)
         saveRatingButton = findViewById(R.id.saveRatingButton)
         averageRatingTextView = findViewById(R.id.averageRatingTextView)

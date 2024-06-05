@@ -51,7 +51,7 @@ class NotesActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false) // Desactiva el título predeterminado
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)

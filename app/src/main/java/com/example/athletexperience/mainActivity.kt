@@ -263,7 +263,7 @@ class mainActivity : AppCompatActivity() {
                         routines.add(Routine(routineName, exercises))
                     }
                     routineAdapter.updateRoutines(routines)
-                    setupTabs(routines) // Configurar las pestañas después de cargar las rutinas
+                    setupTabs(routines)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -274,9 +274,9 @@ class mainActivity : AppCompatActivity() {
 
     private fun setupTabs(routines: List<Routine>) {
         val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
-        tabLayout.removeAllTabs() // Limpiar todas las pestañas existentes
+        tabLayout.removeAllTabs()
         routines.forEach { routine ->
-            tabLayout.addTab(tabLayout.newTab().setCustomView(R.layout.custom_tab)) // Añadir pestaña con diseño personalizado
+            tabLayout.addTab(tabLayout.newTab().setCustomView(R.layout.custom_tab))
         }
     }
 
