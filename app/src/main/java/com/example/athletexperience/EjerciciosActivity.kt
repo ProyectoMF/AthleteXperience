@@ -3,14 +3,18 @@ package com.example.athletexperience
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
 
 class EjerciciosActivity : AppCompatActivity() {
 
-    private lateinit var exerciseLayouts: List<Pair<LinearLayout, String>>
     private lateinit var routineName: String
     private lateinit var lyBackMainActivity: LinearLayout
 
@@ -22,46 +26,8 @@ class EjerciciosActivity : AppCompatActivity() {
 
         routineName = intent.getStringExtra("ROUTINE_NAME") ?: ""
 
-        // Inicializar la lista de ejercicios
-        exerciseLayouts = listOf(
-            Pair(findViewById(R.id.exercise_1), "Press de Banca"),
-            Pair(findViewById(R.id.exercise_2), "Press de Banca Inclinado"),
-            Pair(findViewById(R.id.exercise_3), "Press de Banca Declinado"),
-            Pair(findViewById(R.id.exercise_4), "Aperturas en máquina"),
-            Pair(findViewById(R.id.exercise_5), "Fondos"),
-            Pair(findViewById(R.id.exercise_6), "Triceps en Polea"),
-            Pair(findViewById(R.id.exercise_7), "Triceps en Polea tras Nuca"),
-            Pair(findViewById(R.id.exercise_8), "Crunch Abdominal"),
-            Pair(findViewById(R.id.exercise_9), "Crunch laterales"),
-            Pair(findViewById(R.id.exercise_10), "Biceps en Banco Scott"),
-            Pair(findViewById(R.id.exercise_11), "Curl de Biceps en Banco Inclinado"),
-            Pair(findViewById(R.id.exercise_12), "Curl de Martillo"),
-            Pair(findViewById(R.id.exercise_13), "Encogimiento de Hombros"),
-            Pair(findViewById(R.id.exercise_14), "Pull Over"),
-            Pair(findViewById(R.id.exercise_15), "Remo en Barra T"),
-            Pair(findViewById(R.id.exercise_16), "Remo Dorsal"),
-            Pair(findViewById(R.id.exercise_17), "Jalón al Pecho"),
-            Pair(findViewById(R.id.exercise_18), "Peso Muerto"),
-            Pair(findViewById(R.id.exercise_19), "Sentadilla con Barra"),
-            Pair(findViewById(R.id.exercise_20), "Sentadilla Hacka"),
-            Pair(findViewById(R.id.exercise_21), "Prensa inclinada"),
-            Pair(findViewById(R.id.exercise_22), "Extensión de Gemelos"),
-            Pair(findViewById(R.id.exercise_23), "Máquina de Aductores"),
-            Pair(findViewById(R.id.exercise_24), "Máquina de Abductores"),
-            Pair(findViewById(R.id.exercise_25), "Elevaciones Laterales Hombro"),
-            Pair(findViewById(R.id.exercise_26), "Extensiones de Cuádriceps"),
-            Pair(findViewById(R.id.exercise_27), "Curl de Femoral"),
-            Pair(findViewById(R.id.exercise_28), "Press Militar"),
-            Pair(findViewById(R.id.exercise_29), "Hombro Posterior en Máquina"),
-            Pair(findViewById(R.id.exercise_30), "Patada de Glúteo")
-        )
-
-        // Configurar listeners para todos los ejercicios
-        exerciseLayouts.forEach { pair ->
-            pair.first.setOnClickListener {
-                addExerciseToRoutine(pair.second, routineName)
-            }
-        }
+        // Cargar los ejercicios desde Firebase
+        loadExercisesFromFirebase()
 
         // Configurar la búsqueda
         val searchView = findViewById<SearchView>(R.id.searchView)
@@ -84,13 +50,69 @@ class EjerciciosActivity : AppCompatActivity() {
         }
     }
 
+    private fun loadExercisesFromFirebase() {
+        val database = FirebaseDatabase.getInstance().reference.child("exercises")
+        database.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val exercises = mutableListOf<Pair<String, String>>() // Pair of exercise name and image resource
+                    for (exerciseSnapshot in snapshot.children) {
+                        val name = exerciseSnapshot.child("name").getValue(String::class.java) ?: ""
+                        val imageResource = exerciseSnapshot.child("image_resource").getValue(String::class.java) ?: ""
+                        exercises.add(Pair(name, imageResource))
+                    }
+                    createExerciseViews(exercises)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@EjerciciosActivity, "Error loading exercises", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun createExerciseViews(exercises: List<Pair<String, String>>) {
+        val container = findViewById<LinearLayout>(R.id.exercise_container)
+        container.removeAllViews()
+
+        for ((name, imageResource) in exercises) {
+            val exerciseView = layoutInflater.inflate(R.layout.item_exercices, container, false)
+
+            val exerciseNameTextView = exerciseView.findViewById<TextView>(R.id.tvExercises)
+            val exerciseImageView = exerciseView.findViewById<ImageView>(R.id.exercise_image)
+
+            exerciseNameTextView.text = name
+            // Cargar imagen de firebase
+            loadExerciseImage(imageResource, exerciseImageView)
+
+            exerciseView.setOnClickListener {
+                addExerciseToRoutine(name, routineName)
+            }
+
+            container.addView(exerciseView)
+        }
+    }
+
+    private fun loadExerciseImage(imageResource: String, imageView: ImageView) {
+        val storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(imageResource)
+        storageReference.downloadUrl.addOnSuccessListener { uri ->
+            Glide.with(this).load(uri).into(imageView)
+        }.addOnFailureListener {
+            // Handle any errors
+            Toast.makeText(this, "Error de carga imagen", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun filterExercises(query: String) {
         val lowerCaseQuery = query.toLowerCase()
-        exerciseLayouts.forEach { pair ->
-            if (pair.second.toLowerCase().contains(lowerCaseQuery)) {
-                pair.first.visibility = View.VISIBLE
+        val container = findViewById<LinearLayout>(R.id.exercise_container)
+        for (i in 0 until container.childCount) {
+            val exerciseView = container.getChildAt(i)
+            val exerciseNameTextView = exerciseView.findViewById<TextView>(R.id.tvExercises)
+            if (exerciseNameTextView.text.toString().toLowerCase().contains(lowerCaseQuery)) {
+                exerciseView.visibility = View.VISIBLE
             } else {
-                pair.first.visibility = View.GONE
+                exerciseView.visibility = View.GONE
             }
         }
     }

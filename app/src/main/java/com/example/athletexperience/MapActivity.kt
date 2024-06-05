@@ -46,7 +46,6 @@ class MapActivity : AppCompatActivity() , OnMapReadyCallback{
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-
         supportActionBar?.setDisplayShowTitleEnabled(false) // Desactiva el título predeterminado
 
 

@@ -42,6 +42,7 @@ class RateActivity: AppCompatActivity()  {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false) // Desactiva el título predeterminado
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
         toggle = ActionBarDrawerToggle(this, drawerLayout, binding.toolbar, R.string.open, R.string.close)
