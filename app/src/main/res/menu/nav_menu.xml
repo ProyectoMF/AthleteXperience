@@ -38,14 +38,14 @@
         </item>
         <item android:title="Social">
               <menu>
-                      <item android:id="@+id/nav_share"
-                          android:icon="@drawable/baseline_share_24"
-                          android:title="Compartir">
-
-                      </item>
                       <item  android:id="@+id/nav_rate_us"
                           android:icon="@drawable/baseline_rate_review_24"
                           android:title="Valoranos">
+
+                      </item>
+                      <item android:id="@+id/nav_share"
+                          android:icon="@drawable/baseline_share_24"
+                          android:title="Compartir">
 
                       </item>
               </menu>
