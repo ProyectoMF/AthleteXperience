@@ -49,8 +49,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/icon_sexo"
-                    android:onClick="onProfileImageClick" />
+                    android:src="@drawable/icon_sexo"/>
 
                 <TextView
                     android:id="@+id/textview_fullname"
